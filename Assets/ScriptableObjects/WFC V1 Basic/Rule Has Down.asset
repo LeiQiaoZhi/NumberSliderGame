@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba85aa2307b04fff89ec613d4362e9e9, type: 3}
+  m_Name: Rule Has Down
+  m_EditorClassIdentifier: 
+  description: 
+  onlyContains:
+  - {fileID: 11400000, guid: 53cf3da9432e78d48ad630c46d767658, type: 2}
+  - {fileID: 11400000, guid: 05ed15132d629b746b34cc3b87c5001b, type: 2}
+  - {fileID: 11400000, guid: baee0467119bd36409dffe5c0cb1653a, type: 2}

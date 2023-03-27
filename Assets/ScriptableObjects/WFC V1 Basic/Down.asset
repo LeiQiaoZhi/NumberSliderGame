@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54adf2c04cfb4395b884a6c07bd047b0, type: 3}
+  m_Name: Down
+  m_EditorClassIdentifier: 
+  image: {fileID: 21300000, guid: 6d53bcd4f25d0c34db678aded5b55e7f, type: 3}
+  topRule: {fileID: 11400000, guid: 2787a6fdfed391849b8f0fd09f582f0d, type: 2}
+  leftRule: {fileID: 11400000, guid: ff9c3659b5facb240bc0e90d89bd6142, type: 2}
+  rightRule: {fileID: 11400000, guid: 4b57e69ecae50a649a966b0afed1ed7a, type: 2}
+  downRule: {fileID: 11400000, guid: a5b08e816ab814b47a79a350d202f8ab, type: 2}
