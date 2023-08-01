@@ -4,7 +4,7 @@
 
 [CreateAssetMenu(fileName = "WFC Item Basic", menuName = "WFCItem/Basic")]
 [System.Serializable]
-public class WFCItem : ScriptableObject
+public class WfcItem : ScriptableObject
 {
     public Sprite image;
     [Header("Rules")]

@@ -12,10 +12,10 @@ public class Cell : MonoBehaviour
     public int y;
     public SpriteRenderer spriteRenderer;
 
-    private List<WFCItem> possibilities;
+    private List<WfcItem> possibilities;
     private GridSystem gridSystem;
 
-    public void Init(List<WFCItem> possibleItems, int _x, int _y, GridSystem grid)
+    public void Init(List<WfcItem> possibleItems, int _x, int _y, GridSystem grid)
     {
         possibilities = possibleItems;
         x = _x;
@@ -34,7 +34,7 @@ public class Cell : MonoBehaviour
         return possibilities.Count;
     }
 
-    private WFCItem GetRandomItem()
+    private WfcItem GetRandomItem()
     {
         return possibilities[Random.Range(0, possibilities.Count)];
     }
@@ -72,10 +72,10 @@ public class Cell : MonoBehaviour
     /// <summary>
     /// update this cell's possibilities based on item's rule
     /// </summary>
-    private void UpdatePossibilities(Rule rule, WFCItem item)
+    private void UpdatePossibilities(Rule rule, WfcItem item)
     {
         XLogger.Log(Category.Cell, $"applying {rule} to cell ({x},{y})");
-        var newPossibilities = new List<WFCItem>();
+        var newPossibilities = new List<WfcItem>();
         foreach (var possibility in possibilities)
         {
             var valid = rule.TestRuleValid(item, possibility);
@@ -118,5 +118,10 @@ public class Cell : MonoBehaviour
         var right = gridSystem.GetCell(x + 1, y);
         if (right)
             right.UpdatePossibilities(item.rightRule, item);
+    }
+
+    public override string ToString()
+    {
+        return $"cell ({x},{y})";
     }
 }

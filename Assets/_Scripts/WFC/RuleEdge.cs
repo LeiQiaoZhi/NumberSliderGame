@@ -9,10 +9,10 @@ public class RuleEdge : Rule
     /// </summary>
     public DirectionEnum direction;
 
-    public override bool TestRuleValid(WFCItem selfBase, WFCItem otherBase)
+    public override bool TestRuleValid(WfcItem _selfBase, WfcItem _otherBase)
     {
-        var self = selfBase as WFCItemEdges;
-        var other = otherBase as WFCItemEdges;
+        var self = _selfBase as WfcItemEdges;
+        var other = _otherBase as WfcItemEdges;
         if (self != null && other != null)
         {
             List<EdgeType> selfEdges = new List<EdgeType>();

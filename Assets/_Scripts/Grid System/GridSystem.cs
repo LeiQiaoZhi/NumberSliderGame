@@ -46,7 +46,7 @@ public class GridSystem : MonoBehaviour
         objects.Clear();
     }
 
-    public List<Tuple<int,int>> CreateDefaultCells(List<WFCItem> possibleItems)
+    public List<Tuple<int,int>> CreateDefaultCells(List<WfcItem> possibleItems)
     {
         var results = new List<Tuple<int, int>>();
         for (int y = 0; y < height; y++)

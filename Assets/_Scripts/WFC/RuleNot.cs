@@ -4,8 +4,8 @@
 public class RuleNot : Rule
 {
     public Rule negateAgainst;
-    public override bool TestRuleValid(WFCItem self, WFCItem other)
+    public override bool TestRuleValid(WfcItem _self, WfcItem _other)
     {
-        return !negateAgainst.TestRuleValid(self, other);
+        return !negateAgainst.TestRuleValid(_self, _other);
     }
 }
