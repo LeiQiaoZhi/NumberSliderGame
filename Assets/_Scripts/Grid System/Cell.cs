@@ -16,7 +16,6 @@ public class Cell : MonoBehaviour
     {
         x = _x;
         y = _y;
-        spriteRenderer.color = Color.gray;
     }
 
     public override string ToString()
