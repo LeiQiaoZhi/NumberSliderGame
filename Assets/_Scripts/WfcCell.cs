@@ -1,21 +1,20 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.UI;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class WFCCell 
+public class WfcCell 
 {
     private Cell cell_;
 
-    private List<WfcItem> possibilities_;
-    private WaveFunctionCollapse waveFunctionCollapse_;
+    private List<WFCItem> possibilities_;
+    private readonly WaveFunctionCollapse waveFunctionCollapse_;
 
     private int x_;
     private int y_;
 
-    public WFCCell(List<WfcItem> _possibleItems, WaveFunctionCollapse _waveFunctionCollapse, Cell _cell)
+    public WfcCell(List<WFCItem> _possibleItems, WaveFunctionCollapse _waveFunctionCollapse, Cell _cell)
     {
         possibilities_ = _possibleItems;
         waveFunctionCollapse_ = _waveFunctionCollapse;
@@ -28,14 +27,14 @@ public class WFCCell
         return possibilities_.Count;
     }
 
-    private WfcItem GetRandomItem()
+    private WFCItem GetRandomItem()
     {
         return possibilities_[Random.Range(0, possibilities_.Count)];
     }
 
-    public List<WFCCell> GetNeighbours()
+    public List<WfcCell> GetNeighbours()
     {
-        List<WFCCell> neighbours = new List<WFCCell>();
+        List<WfcCell> neighbours = new List<WfcCell>();
         var top = waveFunctionCollapse_.GetCell(x_, y_ + 1);
         if (top != null)
             neighbours.Add(top);
@@ -58,11 +57,11 @@ public class WFCCell
     /// <summary>
     /// update this cell's possibilities based on item's rule
     /// </summary>
-    private void UpdatePossibilities(Rule _rule, WfcItem _item)
+    private void UpdatePossibilities(Rule _rule, WFCItem _item)
     {
         XLogger.Log(Category.Cell, $"applying {_rule} to {cell_}");
-        var newPossibilities = new List<WfcItem>();
-        foreach (var possibility in possibilities_)
+        var newPossibilities = new List<WFCItem>();
+        foreach (WFCItem possibility in possibilities_)
         {
             var valid = _rule.TestRuleValid(_item, possibility);
             if (valid)
@@ -82,21 +81,34 @@ public class WFCCell
     public void Collapse()
     {
         // change sprite
-        var item = GetRandomItem();
+        WFCItem item = GetRandomItem();
         XLogger.Log(Category.WFC, $"{cell_} collapsed with item {item}");
 
         // update neighbour's possibilities
-        var top = waveFunctionCollapse_.GetCell(x_, y_ + 1);
-        top?.UpdatePossibilities(item.topRule, item);
+        WfcCell top = waveFunctionCollapse_.GetCell(x_, y_ + 1);
+        if (top != null)
+            top.UpdatePossibilities(item.topRule, item);
 
-        var down = waveFunctionCollapse_.GetCell(x_, y_ - 1);
-        down?.UpdatePossibilities(item.downRule, item);
+        WfcCell down = waveFunctionCollapse_.GetCell(x_, y_ - 1);
+        if (down != null)
+            down.UpdatePossibilities(item.downRule, item);
 
-        var left = waveFunctionCollapse_.GetCell(x_ - 1, y_);
-        left?.UpdatePossibilities(item.leftRule, item);
+        WfcCell left = waveFunctionCollapse_.GetCell(x_ - 1, y_);
+        if (left != null)
+            left.UpdatePossibilities(item.leftRule, item);
 
-        var right = waveFunctionCollapse_.GetCell(x_ + 1, y_);
-        right?.UpdatePossibilities(item.rightRule, item);
+        WfcCell right = waveFunctionCollapse_.GetCell(x_ + 1, y_);
+        if (right != null)
+            right?.UpdatePossibilities(item.rightRule, item);
     }
     
+    public Tuple<int, int> GetPosition()
+    {
+        return new Tuple<int, int>(x_, y_);
+    }
+
+    public override string ToString()
+    {
+        return cell_.ToString();
+    }
 }

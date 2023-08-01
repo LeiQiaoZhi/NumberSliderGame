@@ -6,14 +6,17 @@ using UnityEngine;
 
 public class WaveFunctionCollapse : MonoBehaviour
 {
-    public List<WfcItem> wfcItems;
+    public List<WFCItem> wfcItems;
+
     [SerializeField] private float secondsBetweenCollapse = 1f;
+
     // responsible for UI of the grid
     public GridSystem gridSystem;
 
     // created from wfcItems
-    private List<WfcItem> itemsIncludingRotations_;
-    private List<Tuple<int, int>> cells_;
+    private List<WFCItem> itemsIncludingRotations_;
+    private List<WfcCell> wfcCells_;
+    private List<Tuple<int, int>> cellsCoords_;
 
     // Start is called before the first frame update
     void Start()
@@ -23,15 +26,24 @@ public class WaveFunctionCollapse : MonoBehaviour
         XLogger.Log(Category.WFC,
             $"{itemsIncludingRotations_.Count} items now, {itemsIncludingRotations_.Count - wfcItems.Count} created from rotation");
 
-        cells_ = gridSystem.CreateDefaultCells(itemsIncludingRotations_);
-        // StartWFC();
+        cellsCoords_ = gridSystem.CreateDefaultCells();
     }
 
     public void StartWfc()
     {
         StopAllCoroutines();
         gridSystem.ClearAllCells();
-        cells_ = gridSystem.CreateDefaultCells(itemsIncludingRotations_);
+        cellsCoords_ = gridSystem.CreateDefaultCells();
+        // create wfcCells from cells
+        wfcCells_ = new List<WfcCell>();
+        foreach (var cellCoord in cellsCoords_)
+        {
+            Cell cell = gridSystem.GetCell(cellCoord.Item1, cellCoord.Item2);
+            XLogger.Log(Category.WFC, $"{itemsIncludingRotations_.Count} items now.");
+            var wfcCell = new WfcCell(itemsIncludingRotations_, this, cell);
+            wfcCells_.Add(wfcCell);
+        }
+
         StartCoroutine(DoWaveFunctionCollapse());
     }
 
@@ -40,27 +52,28 @@ public class WaveFunctionCollapse : MonoBehaviour
     {
         // var heap = new Heap<Cell>(cells, (x, y) => x.GetEntropy() - y.GetEntropy());
         // XLogger.Log(Category.WFC, $"heap created, with count = {heap.Count}");
-        bool first = true;
-        while (cells_.Count > 0)
+        var first = true;
+        while (cellsCoords_.Count > 0)
         {
-            cells_.Sort((_cell1, _cell2) => gridSystem.GetCell(_cell1.Item1, _cell1.Item2).GetEntropy() -
-                                         gridSystem.GetCell(_cell2.Item1, _cell2.Item2).GetEntropy());
+            cellsCoords_.Sort((_cell1, _cell2) =>
+                GetCell(_cell1.Item1, _cell1.Item2).GetEntropy() -
+                GetCell(_cell2.Item1, _cell2.Item2).GetEntropy());
             // get the cell with the least entropy
-            var cell = gridSystem.GetCell(cells_[0].Item1, cells_[0].Item2);
+            WfcCell cell = GetCell(cellsCoords_[0].Item1, cellsCoords_[0].Item2);
             if (first)
             {
-                cell = gridSystem.GetCell(Mathf.RoundToInt(gridSystem.width / 2), Mathf.RoundToInt(gridSystem.height / 2));
+                cell = GetCell(Mathf.RoundToInt(gridSystem.width / 2.0f), Mathf.RoundToInt(gridSystem.height / 2.0f));
                 first = false;
-                cells_.Remove(new Tuple<int, int>(cell.x,cell.y));
+                cellsCoords_.Remove(cell.GetPosition());
             }
             else
-                cells_.RemoveAt(0);
-            
-            XLogger.Log(Category.WFC, $"cell ({cell.x},{cell.y}) with entropy {cell.GetEntropy()} is popped");
-            
+                cellsCoords_.RemoveAt(0);
+
+            XLogger.Log(Category.WFC, $"{cell} with entropy {cell.GetEntropy()} is popped");
+
             if (cell.GetEntropy() == 0)
-                XLogger.LogWarning($"cell ({cell.x},{cell.y}) has zero possible choices");
-            else 
+                XLogger.LogWarning($"{cell} has zero possible choices");
+            else
                 cell.Collapse();
 
             if (secondsBetweenCollapse > 0)
@@ -75,10 +88,10 @@ public class WaveFunctionCollapse : MonoBehaviour
 
     void CreateItemsBaseOnRotation()
     {
-        itemsIncludingRotations_ = new List<WfcItem>(wfcItems);
+        itemsIncludingRotations_ = new List<WFCItem>(wfcItems);
         foreach (var itemBase in wfcItems)
         {
-            var item = itemBase as WfcItemEdges;
+            var item = itemBase as WFCItemEdges;
             if (item == null) continue;
             if (!(item.rotate90 || item.rotate180 || item.rotate270)) continue;
             var image90 = RotateSpriteClockwise(item.image);
@@ -86,7 +99,7 @@ public class WaveFunctionCollapse : MonoBehaviour
             var image270 = RotateSpriteClockwise(image180);
             if (item.rotate90)
             {
-                var rotateItem = ScriptableObject.CreateInstance<WfcItemEdges>();
+                var rotateItem = ScriptableObject.CreateInstance<WFCItemEdges>();
                 rotateItem.name = $"{item.name}-90";
                 rotateItem.image = image90;
                 rotateItem.topEdges = item.leftEdges;
@@ -103,7 +116,7 @@ public class WaveFunctionCollapse : MonoBehaviour
 
             if (item.rotate180)
             {
-                var rotateItem = ScriptableObject.CreateInstance<WfcItemEdges>();
+                var rotateItem = ScriptableObject.CreateInstance<WFCItemEdges>();
                 rotateItem.name = $"{item.name}-180";
                 rotateItem.image = image180;
                 rotateItem.topEdges = item.downEdges;
@@ -120,7 +133,7 @@ public class WaveFunctionCollapse : MonoBehaviour
 
             if (item.rotate270)
             {
-                var rotateItem = ScriptableObject.CreateInstance<WfcItemEdges>();
+                var rotateItem = ScriptableObject.CreateInstance<WFCItemEdges>();
                 rotateItem.name = $"{item.name}-270";
                 rotateItem.image = image270;
                 rotateItem.topEdges = item.rightEdges;
@@ -145,16 +158,29 @@ public class WaveFunctionCollapse : MonoBehaviour
 
         // Rotate the pixels by 90 degrees clockwise
         for (int x = 0; x < _sprite.texture.width; x++)
-            for (int y = 0; y < _sprite.texture.height; y++)
-                rotatedTexture.SetPixel(y, _sprite.texture.width - x - 1, _sprite.texture.GetPixel(x, y));
+        for (int y = 0; y < _sprite.texture.height; y++)
+            rotatedTexture.SetPixel(y, _sprite.texture.width - x - 1, _sprite.texture.GetPixel(x, y));
 
         // Apply the rotated pixels to the texture and create a new sprite
         rotatedTexture.Apply();
         return Sprite.Create(rotatedTexture, _sprite.rect, new Vector2(0.5f, 0.5f), _sprite.pixelsPerUnit);
     }
 
-    public WFCCell GetCell(int _p0, int _p1)
+    public WfcCell GetCell(int _x, int _y)
     {
-        throw new NotImplementedException();
+        if (_x < 0 || _x >= gridSystem.width || _y < 0 || _y >= gridSystem.height)
+        {
+            XLogger.LogWarning(Category.WFC, $"coordinate {_x},{_y} out of bounds");
+            return null;
+        }
+
+        if (wfcCells_.Count != gridSystem.width * gridSystem.height)
+        {
+            XLogger.LogWarning((Category.WFC, "WaveFunctionCollapse.wfc cells not properly initialized"));
+            return null;
+        }
+
+        var index = _x + _y * gridSystem.width;
+        return wfcCells_[index];
     }
 }

@@ -988,7 +988,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 244847815}
         m_TargetAssemblyTypeName: WaveFunctionCollapse, Assembly-CSharp
-        m_MethodName: StartWFC
+        m_MethodName: StartWfc
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1372,8 +1372,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4382c36c642f3724aacb87e9fe0bbee9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 60
-  height: 30
+  width: 6
+  height: 6
   margin: 0.05
   cellPrefab: {fileID: 5425937733918714787, guid: a61ff5e0dee91204a8c18425319b5006, type: 3}
 --- !u!1 &1789372218

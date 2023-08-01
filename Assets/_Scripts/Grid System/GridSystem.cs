@@ -46,7 +46,7 @@ public class GridSystem : MonoBehaviour
         objects.Clear();
     }
 
-    public List<Tuple<int,int>> CreateDefaultCells(List<WfcItem> possibleItems)
+    public List<Tuple<int,int>> CreateDefaultCells()
     {
         var results = new List<Tuple<int, int>>();
         for (int y = 0; y < height; y++)
@@ -62,7 +62,7 @@ public class GridSystem : MonoBehaviour
                 var cellObject = Instantiate(cellPrefab, pos, Quaternion.identity);
                 cellObject.transform.localScale = cellDimension;
                 var cell = cellObject.GetComponent<Cell>();
-                cell.Init(possibleItems, x, y, this);
+                cell.Init(x, y);
                 cells.Add(cell);
                 results.Add(new Tuple<int, int>(x,y));
             }

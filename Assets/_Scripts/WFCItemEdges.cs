@@ -3,12 +3,12 @@ using UnityEngine;
 
 public enum EdgeType
 {
-    Empty, Connected
+    Empty, Connected, Green, Gray
 }
 
 [CreateAssetMenu(fileName = "WFC Item Edges", menuName = "WFCItem/Edges")]
 [System.Serializable]
-public class WfcItemEdges : WfcItem
+public class WFCItemEdges : WFCItem
 {
     [Header("Rotation")] 
     public bool rotate90;
