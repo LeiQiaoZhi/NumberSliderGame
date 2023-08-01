@@ -19,6 +19,8 @@ public class WfcCell
         possibilities_ = _possibleItems;
         waveFunctionCollapse_ = _waveFunctionCollapse;
         cell_ = _cell;
+        x_ = _cell.x;
+        y_ = _cell.y;
     }
 
     /// <returns> number of possibilities</returns>
@@ -83,6 +85,7 @@ public class WfcCell
         // change sprite
         WFCItem item = GetRandomItem();
         XLogger.Log(Category.WFC, $"{cell_} collapsed with item {item}");
+        cell_.SetSprite(item.image);
 
         // update neighbour's possibilities
         WfcCell top = waveFunctionCollapse_.GetCell(x_, y_ + 1);

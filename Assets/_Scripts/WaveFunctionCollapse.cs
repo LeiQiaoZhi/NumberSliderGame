@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Pathfinding;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public class WaveFunctionCollapse : MonoBehaviour
 {
@@ -181,6 +182,8 @@ public class WaveFunctionCollapse : MonoBehaviour
         }
 
         var index = _x + _y * gridSystem.width;
+        Assert.IsTrue(_x == wfcCells_[index].GetPosition().Item1 && _y == wfcCells_[index].GetPosition().Item2,
+            $"index {_x},{_y} not match with result cell position {wfcCells_[index].GetPosition().Item1},{wfcCells_[index].GetPosition().Item2}");
         return wfcCells_[index];
     }
 }
