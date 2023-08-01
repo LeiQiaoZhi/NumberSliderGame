@@ -105,26 +105,18 @@ public class Cell : MonoBehaviour
         // update neighbour's possibilities
         var top = gridSystem.GetCell(x, y + 1);
         if (top)
-        {
             top.UpdatePossibilities(item.topRule, item);
-        }
 
         var down = gridSystem.GetCell(x, y - 1);
         if (down)
-        {
             down.UpdatePossibilities(item.downRule, item);
-        }
 
         var left = gridSystem.GetCell(x - 1, y);
         if (left)
-        {
             left.UpdatePossibilities(item.leftRule, item);
-        }
 
         var right = gridSystem.GetCell(x + 1, y);
         if (right)
-        {
             right.UpdatePossibilities(item.rightRule, item);
-        }
     }
 }

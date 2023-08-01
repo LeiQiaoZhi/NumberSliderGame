@@ -3,9 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
+// TODO: grid system should only be responsible for UI, not the logic of WFC
 /// bottom left cell has coordinate (0,0)
-/// </summary>
 public class GridSystem : MonoBehaviour
 {
     public int width;
@@ -14,9 +13,7 @@ public class GridSystem : MonoBehaviour
 
     public GameObject cellPrefab;
 
-    /// <summary>
-    /// 1D list storing cells in ROW-MAJOR order
-    /// </summary>
+    // 1D list storing cells in ROW-MAJOR order
     private List<Cell> cells = new List<Cell>();
 
     private Vector2 cellDimension;

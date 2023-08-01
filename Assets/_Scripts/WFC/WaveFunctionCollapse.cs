@@ -8,11 +8,12 @@ public class WaveFunctionCollapse : MonoBehaviour
 {
     public List<WFCItem> wfcItems;
     [SerializeField] private float secondsBetweenCollapse = 1f;
+    // responsible for UI of the grid
     public GridSystem gridSystem;
 
+    // created from wfcItems
     private List<WFCItem> itemsIncludingRotations;
     private List<Tuple<int, int>> cells;
-
 
     // Start is called before the first frame update
     void Start()
@@ -53,20 +54,14 @@ public class WaveFunctionCollapse : MonoBehaviour
                 cells.Remove(new Tuple<int, int>(cell.x,cell.y));
             }
             else
-            {
                 cells.RemoveAt(0);
-            }
+            
             XLogger.Log(Category.WFC, $"cell ({cell.x},{cell.y}) with entropy {cell.GetEntropy()} is popped");
-            // XLogger.Log(Category.WFC, cell);
+            
             if (cell.GetEntropy() == 0)
-            {
                 XLogger.LogWarning($"cell ({cell.x},{cell.y}) has zero possible choices");
-            }
-            else
-            {
-                // collapse the cell
+            else 
                 cell.Collapse();
-            }
 
             if (secondsBetweenCollapse > 0)
                 yield return new WaitForSeconds(secondsBetweenCollapse);
@@ -150,12 +145,8 @@ public class WaveFunctionCollapse : MonoBehaviour
 
         // Rotate the pixels by 90 degrees clockwise
         for (int x = 0; x < sprite.texture.width; x++)
-        {
             for (int y = 0; y < sprite.texture.height; y++)
-            {
                 rotatedTexture.SetPixel(y, sprite.texture.width - x - 1, sprite.texture.GetPixel(x, y));
-            }
-        }
 
         // Apply the rotated pixels to the texture and create a new sprite
         rotatedTexture.Apply();
