@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     
     private NumberGridGenerator numberGridGenerator_;
     // note this position may exceed or go below dimensions of a patch
+    // because it uses grid coordinates, not patch coordinates
     private Tuple<int, int> position_;
 
     private void Start()
@@ -17,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
         numberGridGenerator_.StartingGeneration();
         position_ = new Tuple<int, int>(numberGridGenerator_.GetPatchWidth()/2, numberGridGenerator_.GetPatchHeight()/2);
         numberGridGenerator_.GetCell(position_).SetActive();
+        numberGridGenerator_.GetCell(position_).SetNumber(1);
     }
 
     public void Move(Vector2Int _vector2Int)
@@ -64,5 +66,10 @@ public class PlayerMovement : MonoBehaviour
     public Tuple<int, int> GetPlayerPosition()
     {
         return position_;
+    }
+
+    public Vector3 GetPlayerPositionWorld()
+    {
+        return numberGridGenerator_.infGridSystem.GridToWorldPosition(position_.Item1, position_.Item2);
     }
 }

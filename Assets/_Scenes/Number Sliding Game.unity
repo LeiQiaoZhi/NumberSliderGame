@@ -134,6 +134,80 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee8dffb3426e43241bfcdb574fd6ac7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &35694046
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 35694047}
+  - component: {fileID: 35694048}
+  - component: {fileID: 35694049}
+  m_Layer: 0
+  m_Name: CameraFollow
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &35694047
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 35694046}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1047884737}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &35694048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 35694046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 925d354a68b356442842ae3166eb866e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 1725647570}
+--- !u!114 &35694049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 35694046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db64a66747c59d04db81eced9d2de940, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  event: {fileID: 11400000, guid: a493705e7f2907b4babdb9030bbc61f1, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 35694048}
+        m_TargetAssemblyTypeName: CameraFollowGrid, Assembly-CSharp
+        m_MethodName: OnPlayerMove
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &87820281
 GameObject:
   m_ObjectHideFlags: 0
@@ -438,7 +512,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8880142742dbe934f80c614250d5bbc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerMoveEvent: {fileID: 0}
+  playerMoveEvent: {fileID: 11400000, guid: a493705e7f2907b4babdb9030bbc61f1, type: 2}
 --- !u!114 &305291490
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -658,8 +732,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   margin: 0.05
   cellPrefab: {fileID: 5425937733918714787, guid: 5df407ae666f8c049bba06a57bc826c1, type: 3}
-  patchDimension: {x: 3, y: 3}
-  visibleAreaDimension: {x: 3, y: 3}
+  patchDimension: {x: 15, y: 15}
+  visibleAreaDimension: {x: 7, y: 7}
 --- !u!4 &831660508
 Transform:
   m_ObjectHideFlags: 0
@@ -935,6 +1009,7 @@ Transform:
   - {fileID: 1861231582}
   - {fileID: 625889243}
   - {fileID: 1725647565}
+  - {fileID: 35694047}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -956,7 +1031,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1070173100
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1364,6 +1439,11 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!20 &1725647570 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 401911676361140094, guid: 9a126f5cae98f8c408635ad546ae85d3, type: 3}
+  m_PrefabInstance: {fileID: 401911676458491649}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1769552698
 GameObject:
   m_ObjectHideFlags: 0

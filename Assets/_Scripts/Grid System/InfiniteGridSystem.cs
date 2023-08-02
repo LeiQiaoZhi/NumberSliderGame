@@ -56,6 +56,32 @@ public class InfiniteGridSystem : MonoBehaviour
             XLogger.LogWarning(Category.GridSystem, $"patch {_patchPosition} not found");
             return null;
         }
+
         return patches_[_patchPosition].GetCell(_x, _y);
+    }
+    public Tuple<int, int> GridToPatchPosition(int _x, int _y)
+    {
+        var patchX = _x < 0 ? (_x + 1) / patchDimension.x - 1 : _x / patchDimension.x;
+        var patchY = _y < 0 ? (_y + 1) / patchDimension.y - 1 : _y / patchDimension.y;
+        return new Tuple<int, int>(patchX, patchY);
+    }
+    public Tuple<int, int> GridToCellInPatchPosition(int _x, int _y)
+    {
+        _x %= patchDimension.x;
+        _y %= patchDimension.y;
+        if (_x < 0) _x += patchDimension.x;
+        if (_y < 0) _y += patchDimension.y;
+        return new Tuple<int, int>(_x, _y);
+    }
+    public Vector3 GridToWorldPosition(int _x, int _y)
+    {
+        var patchPosition = GridToPatchPosition(_x, _y);
+        var cellPosition = GridToCellInPatchPosition(_x, _y);
+        var cell = GetCell(patchPosition, cellPosition);
+        return cell.transform.position;
+    }
+    public Cell GetCell(Tuple<int, int> _patchPosition, Tuple<int, int> _cellPosition)
+    {
+        return GetCell(_patchPosition, _cellPosition.Item1, _cellPosition.Item2);
     }
 }
