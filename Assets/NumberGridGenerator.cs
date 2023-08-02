@@ -1,46 +1,61 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class NumberGridGenerator : MonoBehaviour
 {
-    public GridSystem gridSystem;
-    private List<NumberCell> numberCells_;
+    [FormerlySerializedAs("gridSystem")] public InfiniteGridSystem infGridSystem;
+    private Tuple<int, int> currentPatch_ = new(0, 0);
 
-    public void GenerateCells()
+    public void StartingGeneration()
     {
-        var cells = gridSystem.CreateDefaultCells();
-        numberCells_ = new List<NumberCell>();
+        GeneratePatch(currentPatch_);
+        // test
+        GeneratePatch(new Tuple<int, int>(0, 1));
+        GeneratePatch(new Tuple<int, int>(1, 0));
+        GeneratePatch(new Tuple<int, int>(1, 1));
+        GeneratePatch(new Tuple<int, int>(-1, 0));
+        GeneratePatch(new Tuple<int, int>(-1, -1));
+        GeneratePatch(new Tuple<int, int>(0, -1));
+        GeneratePatch(new Tuple<int, int>(1, -1));
+        GeneratePatch(new Tuple<int, int>(-1, 1));
+    }
+
+    private void GeneratePatch(Tuple<int, int> _patchPosition)
+    {
+        currentPatch_ = _patchPosition;
+        var cells = infGridSystem.CreatePatch(_patchPosition);
         foreach (var cell in cells)
         {
-            var number = Random.Range(1, 21);
-            var numberCell = new NumberCell(gridSystem.GetCell(cell));
-            numberCells_.Add(numberCell);
-            numberCell.SetNumber(number);
-
+            var numberCell = cell.AddComponent<NumberCell>();
+            numberCell.Init(cell);
+            numberCell.SetNumber(Random.Range(1, 21));
         }
     }
+
     public NumberCell GetCell(int _x, int _y)
     {
-        if (_x < 0 || _x >= gridSystem.width || _y < 0 || _y >= gridSystem.height)
-        {
-            XLogger.LogWarning(Category.Wfc, $"coordinate {_x},{_y} out of bounds");
-            return null;
-        }
+        var patchPosition = GridToPatchPosition(_x, _y);
+        _x %= infGridSystem.patchDimension.x;
+        _y %= infGridSystem.patchDimension.y;
+        if (_x < 0) _x += infGridSystem.patchDimension.x;
+        if (_y < 0) _y += infGridSystem.patchDimension.y;
+        XLogger.Log(Category.GridSystem, $"Patch ({patchPosition}), Cell ({_x},{_y})");
 
-        if (numberCells_.Count != gridSystem.width * gridSystem.height)
-        {
-            XLogger.LogWarning((Category.Wfc, "WaveFunctionCollapse.wfc cells not properly initialized"));
-            return null;
-        }
+        Cell cell = infGridSystem.GetCell(patchPosition, _x, _y);
+        return cell == null ? null : cell.GetComponent<NumberCell>();
+    }
 
-        var index = _x + _y * gridSystem.width;
-        Assert.IsTrue(_x == numberCells_[index].GetPosition().Item1 && _y == numberCells_[index].GetPosition().Item2,
-            $"index {_x},{_y} not match with result cell position {numberCells_[index].GetPosition().Item1},{numberCells_[index].GetPosition().Item2}");
-        return numberCells_[index];
+    private Tuple<int, int> GridToPatchPosition(int _x, int _y)
+    {
+        var patchX = _x < 0 ? (_x + 1) / infGridSystem.patchDimension.x - 1 : _x / infGridSystem.patchDimension.x;
+        var patchY = _y < 0 ? (_y + 1) / infGridSystem.patchDimension.y - 1 : _y / infGridSystem.patchDimension.y;
+        return new Tuple<int, int>(patchX, patchY);
     }
 
     public NumberCell GetCell(Tuple<int, int> _position)
@@ -48,13 +63,13 @@ public class NumberGridGenerator : MonoBehaviour
         return GetCell(_position.Item1, _position.Item2);
     }
 
-    public int Width()
+    public int GetPatchWidth()
     {
-        return gridSystem.width;
+        return infGridSystem.patchDimension.x;
     }
-    
-    public int Height()
+
+    public int GetPatchHeight()
     {
-        return gridSystem.height;
+        return infGridSystem.patchDimension.y;
     }
 }

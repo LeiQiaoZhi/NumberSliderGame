@@ -3,8 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// TODO: grid system should only be responsible for UI, not the logic of WFC
-/// bottom left cell has coordinate (0,0)
+// grid system should only be responsible for UI, not the logic of WFC
+// bottom left cell has coordinate (0,0)
 public class GridSystem : MonoBehaviour
 {
     public int width;
