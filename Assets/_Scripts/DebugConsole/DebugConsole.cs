@@ -10,18 +10,18 @@ public class DebugConsole : MonoBehaviour
     public RectTransform historyContainer;
     public GameObject historyTextPrefab;
 
-    List<DebugCommand> _commandList;
+    List<DebugCommand> commandList_;
 
     private void Awake()
     {
         console.SetActive(false);
 
         // stores all the available commands in a list
-        _commandList = new List<DebugCommand>
+        commandList_ = new List<DebugCommand>
         {
-            DebugCommandList.TestCommand,
-            DebugCommandList.QuitCommand,
-            DebugCommandList.HelpCommand
+            DebugCommandList.testCommand,
+            DebugCommandList.quitCommand,
+            DebugCommandList.helpCommand
         };
     }
 
@@ -58,16 +58,16 @@ public class DebugConsole : MonoBehaviour
     }
 
     // ReSharper disable Unity.PerformanceAnalysis
-    public void HandleInput(string input)
+    public void HandleInput(string _input)
     {
         bool valid = false;
         string result = "";
         // check if the input contains any valid commands
-        for (int i = 0; i < _commandList.Count; i++)
+        for (int i = 0; i < commandList_.Count; i++)
         {
-            if (input.Contains(_commandList[i].CommandName))
+            if (_input.Contains(commandList_[i].commandName))
             {
-                result = _commandList[i].Raise(this);
+                result = commandList_[i].Raise(this);
                 valid = true;
                 XLogger.Log(Category.DebugConsole, result);
                 break;
@@ -76,7 +76,7 @@ public class DebugConsole : MonoBehaviour
 
         if (!valid)
         {
-            result = $"Command \"{input}\" not found.";
+            result = $"Command \"{_input}\" not found.";
             XLogger.LogWarning(Category.DebugConsole, result);
         }
 

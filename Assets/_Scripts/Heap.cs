@@ -3,52 +3,52 @@ using System.Collections.Generic;
 
 class Heap<T>
 {
-    private List<T> items;
-    private Dictionary<T, int> itemIndices; // added to keep track of the index of each item in the heap
-    private Comparison<T> comparison;
+    private List<T> items_;
+    private Dictionary<T, int> itemIndices_; // added to keep track of the index of each item in the heap
+    private Comparison<T> comparison_;
 
-    public Heap(IEnumerable<T> collection, Comparison<T> comparison)
+    public Heap(IEnumerable<T> _collection, Comparison<T> _comparison)
     {
-        this.items = new List<T>(collection);
-        this.itemIndices = new Dictionary<T, int>();
-        this.comparison = comparison;
+        this.items_ = new List<T>(_collection);
+        this.itemIndices_ = new Dictionary<T, int>();
+        this.comparison_ = _comparison;
 
-        for (int i = Parent(items.Count - 1); i >= 0; i--)
+        for (int i = Parent(items_.Count - 1); i >= 0; i--)
         {
             BubbleDown(i);
         }
     }
 
-    public int Count { get { return items.Count; } }
+    public int Count { get { return items_.Count; } }
 
     public T Peek()
     {
-        if (items.Count == 0) throw new InvalidOperationException("Heap is empty.");
-        return items[0];
+        if (items_.Count == 0) throw new InvalidOperationException("Heap is empty.");
+        return items_[0];
     }
 
     public T Pop()
     {
-        if (items.Count == 0) throw new InvalidOperationException("Heap is empty.");
+        if (items_.Count == 0) throw new InvalidOperationException("Heap is empty.");
 
-        T result = items[0];
-        items[0] = items[items.Count - 1];
-        items.RemoveAt(items.Count - 1);
-        itemIndices.Remove(result); // remove the item from the dictionary when it's removed from the heap
+        T result = items_[0];
+        items_[0] = items_[items_.Count - 1];
+        items_.RemoveAt(items_.Count - 1);
+        itemIndices_.Remove(result); // remove the item from the dictionary when it's removed from the heap
         BubbleDown(0);
         return result;
     }
 
-    public void Push(T item)
+    public void Push(T _item)
     {
-        items.Add(item);
-        itemIndices[item] = items.Count - 1; // add the item to the dictionary with its index in the heap
-        BubbleUp(items.Count - 1);
+        items_.Add(_item);
+        itemIndices_[_item] = items_.Count - 1; // add the item to the dictionary with its index in the heap
+        BubbleUp(items_.Count - 1);
     }
 
-    public void ChangePriority(T item)
+    public void ChangePriority(T _item)
     {
-        if (itemIndices.TryGetValue(item, out var index)) // check if the item is in the heap
+        if (itemIndices_.TryGetValue(_item, out var index)) // check if the item is in the heap
         {
             BubbleUp(index);
             BubbleDown(index);
@@ -59,52 +59,52 @@ class Heap<T>
         }
     }
 
-    private void BubbleUp(int i)
+    private void BubbleUp(int _i)
     {
-        while (i > 0 && comparison(items[i], items[Parent(i)]) < 0)
+        while (_i > 0 && comparison_(items_[_i], items_[Parent(_i)]) < 0)
         {
-            Swap(i, Parent(i));
-            i = Parent(i);
+            Swap(_i, Parent(_i));
+            _i = Parent(_i);
         }
     }
 
-    private void BubbleDown(int i)
+    private void BubbleDown(int _i)
     {
-        while (LeftChild(i) < items.Count)
+        while (LeftChild(_i) < items_.Count)
         {
-            int j = LeftChild(i);
-            if (RightChild(i) < items.Count && comparison(items[RightChild(i)], items[j]) < 0)
+            int j = LeftChild(_i);
+            if (RightChild(_i) < items_.Count && comparison_(items_[RightChild(_i)], items_[j]) < 0)
             {
-                j = RightChild(i);
+                j = RightChild(_i);
             }
-            if (comparison(items[j], items[i]) >= 0)
+            if (comparison_(items_[j], items_[_i]) >= 0)
             {
                 break;
             }
-            Swap(i, j);
-            i = j;
+            Swap(_i, j);
+            _i = j;
         }
     }
 
-    private void Swap(int i, int j)
+    private void Swap(int _i, int _j)
     {
-        (items[i], items[j]) = (items[j], items[i]);
-        itemIndices[items[i]] = i; // update the dictionary with the new indices of the swapped items
-        itemIndices[items[j]] = j;
+        (items_[_i], items_[_j]) = (items_[_j], items_[_i]);
+        itemIndices_[items_[_i]] = _i; // update the dictionary with the new indices of the swapped items
+        itemIndices_[items_[_j]] = _j;
     }
 
-    private static int Parent(int i)
+    private static int Parent(int _i)
     {
-        return (i - 1) / 2;
+        return (_i - 1) / 2;
     }
 
-    private static int LeftChild(int i)
+    private static int LeftChild(int _i)
     {
-        return 2 * i + 1;
+        return 2 * _i + 1;
     }
 
-    private static int RightChild(int i)
+    private static int RightChild(int _i)
     {
-        return 2 * i + 2;
+        return 2 * _i + 2;
     }
 }

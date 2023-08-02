@@ -8,17 +8,17 @@ public class CameraFollow : MonoBehaviour
     public Transform player;
     public float cursorContribution = 0.2f;
 
-    private Camera _cam;
+    private Camera cam_;
 
     // Update is called once per frame
     private void Start()
     {
-        _cam= Camera.main;
+        cam_= Camera.main;
     }
 
     void Update()
     {
-        var mousePos = _cam.ScreenToWorldPoint(Input.mousePosition);
+        var mousePos = cam_.ScreenToWorldPoint(Input.mousePosition);
         transform.position = player.position + (mousePos-player.position) * cursorContribution;
     }
 

@@ -8,7 +8,7 @@ public enum EdgeType
 
 [CreateAssetMenu(fileName = "WFC Item Edges", menuName = "WFCItem/Edges")]
 [System.Serializable]
-public class WFCItemEdges : WFCItem
+public class WfcItemEdges : WfcItem
 {
     [Header("Rotation")] 
     public bool rotate90;

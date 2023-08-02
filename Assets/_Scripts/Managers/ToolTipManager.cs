@@ -11,13 +11,13 @@ public class ToolTipManager : MonoBehaviour
     public TextMeshProUGUI contentText;
 
     // singleton
-    public static ToolTipManager Instance;
+    public static ToolTipManager instance;
 
     private void Awake()
     {
-        if (Instance == null)
+        if (instance == null)
         {
-            Instance = this;
+            instance = this;
         }
         else
         {
@@ -30,10 +30,10 @@ public class ToolTipManager : MonoBehaviour
         HideToolTip();
     }
 
-    public void ShowToolTip(string header, string content)
+    public void ShowToolTip(string _header, string _content)
     {
-        headerText.text = header;
-        contentText.text = content;
+        headerText.text = _header;
+        contentText.text = _content;
         tootTip.gameObject.SetActive(true);
         SetToolTipPosition();
     }

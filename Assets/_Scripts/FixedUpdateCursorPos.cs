@@ -5,16 +5,16 @@ using UnityEngine;
 
 public class FixedUpdateCursorPos : MonoBehaviour
 {
-    private Camera _cam;
+    private Camera cam_;
 
     private void Awake()
     {
-        _cam = Camera.main;
+        cam_ = Camera.main;
     }
 
     private void FixedUpdate()
     {
-        var mousePos = _cam.ScreenToWorldPoint(Input.mousePosition);
+        var mousePos = cam_.ScreenToWorldPoint(Input.mousePosition);
         transform.position = mousePos;
     }
 }

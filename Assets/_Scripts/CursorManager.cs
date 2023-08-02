@@ -8,19 +8,19 @@ public class CursorManager : MonoBehaviour
     public bool useUI = true;
     public RectTransform cursorUI;
 
-    SpriteRenderer _cursorSpriteRenderer;
-    private Camera _cam;
+    SpriteRenderer cursorSpriteRenderer_;
+    private Camera cam_;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        _cam = Camera.main;
+        cam_ = Camera.main;
         Cursor.visible = false;
         if (!useUI)
         {
-            _cursorSpriteRenderer = GetComponentInChildren<SpriteRenderer>();
-            _cursorSpriteRenderer.sprite = cursorSprite;
+            cursorSpriteRenderer_ = GetComponentInChildren<SpriteRenderer>();
+            cursorSpriteRenderer_.sprite = cursorSprite;
         }
     }
 
@@ -36,8 +36,8 @@ public class CursorManager : MonoBehaviour
         }
         else
         {
-            Vector2 mousePos = _cam.ScreenToWorldPoint(Input.mousePosition);
-            _cursorSpriteRenderer.transform.position = mousePos;
+            Vector2 mousePos = cam_.ScreenToWorldPoint(Input.mousePosition);
+            cursorSpriteRenderer_.transform.position = mousePos;
         }
     }
 }

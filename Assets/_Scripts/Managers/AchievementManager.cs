@@ -54,40 +54,40 @@ public class AchievementManager : MonoBehaviour
         {
             UnlockAchievement(achieved);
             // dependency 
-            MessageManager.Instance.DisplayMessage($"Achievement unlocked: {achievementNames[achieved].ToUpper()}");
+            MessageManager.instance.DisplayMessage($"Achievement unlocked: {achievementNames[achieved].ToUpper()}");
         }
     }
 
-    public bool IsAchievementUnlocked(string name)
+    public bool IsAchievementUnlocked(string _name)
     {
-        if (!achievementNames.Contains(name))
+        if (!achievementNames.Contains(_name))
         {
             Debug.Log("Achievement is not registered");
             return false;
         }
-        bool unlocked = PlayerPrefs.GetInt(name,0) == 1;
+        bool unlocked = PlayerPrefs.GetInt(_name,0) == 1;
         return unlocked;
     }
     
-     public bool IsAchievementUnlocked(int index)
+     public bool IsAchievementUnlocked(int _index)
     {
-        bool unlocked = PlayerPrefs.GetInt(achievementNames[index],0) == 1;
+        bool unlocked = PlayerPrefs.GetInt(achievementNames[_index],0) == 1;
         return unlocked;
     }
 
-    public void UnlockAchievement(int index)
+    public void UnlockAchievement(int _index)
     {
-        PlayerPrefs.SetInt(achievementNames[index],1);
+        PlayerPrefs.SetInt(achievementNames[_index],1);
     }
 
-    public void UnlockAchievement(string name)
+    public void UnlockAchievement(string _name)
     {
-        if (!achievementNames.Contains(name))
+        if (!achievementNames.Contains(_name))
         {
             Debug.Log("Achievement is not registered");
             return;
         }
-        PlayerPrefs.SetInt(name,1);
+        PlayerPrefs.SetInt(_name,1);
     }
 
 

@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 // SINGLETON
 public class LevelManager : MonoBehaviour
 {
-    public static LevelManager Instance;
+    public static LevelManager instance;
     public List<int> levelsUnlockedAtTheStart;
 
     private void Awake()
@@ -22,9 +22,9 @@ public class LevelManager : MonoBehaviour
         // don't unlock any levels
 #endif
 
-        if (Instance == null)
+        if (instance == null)
         {
-            Instance = this;
+            instance = this;
         }
         else
         {
@@ -40,22 +40,22 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    public void LockLevel(int i)
+    public void LockLevel(int _i)
     {
-        XLogger.Log(Category.Level,$"Level {i} is locked");
-        PlayerPrefs.SetInt($"level{i}", 0);
+        XLogger.Log(Category.Level,$"Level {_i} is locked");
+        PlayerPrefs.SetInt($"level{_i}", 0);
     }
 
-    public void UnlockLevel(int i)
+    public void UnlockLevel(int _i)
     {
-        XLogger.Log(Category.Level,$"Level {i} is unlocked");
-        PlayerPrefs.SetInt($"level{i}", 1);
+        XLogger.Log(Category.Level,$"Level {_i} is unlocked");
+        PlayerPrefs.SetInt($"level{_i}", 1);
     }
 
-    public bool IsLevelUnlocked(int i)
+    public bool IsLevelUnlocked(int _i)
     {
-        int unlocked = PlayerPrefs.GetInt($"level{i}", 0);
-        XLogger.Log(Category.Level,$"level {i} is unlocked: {unlocked}");
+        int unlocked = PlayerPrefs.GetInt($"level{_i}", 0);
+        XLogger.Log(Category.Level,$"level {_i} is unlocked: {unlocked}");
         return unlocked == 1;
     }
 }

@@ -34,9 +34,9 @@ public class AudioManager : MonoBehaviour
     public List<SoundSet> soundSets = new List<SoundSet>();
     public List<Sound> bgms = new List<Sound>();
 
-    public static AudioManager Instance;
+    public static AudioManager instance;
 
-    private Sound _playingMusic;
+    private Sound playingMusic_;
 
     private void Awake()
     {
@@ -44,9 +44,9 @@ public class AudioManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         // init singleton pattern
-        if(Instance == null)
+        if(instance == null)
         {
-            Instance = this;
+            instance = this;
         }
         else
         {
@@ -81,18 +81,18 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void PlaySound(string name)
+    public void PlaySound(string _name)
     {
-        Sound sound = soundBank.Find(s => s.name == name);
+        Sound sound = soundBank.Find(_s => _s.name == _name);
         if(sound!=null)
         {
             sound.source.Play();
         }
     }
 
-    public void PlayRandomFromSoundSet(string setName)
+    public void PlayRandomFromSoundSet(string _setName)
     {
-        SoundSet set = soundSets.Find(s => s.name == setName);
+        SoundSet set = soundSets.Find(_s => _s.name == _setName);
         if (set != null)
         {
             AudioClip clip = set.clips[Random.Range(0, set.clips.Count)];
@@ -102,56 +102,56 @@ public class AudioManager : MonoBehaviour
 
     public void PlayRandomMusic()
     {
-        if (_playingMusic != null)
+        if (playingMusic_ != null)
         {
-            _playingMusic.source.Stop();
+            playingMusic_.source.Stop();
         }
         Sound music = bgms[Random.Range(0, bgms.Count)];
         music.source.Play();
         Debug.LogWarning($"Start playing {music.name}");
-        _playingMusic = music;
+        playingMusic_ = music;
     }
 
-    public void PlayMusic(string name)
+    public void PlayMusic(string _name)
     {
-        Sound music = bgms.Find(s => s.name == name);
+        Sound music = bgms.Find(_s => _s.name == _name);
         if (music != null)
         {
             music.source.Play();
-            _playingMusic = music;
+            playingMusic_ = music;
         }
     }
 
     public void FadeAwayMusic()
     {
-        if (_playingMusic==null)
+        if (playingMusic_==null)
             return;
-        StartCoroutine(FadeMusic(-40, 1f, _playingMusic.output.audioMixer));
+        StartCoroutine(FadeMusic(-40, 1f, playingMusic_.output.audioMixer));
     }
 
     public void StopMusic()
     {
         Debug.LogWarning("Stop Music");
-        if (_playingMusic!=null)
+        if (playingMusic_!=null)
         {
-            _playingMusic.source.Stop();
-            _playingMusic = null;
+            playingMusic_.source.Stop();
+            playingMusic_ = null;
         }
     }
     
     // ReSharper disable Unity.PerformanceAnalysis
-    private IEnumerator FadeMusic(float targetVolume, float fadeTime, AudioMixer audioMixer)
+    private IEnumerator FadeMusic(float _targetVolume, float _fadeTime, AudioMixer _audioMixer)
     {
         Debug.LogWarning("Fading away music");
         float currentTime = 0;
         float startVolume;
-        audioMixer.GetFloat(MusicVolumeParameterName, out startVolume);
+        _audioMixer.GetFloat(MusicVolumeParameterName, out startVolume);
 
-        while (currentTime < fadeTime)
+        while (currentTime < _fadeTime)
         {
             currentTime += 0.01f;
-            float volume = Mathf.Lerp(startVolume, targetVolume, currentTime / fadeTime);
-            audioMixer.SetFloat(MusicVolumeParameterName, volume);
+            float volume = Mathf.Lerp(startVolume, _targetVolume, currentTime / _fadeTime);
+            _audioMixer.SetFloat(MusicVolumeParameterName, volume);
             yield return new WaitForSecondsRealtime(0.01f);
         }
     }

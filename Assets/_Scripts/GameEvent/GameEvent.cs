@@ -10,29 +10,29 @@ public class GameEvent : ScriptableObject
     public string developerDescription = "";
     #endif
 
-    private readonly List<GameEventListener> _gameEventListeners = new List<GameEventListener>();
+    private readonly List<GameEventListener> gameEventListeners_ = new List<GameEventListener>();
 
     public void Raise()
     {
-        for (int i = _gameEventListeners.Count-1; i >= 0; i--)
+        for (int i = gameEventListeners_.Count-1; i >= 0; i--)
         {
-            _gameEventListeners[i].OnRaise();
+            gameEventListeners_[i].OnRaise();
         }
     }
 
-    public void RegisterGameEventListener(GameEventListener listener)
+    public void RegisterGameEventListener(GameEventListener _listener)
     {
-        if (!_gameEventListeners.Contains(listener))
+        if (!gameEventListeners_.Contains(_listener))
         {
-            _gameEventListeners.Add(listener); 
+            gameEventListeners_.Add(_listener); 
         }
     }
 
-    public void UnregisterGameEventListener(GameEventListener listener)
+    public void UnregisterGameEventListener(GameEventListener _listener)
     {
-        if (_gameEventListeners.Contains(listener))
+        if (gameEventListeners_.Contains(_listener))
         {
-            _gameEventListeners.Remove(listener);
+            gameEventListeners_.Remove(_listener);
         }
     }
 

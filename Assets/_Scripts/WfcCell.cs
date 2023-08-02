@@ -8,13 +8,13 @@ public class WfcCell
 {
     private Cell cell_;
 
-    private List<WFCItem> possibilities_;
+    private List<WfcItem> possibilities_;
     private readonly WaveFunctionCollapse waveFunctionCollapse_;
 
     private int x_;
     private int y_;
 
-    public WfcCell(List<WFCItem> _possibleItems, WaveFunctionCollapse _waveFunctionCollapse, Cell _cell)
+    public WfcCell(List<WfcItem> _possibleItems, WaveFunctionCollapse _waveFunctionCollapse, Cell _cell)
     {
         possibilities_ = _possibleItems;
         waveFunctionCollapse_ = _waveFunctionCollapse;
@@ -29,7 +29,7 @@ public class WfcCell
         return possibilities_.Count;
     }
 
-    private WFCItem GetRandomItem()
+    private WfcItem GetRandomItem()
     {
         return possibilities_[Random.Range(0, possibilities_.Count)];
     }
@@ -59,11 +59,11 @@ public class WfcCell
     /// <summary>
     /// update this cell's possibilities based on item's rule
     /// </summary>
-    private void UpdatePossibilities(Rule _rule, WFCItem _item)
+    private void UpdatePossibilities(Rule _rule, WfcItem _item)
     {
         XLogger.Log(Category.Cell, $"applying {_rule} to {cell_}");
-        var newPossibilities = new List<WFCItem>();
-        foreach (WFCItem possibility in possibilities_)
+        var newPossibilities = new List<WfcItem>();
+        foreach (WfcItem possibility in possibilities_)
         {
             var valid = _rule.TestRuleValid(_item, possibility);
             if (valid)
@@ -83,8 +83,8 @@ public class WfcCell
     public void Collapse()
     {
         // change sprite
-        WFCItem item = GetRandomItem();
-        XLogger.Log(Category.WFC, $"{cell_} collapsed with item {item}");
+        WfcItem item = GetRandomItem();
+        XLogger.Log(Category.Wfc, $"{cell_} collapsed with item {item}");
         cell_.SetSprite(item.image);
 
         // update neighbour's possibilities

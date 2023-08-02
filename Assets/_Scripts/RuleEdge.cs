@@ -9,10 +9,10 @@ public class RuleEdge : Rule
     /// </summary>
     public DirectionEnum direction;
 
-    public override bool TestRuleValid(WFCItem _selfBase, WFCItem _otherBase)
+    public override bool TestRuleValid(WfcItem _selfBase, WfcItem _otherBase)
     {
-        var self = _selfBase as WFCItemEdges;
-        var other = _otherBase as WFCItemEdges;
+        var self = _selfBase as WfcItemEdges;
+        var other = _otherBase as WfcItemEdges;
         if (self != null && other != null)
         {
             List<EdgeType> selfEdges = new List<EdgeType>();
@@ -53,7 +53,7 @@ public class RuleEdge : Rule
             return true;
         }
 
-        XLogger.LogWarning(Category.WFC, "arguments can't be casted to WFCItemEdges");
+        XLogger.LogWarning(Category.Wfc, "arguments can't be casted to WFCItemEdges");
         return false;
     }
 }

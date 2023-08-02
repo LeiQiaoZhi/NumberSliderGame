@@ -13,7 +13,7 @@ public class MessageManager : MonoBehaviour
     [SerializeField] GameObject popupObjectPrefab;
     [SerializeField] private GameObject messageCanvas;
 
-    public static MessageManager Instance;
+    public static MessageManager instance;
 
 
     private void Start()
@@ -41,9 +41,9 @@ public class MessageManager : MonoBehaviour
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
-        if (Instance == null)
+        if (instance == null)
         {
-            Instance = this;
+            instance = this;
         }
         else
         {
@@ -51,19 +51,19 @@ public class MessageManager : MonoBehaviour
         }
     }
 
-    public void DisplayMessage(string text, Color? textColor = null, float? duration = null)
+    public void DisplayMessage(string _text, Color? _textColor = null, float? _duration = null)
     {
         GameObject messageGo = Instantiate(messageObjectPrefab, messageCanvas.transform);
         Message m = messageGo.GetComponent<Message>();
-        m.Init(text, textColor, duration);
+        m.Init(_text, _textColor, _duration);
         Destroy(messageGo, 10f);
     }
 
-    public Popup DisplayPopup(string title = "", string text = "", Color? titleColor = null)
+    public Popup DisplayPopup(string _title = "", string _text = "", Color? _titleColor = null)
     {
         GameObject messageGo = Instantiate(popupObjectPrefab, messageCanvas.transform);
         Popup m = messageGo.GetComponent<Popup>();
-        m.Init(title, text, titleColor);
+        m.Init(_title, _text, _titleColor);
         return m;
     }
 }

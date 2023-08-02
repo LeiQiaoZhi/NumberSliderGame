@@ -2,20 +2,20 @@ using System.Collections;
 
 public class DebugCommand
 {
-    public readonly string CommandName;
-    public delegate string DebugAction(DebugConsole debugConsole);
+    public readonly string commandName;
+    public delegate string DebugAction(DebugConsole _debugConsole);
 
     public readonly DebugAction action;
 
     // constructor
-    public DebugCommand(string name, DebugAction a)
+    public DebugCommand(string _name, DebugAction _a)
     {
-        CommandName = name;
-        action = a;
+        commandName = _name;
+        action = _a;
     }
 
-    public string Raise(DebugConsole debugConsole)
+    public string Raise(DebugConsole _debugConsole)
     {
-        return action.Invoke(debugConsole);
+        return action.Invoke(_debugConsole);
     }
 }

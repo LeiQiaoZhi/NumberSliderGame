@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class LayerMaskHelper  
 {
-    public static bool IsLayerInLayerMask(int layer, LayerMask layerMask)
+    public static bool IsLayerInLayerMask(int _layer, LayerMask _layerMask)
     {
-        return layerMask == (layerMask | (1 << layer));
+        return _layerMask == (_layerMask | (1 << _layer));
     }
 }

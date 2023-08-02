@@ -46,14 +46,14 @@ public class MainMenuManager : MonoBehaviour
         deathCountTxt.text = "Deaths: " + AchievementManager.instance.GetDeathCount().ToString();
     }
 
-    public void SetMusicVol(float volume)
+    public void SetMusicVol(float _volume)
     {
-       musicOutput.audioMixer.SetFloat("musicVol", volume);
+       musicOutput.audioMixer.SetFloat("musicVol", _volume);
     }
 
-    public void SetSoundFxVol(float volume)
+    public void SetSoundFxVol(float _volume)
     {
-       soundEffectOutput.audioMixer.SetFloat("soundFxVol", volume);
+       soundEffectOutput.audioMixer.SetFloat("soundFxVol", _volume);
     }
 
     public void ToggleMusic()
@@ -66,7 +66,7 @@ public class MainMenuManager : MonoBehaviour
         {
             SetMusicVol(-80);
         }
-        AudioManager.Instance.PlaySound("Click");
+        AudioManager.instance.PlaySound("Click");
     }
 
     public void ToggleSoundFx()
@@ -79,13 +79,13 @@ public class MainMenuManager : MonoBehaviour
         {
             SetSoundFxVol(-80);
         }
-        AudioManager.Instance.PlaySound("Click");
+        AudioManager.instance.PlaySound("Click");
     }
     
 
     public void Quit()
     {
-        var popup = MessageManager.Instance.DisplayPopup("Confirm to Quit?", "");
+        var popup = MessageManager.instance.DisplayPopup("Confirm to Quit?", "");
         popup.AddButton("Quit", null, () =>
         {
             XLogger.Log(Category.UI, "confirm button pressed");
@@ -96,13 +96,13 @@ public class MainMenuManager : MonoBehaviour
     }
 
 
-    public void ShowView(int index)
+    public void ShowView(int _index)
     {
         foreach(GameObject view in views)
         {
             view.SetActive(false);
         }
-        views[index].SetActive(true);
+        views[_index].SetActive(true);
     }
 
     public void SetGraphicsQuality()

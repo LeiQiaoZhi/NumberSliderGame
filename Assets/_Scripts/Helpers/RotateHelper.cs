@@ -10,14 +10,14 @@ public class RotateHelper
     /// Smooth -- faster when angle between is large
     /// <para>- is affected by angular drag</para>
     /// </summary>
-    /// <param name="rb">the RB2D to apply rotation</param>
-    /// <param name="targetPos">rotate towards target</param> 
-    /// <param name="referenceDirection">which direction to align to target, e.g. <c>tranform.right</c></param>
-    public static void SmoothRotateTowards(Rigidbody2D rb, Vector2 targetPos, Vector2 referenceDirection  ,float rotateSpeed)
+    /// <param name="_rb">the RB2D to apply rotation</param>
+    /// <param name="_targetPos">rotate towards target</param> 
+    /// <param name="_referenceDirection">which direction to align to target, e.g. <c>tranform.right</c></param>
+    public static void SmoothRotateTowards(Rigidbody2D _rb, Vector2 _targetPos, Vector2 _referenceDirection  ,float _rotateSpeed)
     {
-        var direction = (Vector2)((Vector3)targetPos - rb.transform.position).normalized;
-        float rotateAmount = Vector3.Cross(direction, referenceDirection).z;
-        rb.angularVelocity = -rotateAmount * rotateSpeed;
+        var direction = (Vector2)((Vector3)_targetPos - _rb.transform.position).normalized;
+        float rotateAmount = Vector3.Cross(direction, _referenceDirection).z;
+        _rb.angularVelocity = -rotateAmount * _rotateSpeed;
     }
 
     /// <summary>
@@ -27,10 +27,10 @@ public class RotateHelper
     /// </code>
     /// </summary>
     /// <returns></returns>
-    public static float AngleBetween(Vector3 originPosition, Vector3 targetPosition, Vector3 referenceDirection)
+    public static float AngleBetween(Vector3 _originPosition, Vector3 _targetPosition, Vector3 _referenceDirection)
     {
-        var direction = (Vector2)(targetPosition - originPosition).normalized;
-        var angle = Mathf.Acos(Vector2.Dot(direction, referenceDirection.normalized))*Mathf.Rad2Deg;
+        var direction = (Vector2)(_targetPosition - _originPosition).normalized;
+        var angle = Mathf.Acos(Vector2.Dot(direction, _referenceDirection.normalized))*Mathf.Rad2Deg;
         if (angle < 0)
         {
             angle += 180;

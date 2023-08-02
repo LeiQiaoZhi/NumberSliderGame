@@ -11,26 +11,26 @@ public class ToolTipTrigger : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     private void OnMouseEnter()
     {
-        ToolTipManager.Instance.ShowToolTip(header,content);
+        ToolTipManager.instance.ShowToolTip(header,content);
     }
 
     private void OnMouseExit()
     {
-        ToolTipManager.Instance.HideToolTip();
+        ToolTipManager.instance.HideToolTip();
     }
 
     private void OnDisable()
     {
-        ToolTipManager.Instance.HideToolTip();
+        ToolTipManager.instance.HideToolTip();
     }
 
-    public void OnPointerEnter(PointerEventData eventData)
+    public void OnPointerEnter(PointerEventData _eventData)
     {
-        ToolTipManager.Instance.ShowToolTip(header,content);
+        ToolTipManager.instance.ShowToolTip(header,content);
     }
 
-    public void OnPointerExit(PointerEventData eventData)
+    public void OnPointerExit(PointerEventData _eventData)
     {
-        ToolTipManager.Instance.HideToolTip();
+        ToolTipManager.instance.HideToolTip();
     }
 }

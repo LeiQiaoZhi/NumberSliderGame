@@ -11,7 +11,6 @@ public class Cell : MonoBehaviour
     public int y;
     public SpriteRenderer spriteRenderer;
 
-
     public void Init(int _x, int _y)
     {
         x = _x;

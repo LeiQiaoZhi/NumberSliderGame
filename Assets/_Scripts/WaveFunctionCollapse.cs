@@ -7,7 +7,7 @@ using UnityEngine.Assertions;
 
 public class WaveFunctionCollapse : MonoBehaviour
 {
-    public List<WFCItem> wfcItems;
+    public List<WfcItem> wfcItems;
 
     [SerializeField] private float secondsBetweenCollapse = 1f;
 
@@ -15,7 +15,7 @@ public class WaveFunctionCollapse : MonoBehaviour
     public GridSystem gridSystem;
 
     // created from wfcItems
-    private List<WFCItem> itemsIncludingRotations_;
+    private List<WfcItem> itemsIncludingRotations_;
     private List<WfcCell> wfcCells_;
     private List<Tuple<int, int>> cellsCoords_;
 
@@ -24,7 +24,7 @@ public class WaveFunctionCollapse : MonoBehaviour
     {
         // create new items based on rotations
         CreateItemsBaseOnRotation();
-        XLogger.Log(Category.WFC,
+        XLogger.Log(Category.Wfc,
             $"{itemsIncludingRotations_.Count} items now, {itemsIncludingRotations_.Count - wfcItems.Count} created from rotation");
 
         cellsCoords_ = gridSystem.CreateDefaultCells();
@@ -40,7 +40,7 @@ public class WaveFunctionCollapse : MonoBehaviour
         foreach (var cellCoord in cellsCoords_)
         {
             Cell cell = gridSystem.GetCell(cellCoord.Item1, cellCoord.Item2);
-            XLogger.Log(Category.WFC, $"{itemsIncludingRotations_.Count} items now.");
+            XLogger.Log(Category.Wfc, $"{itemsIncludingRotations_.Count} items now.");
             var wfcCell = new WfcCell(itemsIncludingRotations_, this, cell);
             wfcCells_.Add(wfcCell);
         }
@@ -70,7 +70,7 @@ public class WaveFunctionCollapse : MonoBehaviour
             else
                 cellsCoords_.RemoveAt(0);
 
-            XLogger.Log(Category.WFC, $"{cell} with entropy {cell.GetEntropy()} is popped");
+            XLogger.Log(Category.Wfc, $"{cell} with entropy {cell.GetEntropy()} is popped");
 
             if (cell.GetEntropy() == 0)
                 XLogger.LogWarning($"{cell} has zero possible choices");
@@ -83,16 +83,16 @@ public class WaveFunctionCollapse : MonoBehaviour
                 yield return null;
         }
 
-        XLogger.LogWarning(Category.WFC, "WAVE FUNCTION COLLAPSED FINISHED");
+        XLogger.LogWarning(Category.Wfc, "WAVE FUNCTION COLLAPSED FINISHED");
     }
 
 
     void CreateItemsBaseOnRotation()
     {
-        itemsIncludingRotations_ = new List<WFCItem>(wfcItems);
+        itemsIncludingRotations_ = new List<WfcItem>(wfcItems);
         foreach (var itemBase in wfcItems)
         {
-            var item = itemBase as WFCItemEdges;
+            var item = itemBase as WfcItemEdges;
             if (item == null) continue;
             if (!(item.rotate90 || item.rotate180 || item.rotate270)) continue;
             var image90 = RotateSpriteClockwise(item.image);
@@ -100,14 +100,14 @@ public class WaveFunctionCollapse : MonoBehaviour
             var image270 = RotateSpriteClockwise(image180);
             if (item.rotate90)
             {
-                var rotateItem = ScriptableObject.CreateInstance<WFCItemEdges>();
+                var rotateItem = ScriptableObject.CreateInstance<WfcItemEdges>();
                 rotateItem.name = $"{item.name}-90";
                 rotateItem.image = image90;
                 rotateItem.topEdges = item.leftEdges;
                 rotateItem.leftEdges = item.downEdges;
                 rotateItem.downEdges = item.rightEdges;
                 rotateItem.rightEdges = item.topEdges;
-                XLogger.Log(Category.WFC, $"90-degree rotated {item} is created");
+                XLogger.Log(Category.Wfc, $"90-degree rotated {item} is created");
                 rotateItem.topRule = item.topRule;
                 rotateItem.downRule = item.downRule;
                 rotateItem.leftRule = item.leftRule;
@@ -117,14 +117,14 @@ public class WaveFunctionCollapse : MonoBehaviour
 
             if (item.rotate180)
             {
-                var rotateItem = ScriptableObject.CreateInstance<WFCItemEdges>();
+                var rotateItem = ScriptableObject.CreateInstance<WfcItemEdges>();
                 rotateItem.name = $"{item.name}-180";
                 rotateItem.image = image180;
                 rotateItem.topEdges = item.downEdges;
                 rotateItem.leftEdges = item.rightEdges;
                 rotateItem.downEdges = item.topEdges;
                 rotateItem.rightEdges = item.leftEdges;
-                XLogger.Log(Category.WFC, $"180-degree rotated {item} is created");
+                XLogger.Log(Category.Wfc, $"180-degree rotated {item} is created");
                 rotateItem.topRule = item.topRule;
                 rotateItem.downRule = item.downRule;
                 rotateItem.leftRule = item.leftRule;
@@ -134,14 +134,14 @@ public class WaveFunctionCollapse : MonoBehaviour
 
             if (item.rotate270)
             {
-                var rotateItem = ScriptableObject.CreateInstance<WFCItemEdges>();
+                var rotateItem = ScriptableObject.CreateInstance<WfcItemEdges>();
                 rotateItem.name = $"{item.name}-270";
                 rotateItem.image = image270;
                 rotateItem.topEdges = item.rightEdges;
                 rotateItem.leftEdges = item.topEdges;
                 rotateItem.downEdges = item.leftEdges;
                 rotateItem.rightEdges = item.downEdges;
-                XLogger.Log(Category.WFC, $"270-degree rotated {item} is created");
+                XLogger.Log(Category.Wfc, $"270-degree rotated {item} is created");
                 rotateItem.topRule = item.topRule;
                 rotateItem.downRule = item.downRule;
                 rotateItem.leftRule = item.leftRule;
@@ -171,13 +171,13 @@ public class WaveFunctionCollapse : MonoBehaviour
     {
         if (_x < 0 || _x >= gridSystem.width || _y < 0 || _y >= gridSystem.height)
         {
-            XLogger.LogWarning(Category.WFC, $"coordinate {_x},{_y} out of bounds");
+            XLogger.LogWarning(Category.Wfc, $"coordinate {_x},{_y} out of bounds");
             return null;
         }
 
         if (wfcCells_.Count != gridSystem.width * gridSystem.height)
         {
-            XLogger.LogWarning((Category.WFC, "WaveFunctionCollapse.wfc cells not properly initialized"));
+            XLogger.LogWarning((Category.Wfc, "WaveFunctionCollapse.wfc cells not properly initialized"));
             return null;
         }
 

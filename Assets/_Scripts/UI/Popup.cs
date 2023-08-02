@@ -20,36 +20,36 @@ public class Popup : MonoBehaviour
     {
     }
 
-    public void Init(string title, string text, Color? titleColor)
+    public void Init(string _title, string _text, Color? _titleColor)
     {
-        if (title == "")
+        if (_title == "")
         {
             titlebar.SetActive(false);
         }
         else
         {
             titlebar.SetActive(true);
-            titleText.text = title;
-            titleText.color = titleColor.GetValueOrDefault(Color.white);
+            titleText.text = _title;
+            titleText.color = _titleColor.GetValueOrDefault(Color.white);
         }
-        messageText.text = text;
+        messageText.text = _text;
     }
 
-    public void AddButton(string text, Color? color, UnityAction callback)
+    public void AddButton(string _text, Color? _color, UnityAction _callback)
     {
         var buttonObject = Instantiate(buttonPrefab, buttonArea);
         buttonObject.SetActive(true);
-        buttonObject.GetComponent<Image>().color = color.GetValueOrDefault(Color.white);
-        buttonObject.GetComponentInChildren<TextMeshProUGUI>().text = text;
-        buttonObject.GetComponent<Button>().onClick.AddListener(callback);
+        buttonObject.GetComponent<Image>().color = _color.GetValueOrDefault(Color.white);
+        buttonObject.GetComponentInChildren<TextMeshProUGUI>().text = _text;
+        buttonObject.GetComponent<Button>().onClick.AddListener(_callback);
     }
     
-    public void AddCancelButton(string text, Color? color)
+    public void AddCancelButton(string _text, Color? _color)
     {
         var buttonObject = Instantiate(buttonPrefab, buttonArea);
         buttonObject.SetActive(true);
-        buttonObject.GetComponent<Image>().color = color.GetValueOrDefault(Color.white);
-        buttonObject.GetComponentInChildren<TextMeshProUGUI>().text = text;
+        buttonObject.GetComponent<Image>().color = _color.GetValueOrDefault(Color.white);
+        buttonObject.GetComponentInChildren<TextMeshProUGUI>().text = _text;
         buttonObject.GetComponent<Button>().onClick.AddListener(() =>
         {
             Destroy(gameObject);

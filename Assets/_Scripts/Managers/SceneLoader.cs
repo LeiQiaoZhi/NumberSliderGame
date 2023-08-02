@@ -11,13 +11,13 @@ public class SceneLoader : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    public void LoadScene(int index)
+    public void LoadScene(int _index)
     {
-        XLogger.Log(Category.Scene,$"Loading scene {SceneManager.GetSceneByBuildIndex(index).name}");
-        SceneManager.LoadScene(index, LoadSceneMode.Single);
+        XLogger.Log(Category.Scene,$"Loading scene {SceneManager.GetSceneByBuildIndex(_index).name}");
+        SceneManager.LoadScene(_index, LoadSceneMode.Single);
     }
 
-    public void LoadSceneWithLoadingScreen(int index)
+    public void LoadSceneWithLoadingScreen(int _index)
     {
         // TODO
     }

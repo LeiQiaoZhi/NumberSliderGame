@@ -14,26 +14,26 @@ public class UIManager : MonoBehaviour
         SetEnableLevelEndScreen(false);
     }
 
-    public void SetEnableGameOverScreen(bool enable)
+    public void SetEnableGameOverScreen(bool _enable)
     {
-        gameOverScreen.SetActive(enable);
+        gameOverScreen.SetActive(_enable);
     }
 
-    public void SetEnableLevelEndScreen(bool enable)
+    public void SetEnableLevelEndScreen(bool _enable)
     {
-        levelEndScreen.SetActive(enable);
+        levelEndScreen.SetActive(_enable);
     }
 
-    public void DisplayAchievementUnlockMessage(int i)
+    public void DisplayAchievementUnlockMessage(int _i)
     {
         AchievementManager achievementManager = AchievementManager.instance;
-        if (achievementManager.IsAchievementUnlocked(i))
+        if (achievementManager.IsAchievementUnlocked(_i))
         {
-            XLogger.Log(Category.Achievement,$"Achivement {achievementManager.achievementNames[i]} is already unlocked");
+            XLogger.Log(Category.Achievement,$"Achivement {achievementManager.achievementNames[_i]} is already unlocked");
             return;
         }
-        achievementManager.UnlockAchievement(i);
-        MessageManager.Instance.DisplayMessage($"Achievement Unlock: {achievementManager.achievementNames[i].ToUpper()}");
+        achievementManager.UnlockAchievement(_i);
+        MessageManager.instance.DisplayMessage($"Achievement Unlock: {achievementManager.achievementNames[_i].ToUpper()}");
     }
 
     public void Pause()

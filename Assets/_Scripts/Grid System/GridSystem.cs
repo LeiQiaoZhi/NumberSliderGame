@@ -14,9 +14,9 @@ public class GridSystem : MonoBehaviour
     public GameObject cellPrefab;
 
     // 1D list storing cells in ROW-MAJOR order
-    private List<Cell> cells = new List<Cell>();
+    private List<Cell> cells_ = new List<Cell>();
 
-    private Vector2 cellDimension;
+    private Vector2 cellDimension_;
 
     private void Awake()
     {
@@ -27,18 +27,18 @@ public class GridSystem : MonoBehaviour
         XLogger.Log(Category.GridSystem, $"top right in world coord: {topRight}");
         var cellWidth = (topRight - botLeft).x / width;
         var cellHeight = (topRight - botLeft).y / height;
-        cellDimension = Vector2.one * Mathf.Min(cellWidth, cellHeight);
-        XLogger.Log(Category.GridSystem, $"cell dimension : {cellDimension}");
+        cellDimension_ = Vector2.one * Mathf.Min(cellWidth, cellHeight);
+        XLogger.Log(Category.GridSystem, $"cell dimension : {cellDimension_}");
     }
 
     public void ClearAllCells()
     {
         List<GameObject> objects = new List<GameObject>();
-        foreach (var cell in cells)
+        foreach (var cell in cells_)
         {
             objects.Add(cell.gameObject);
         }
-        cells = new List<Cell>();
+        cells_ = new List<Cell>();
         foreach (var obj in objects)
         {
             Destroy(obj);
@@ -55,15 +55,15 @@ public class GridSystem : MonoBehaviour
             {
                 // calculate cell's position
                 var pos = new Vector2(
-                    (-width / 2f + 0.5f + x) * cellDimension.x,
-                    (-height / 2f + 0.5f + y) * cellDimension.y
+                    (-width / 2f + 0.5f + x) * cellDimension_.x,
+                    (-height / 2f + 0.5f + y) * cellDimension_.y
                 );
                 // create the cell
                 var cellObject = Instantiate(cellPrefab, pos, Quaternion.identity);
-                cellObject.transform.localScale = cellDimension;
+                cellObject.transform.localScale = cellDimension_;
                 var cell = cellObject.GetComponent<Cell>();
                 cell.Init(x, y);
-                cells.Add(cell);
+                cells_.Add(cell);
                 results.Add(new Tuple<int, int>(x,y));
             }
         }
@@ -71,21 +71,26 @@ public class GridSystem : MonoBehaviour
         return results;
     }
 
-    public Cell GetCell(int x, int y)
+    public Cell GetCell(int _x, int _y)
     {
-        if (x < 0 || x >= width || y < 0 || y >= height)
+        if (_x < 0 || _x >= width || _y < 0 || _y >= height)
         {
-            XLogger.LogWarning(Category.GridSystem, $"coordinate {x},{y} out of bounds");
+            XLogger.LogWarning(Category.GridSystem, $"coordinate {_x},{_y} out of bounds");
             return null;
         }
 
-        if (cells.Count != width * height)
+        if (cells_.Count != width * height)
         {
             XLogger.LogWarning((Category.GridSystem, "GridSystem.cells not properly initialized"));
             return null;
         }
 
-        var index = x + y * width;
-        return cells[index];
+        var index = _x + _y * width;
+        return cells_[index];
+    }
+
+    public Cell GetCell(Tuple<int, int> _cell)
+    {
+        return GetCell(_cell.Item1, _cell.Item2);
     }
 }

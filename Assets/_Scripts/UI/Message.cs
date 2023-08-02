@@ -11,19 +11,19 @@ public class Message : MonoBehaviour
     [SerializeField] Animator animator;
 
 
-    public void Init(string text, Color? color = null, float? duration = null)
+    public void Init(string _text, Color? _color = null, float? _duration = null)
     {
-        messageText.text = text;
-        if (color != null)
+        messageText.text = _text;
+        if (_color != null)
         {
-            messageText.color = color.GetValueOrDefault();
+            messageText.color = _color.GetValueOrDefault();
         }
-        StartCoroutine(Stay(duration));
+        StartCoroutine(Stay(_duration));
     }
 
-    IEnumerator Stay(float? duration = null)
+    IEnumerator Stay(float? _duration = null)
     {
-        yield return new WaitForSecondsRealtime(duration.GetValueOrDefault(defaultDuration));
+        yield return new WaitForSecondsRealtime(_duration.GetValueOrDefault(defaultDuration));
         animator.SetTrigger("Leave");
     }
 }
