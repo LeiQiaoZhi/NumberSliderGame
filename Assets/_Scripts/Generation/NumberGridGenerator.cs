@@ -3,13 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Assertions;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class NumberGridGenerator : MonoBehaviour
 {
-    [FormerlySerializedAs("gridSystem")] public InfiniteGridSystem infGridSystem;
+    [Header("Generation")] public PatchGenerationStrategy patchGenerationStrategy;
+    [Header("References")] public InfiniteGridSystem infGridSystem;
     private Tuple<int, int> currentPatch_ = new(0, 0);
 
     public void StartingGeneration()
@@ -30,12 +30,16 @@ public class NumberGridGenerator : MonoBehaviour
     {
         currentPatch_ = _patchPosition;
         var cells = infGridSystem.CreatePatch(_patchPosition);
-        foreach (var cell in cells)
+        var numberCells = new List<NumberCell>();
+        foreach (Cell cell in cells)
         {
             var numberCell = cell.AddComponent<NumberCell>();
             numberCell.Init(cell);
-            numberCell.SetNumber(Random.Range(1, 41));
+            numberCells.Add(numberCell);
         }
+        // apply patch generation strategy
+        patchGenerationStrategy.GetData(numberCells, infGridSystem.patchDimension);
+        patchGenerationStrategy.Generate();
     }
 
     public NumberCell GetCell(int _x, int _y)
@@ -47,7 +51,6 @@ public class NumberGridGenerator : MonoBehaviour
         return cell == null ? null : cell.GetComponent<NumberCell>();
     }
 
-    
 
     public NumberCell GetCell(Tuple<int, int> _position)
     {

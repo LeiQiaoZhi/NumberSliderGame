@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public Color activeColor;
+    public Color activeTextColor;
     public GameEvent playerMoveEvent;
     
     private NumberGridGenerator numberGridGenerator_;
@@ -17,8 +19,14 @@ public class PlayerMovement : MonoBehaviour
         numberGridGenerator_ = FindObjectOfType<NumberGridGenerator>();
         numberGridGenerator_.StartingGeneration();
         position_ = new Tuple<int, int>(numberGridGenerator_.GetPatchWidth()/2, numberGridGenerator_.GetPatchHeight()/2);
-        numberGridGenerator_.GetCell(position_).SetActive();
+        SetActiveCell(numberGridGenerator_.GetCell(position_));
         numberGridGenerator_.GetCell(position_).SetNumber(1);
+    }
+
+    private void SetActiveCell(NumberCell _activeCell)
+    {
+        _activeCell.SetColor(activeColor);
+        _activeCell.SetTextColor(activeTextColor);
     }
 
     public void Move(Vector2Int _vector2Int)
@@ -36,26 +44,37 @@ public class PlayerMovement : MonoBehaviour
             XLogger.LogWarning(Category.Movement, $"target cell {targetPosition} is inactive");
             return;
         }
-        var mergeResult = Merge(currentCell, targetCell);
-        if (mergeResult > 0)
-        {
-            // valid merge, player moves to target cell
-            currentCell.SetInActive();
-            position_ = targetPosition;
-            targetCell.SetNumber(mergeResult);
-            targetCell.SetActive();
-            playerMoveEvent.Raise();
+        // Merge
+        if (Merge(currentCell, targetCell, targetPosition))
             return;
-        }
+        
         // invalid merge
         XLogger.LogWarning(Category.Movement, $"invalid merge, game over");
         // TODO: game over
     }
 
-    private int Merge(NumberCell _currentCell, NumberCell _targetCell)
+    private bool Merge(NumberCell _currentCell, NumberCell _targetCell, Tuple<int, int> _targetPosition)
+    {
+        var mergeResult = GetMergeResult(_currentCell, _targetCell);
+        if (mergeResult > 0)
+        {
+            // valid merge, player moves to target cell
+            _currentCell.SetVisited();
+            position_ = _targetPosition;
+            _targetCell.SetNumber(mergeResult);
+            SetActiveCell(_targetCell);
+            playerMoveEvent.Raise();
+            return true;
+        }
+        return false;
+    }
+
+    private int GetMergeResult(NumberCell _currentCell, NumberCell _targetCell)
     {
         var currentNumber = _currentCell.GetNumber();
         var targetNumber = _targetCell.GetNumber();
+        if (_targetCell.IsVisited())
+            return currentNumber + 1;
         if (currentNumber > targetNumber)
             return currentNumber - targetNumber;
         if (targetNumber % currentNumber == 0)

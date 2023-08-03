@@ -512,6 +512,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8880142742dbe934f80c614250d5bbc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  activeColor: {r: 0.35510856, g: 0.7924528, b: 0.41670635, a: 1}
+  activeTextColor: {r: 0.1981132, g: 0.1981132, b: 0.1981132, a: 1}
   playerMoveEvent: {fileID: 11400000, guid: a493705e7f2907b4babdb9030bbc61f1, type: 2}
 --- !u!114 &305291490
 MonoBehaviour:
@@ -695,6 +697,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2e1efd7d7075a64894401ee15c98beb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  patchGenerationStrategy: {fileID: 11400000, guid: 35ed0fc194c0bde4ba9520dcdfea74b3, type: 2}
   infGridSystem: {fileID: 831660507}
 --- !u!4 &829979147 stripped
 Transform:
@@ -880,15 +883,15 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 699f426283ac2b744ab468bb53b3991e, type: 3}
     - target: {fileID: 274911040, guid: afc9e0cc663eb5a4ba03cf61348d146c, type: 3}
       propertyPath: m_Color.b
-      value: 1
+      value: 0.8584906
       objectReference: {fileID: 0}
     - target: {fileID: 274911040, guid: afc9e0cc663eb5a4ba03cf61348d146c, type: 3}
       propertyPath: m_Color.g
-      value: 0.99688196
+      value: 0.8544493
       objectReference: {fileID: 0}
     - target: {fileID: 274911040, guid: afc9e0cc663eb5a4ba03cf61348d146c, type: 3}
       propertyPath: m_Color.r
-      value: 0.4481132
+      value: 0.57155573
       objectReference: {fileID: 0}
     - target: {fileID: 274911042, guid: afc9e0cc663eb5a4ba03cf61348d146c, type: 3}
       propertyPath: m_Enabled

@@ -15,33 +15,45 @@ public class NumberCell : MonoBehaviour
 
     private int x_;
     private int y_;
-    private bool inactive_;
+    private int visitedNum_;
 
     public void Init(Cell _cell)
     {
         cell_ = _cell;
         x_ = cell_.x;
         y_ = cell_.y;
-        inactive_ = false;
+        visitedNum_ = 0;
         text_ = GetComponentInChildren<TextMeshProUGUI>();
     }
 
-    public void SetInActive()
+    public void SetVisited()
     {
-        inactive_ = true;
-        // set text and background colors to transparent
+        visitedNum_++;
         text_.color = new Color(0, 0, 0, 0);
-        cell_.spriteRenderer.color = new Color(0, 0, 0, 0);
+        if (visitedNum_ == 1) // first time visited
+            cell_.spriteRenderer.color = Color.gray;
+        else if (visitedNum_ > 1) // second time visited
+            cell_.spriteRenderer.color = Color.black;
     }
 
     public bool IsActive()
     {
-        return !inactive_;
+        return visitedNum_ <= 1;
     }
 
-    public void SetActive()
+    public bool IsVisited()
     {
-        cell_.spriteRenderer.color = Color.green;
+        return visitedNum_ > 0;
+    }
+
+    public void SetColor(Color _color)
+    {
+        cell_.spriteRenderer.color = _color;
+    }
+
+    public void SetTextColor(Color _color)
+    {
+        text_.color = _color;
     }
 
     public int GetNumber()
