@@ -35,8 +35,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.0496}
-  m_SizeDelta: {x: -0.2332, y: -0.1748}
+  m_AnchoredPosition: {x: 0, y: -0.049600005}
+  m_SizeDelta: {x: -0.3969, y: -0.351}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &864825160430980878
 CanvasRenderer:
@@ -93,7 +93,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 0.85
+  m_fontSize: 0.65
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -145,6 +145,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5425937733918714788}
   - component: {fileID: 5396846817049960647}
+  - component: {fileID: 8012649623111256473}
   m_Layer: 0
   m_Name: Number Cell
   m_TagString: Untagged
@@ -184,6 +185,18 @@ MonoBehaviour:
   x: 0
   y: 0
   spriteRenderer: {fileID: 5425937734905503703}
+--- !u!225 &8012649623111256473
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5425937733918714787}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &5425937734905503701
 GameObject:
   m_ObjectHideFlags: 0
@@ -210,7 +223,7 @@ Transform:
   m_GameObject: {fileID: 5425937734905503701}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.95, y: 0.95, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5425937733918714788}
@@ -279,7 +292,6 @@ GameObject:
   - component: {fileID: 2038495266745544465}
   - component: {fileID: 6132010526360694991}
   - component: {fileID: 8299483922010873780}
-  - component: {fileID: 1240953485748659070}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -352,20 +364,3 @@ MonoBehaviour:
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
   m_PresetInfoIsWorld: 1
---- !u!114 &1240953485748659070
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6476388538725017625}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
-  m_BlockingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295

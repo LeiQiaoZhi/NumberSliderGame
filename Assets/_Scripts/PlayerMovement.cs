@@ -8,8 +8,9 @@ public class PlayerMovement : MonoBehaviour
     public Color activeColor;
     public Color activeTextColor;
     public GameEvent playerMoveEvent;
-    
+
     private NumberGridGenerator numberGridGenerator_;
+
     // note this position may exceed or go below dimensions of a patch
     // because it uses grid coordinates, not patch coordinates
     private Tuple<int, int> position_;
@@ -18,7 +19,8 @@ public class PlayerMovement : MonoBehaviour
     {
         numberGridGenerator_ = FindObjectOfType<NumberGridGenerator>();
         numberGridGenerator_.StartingGeneration();
-        position_ = new Tuple<int, int>(numberGridGenerator_.GetPatchWidth()/2, numberGridGenerator_.GetPatchHeight()/2);
+        position_ = new Tuple<int, int>(numberGridGenerator_.GetPatchWidth() / 2,
+            numberGridGenerator_.GetPatchHeight() / 2);
         SetActiveCell(numberGridGenerator_.GetCell(position_));
         numberGridGenerator_.GetCell(position_).SetNumber(1);
     }
@@ -39,15 +41,17 @@ public class PlayerMovement : MonoBehaviour
             XLogger.LogWarning(Category.Movement, $"target cell {targetPosition} is null");
             return;
         }
+
         if (!targetCell.IsActive())
         {
             XLogger.LogWarning(Category.Movement, $"target cell {targetPosition} is inactive");
             return;
         }
+
         // Merge
         if (Merge(currentCell, targetCell, targetPosition))
             return;
-        
+
         // invalid merge
         XLogger.LogWarning(Category.Movement, $"invalid merge, game over");
         // TODO: game over
@@ -66,6 +70,7 @@ public class PlayerMovement : MonoBehaviour
             playerMoveEvent.Raise();
             return true;
         }
+
         return false;
     }
 
@@ -81,7 +86,7 @@ public class PlayerMovement : MonoBehaviour
             return targetNumber / currentNumber;
         return -1;
     }
-    
+
     public Tuple<int, int> GetPlayerPosition()
     {
         return position_;
@@ -90,5 +95,26 @@ public class PlayerMovement : MonoBehaviour
     public Vector3 GetPlayerPositionWorld()
     {
         return numberGridGenerator_.infGridSystem.GridToWorldPosition(position_.Item1, position_.Item2);
+    }
+
+    private void UpdateVisibility()
+    {
+        var visibleHalfX = numberGridGenerator_.infGridSystem.visibleAreaDimension.x / 2;
+        var visibleHalfY = numberGridGenerator_.infGridSystem.visibleAreaDimension.y / 2;
+        int peripheral = 2;
+        for (int x = -visibleHalfX - peripheral; x <= visibleHalfY + peripheral; x++)
+        {
+            for (int y = -visibleHalfY - peripheral; y <= visibleHalfY + peripheral; y++)
+            {
+                NumberCell cell = numberGridGenerator_.GetCell(position_.Item1 + x, position_.Item2 + y);
+                if (cell == null) continue;
+                if (Math.Abs(x) > visibleHalfX || Math.Abs(y) > visibleHalfY )
+                    cell.SetTransparency(0.2f);
+                else if (Math.Abs(x) > visibleHalfX - 1|| Math.Abs(y) > visibleHalfY-1)
+                    cell.SetTransparency(0.9f);
+                else
+                    cell.SetTransparency(1.0f);
+            }
+        }
     }
 }

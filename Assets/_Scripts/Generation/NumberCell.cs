@@ -9,6 +9,7 @@ using Random = UnityEngine.Random;
 public class NumberCell : MonoBehaviour
 {
     private TextMeshProUGUI text_;
+    private CanvasGroup canvasGroup_;
 
     private int number_;
     private Cell cell_;
@@ -24,6 +25,8 @@ public class NumberCell : MonoBehaviour
         y_ = cell_.y;
         visitedNum_ = 0;
         text_ = GetComponentInChildren<TextMeshProUGUI>();
+        canvasGroup_ = GetComponent<CanvasGroup>();
+        SetTransparency(1.0f);
     }
 
     public void SetVisited()
@@ -31,7 +34,7 @@ public class NumberCell : MonoBehaviour
         visitedNum_++;
         text_.color = new Color(0, 0, 0, 0);
         if (visitedNum_ == 1) // first time visited
-            cell_.spriteRenderer.color = Color.gray;
+            cell_.spriteRenderer.color = new Color(0.8f, 0.8f, 0.8f, 1);
         else if (visitedNum_ > 1) // second time visited
             cell_.spriteRenderer.color = Color.black;
     }
@@ -75,5 +78,13 @@ public class NumberCell : MonoBehaviour
     public override string ToString()
     {
         return cell_.ToString();
+    }
+
+    public void SetTransparency(float _alpha)
+    {
+        Color color = cell_.spriteRenderer.color;
+        color.a = _alpha;
+        cell_.spriteRenderer.color = color;
+        canvasGroup_.alpha = _alpha;
     }
 }

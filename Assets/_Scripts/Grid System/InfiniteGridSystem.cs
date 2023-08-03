@@ -6,18 +6,16 @@ public class InfiniteGridSystem : MonoBehaviour
 {
     public float margin = 0.05f;
     public GameObject cellPrefab;
-    public Vector2Int patchDimension = new(8, 8);
+    [Header("Dimensions")]
+    public Vector2Int patchDimension = new(7, 7);
     public Vector2Int visibleAreaDimension = new(5, 5);
+    [Header("Game Events")]
+    public GameEvent cellDimensionChangedEvent;
 
     private Dictionary<Tuple<int, int>, Patch> patches_ = new();
     private Tuple<int, int> currentPatch_ = new(0, 0);
 
     private Vector2 cellDimension_;
-
-    private void Awake()
-    {
-        CalculateCellDimension();
-    }
 
     public List<Cell> CreatePatch(Tuple<int, int> _patchCoord)
     {
@@ -36,7 +34,7 @@ public class InfiniteGridSystem : MonoBehaviour
         return patch.CreateCells();
     }
 
-    private void CalculateCellDimension()
+    public void CalculateCellDimension()
     {
         // find suitable world cell width and height for the grid
         Vector3 botLeft = Camera.main.ViewportToWorldPoint(Vector2.zero) * (1 - 2 * margin);
@@ -47,6 +45,7 @@ public class InfiniteGridSystem : MonoBehaviour
         var cellHeight = (topRight - botLeft).y / visibleAreaDimension.y;
         cellDimension_ = Vector2.one * Mathf.Min(cellWidth, cellHeight);
         XLogger.Log(Category.GridSystem, $"cell dimension : {cellDimension_}");
+        cellDimensionChangedEvent.Raise();
     }
 
     public Cell GetCell(Tuple<int, int> _patchPosition, int _x, int _y)
@@ -83,5 +82,10 @@ public class InfiniteGridSystem : MonoBehaviour
     public Cell GetCell(Tuple<int, int> _patchPosition, Tuple<int, int> _cellPosition)
     {
         return GetCell(_patchPosition, _cellPosition.Item1, _cellPosition.Item2);
+    }
+
+    public Vector2 GetCellDimension()
+    {
+        return cellDimension_;
     }
 }

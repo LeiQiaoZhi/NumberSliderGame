@@ -14,6 +14,7 @@ public class NumberGridGenerator : MonoBehaviour
 
     public void StartingGeneration()
     {
+        infGridSystem.CalculateCellDimension();
         GeneratePatch(currentPatch_);
         // test
         GeneratePatch(new Tuple<int, int>(0, 1));
