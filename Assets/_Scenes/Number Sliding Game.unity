@@ -824,7 +824,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2e1efd7d7075a64894401ee15c98beb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  patchGenerationStrategy: {fileID: 11400000, guid: ba601eb8501606b4793adad488c72928, type: 2}
+  patchGenerationStrategy: {fileID: 11400000, guid: e3aafc37b8f55fa4b85a1a2ea5ac1c45, type: 2}
   infGridSystem: {fileID: 831660507}
 --- !u!1 &778496440
 GameObject:
