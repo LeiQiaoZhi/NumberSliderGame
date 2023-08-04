@@ -6,6 +6,8 @@ using UnityEngine.Serialization;
 public class CameraFollowGrid : MonoBehaviour
 {
     [FormerlySerializedAs("camera")] public Camera cam;
+    public float speed = 0.1f;
+    
     private PlayerMovement playerMovement_;
     private Vector3 target_;
 
@@ -25,7 +27,7 @@ public class CameraFollowGrid : MonoBehaviour
         if (Vector2.SqrMagnitude(cam.transform.position - target_) > 0.01f)
         {
             Vector3 camPos = cam.transform.position;
-            Vector2 lerpPos = Vector2.Lerp(camPos, target_, 0.1f);
+            Vector2 lerpPos = Vector2.Lerp(camPos, target_, speed);
             camPos = new Vector3(lerpPos.x, lerpPos.y, camPos.z);
             cam.transform.position = camPos;
         }

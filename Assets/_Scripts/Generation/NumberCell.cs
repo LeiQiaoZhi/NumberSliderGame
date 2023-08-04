@@ -34,7 +34,11 @@ public class NumberCell : MonoBehaviour
         visitedNum_++;
         text_.color = new Color(0, 0, 0, 0);
         if (visitedNum_ == 1) // first time visited
+        {
             cell_.spriteRenderer.color = new Color(0.8f, 0.8f, 0.8f, 1);
+            text_.color = new Color(0.6f, 0.6f, 0.6f, 1);
+            text_.text = "+1";
+        }
         else if (visitedNum_ > 1) // second time visited
             cell_.spriteRenderer.color = Color.black;
     }

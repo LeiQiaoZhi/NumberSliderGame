@@ -14,6 +14,8 @@ public class SameNumberGenerationStrategy : PatchGenerationStrategy
     public Vector2Int sameNumberSizeMin;
 
     public Vector2Int sameNumberSizeMax;
+    
+    public ColorPreset colorPreset;
 
     // generate clusters of same number, rest are random
     public override void Generate()
@@ -33,7 +35,8 @@ public class SameNumberGenerationStrategy : PatchGenerationStrategy
             var size = new Vector2Int(Random.Range(sameNumberSizeMin.x, sameNumberSizeMax.x+1),
                 Random.Range(sameNumberSizeMin.y, sameNumberSizeMax.y+1));
             var number = sameNumberPool[Random.Range(0, sameNumberPool.Count)];
-            Rect(topLeft, size, number, Color.yellow);
+            var color = colorPreset.GetColor(number);
+            Rect(topLeft, size, number, color);
         }
     }
 

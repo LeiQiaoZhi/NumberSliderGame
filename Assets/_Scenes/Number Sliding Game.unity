@@ -180,6 +180,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 1725647570}
+  speed: 0.05
 --- !u!114 &35694049
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -947,7 +948,7 @@ MonoBehaviour:
   margin: 0
   cellPrefab: {fileID: 5425937733918714787, guid: 5df407ae666f8c049bba06a57bc826c1, type: 3}
   patchDimension: {x: 7, y: 11}
-  visibleAreaDimension: {x: 5, y: 9}
+  visibleAreaDimension: {x: 5, y: 7}
   cellDimensionChangedEvent: {fileID: 11400000, guid: aaeaba415b222b645aac547e50a52feb, type: 2}
 --- !u!4 &831660508
 Transform:
