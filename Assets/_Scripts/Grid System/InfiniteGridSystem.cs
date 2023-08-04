@@ -12,12 +12,12 @@ public class InfiniteGridSystem : MonoBehaviour
     [Header("Game Events")]
     public GameEvent cellDimensionChangedEvent;
 
-    private Dictionary<Tuple<int, int>, Patch> patches_ = new();
-    private Tuple<int, int> currentPatch_ = new(0, 0);
+    private Dictionary<Vector2Int, Patch> patches_ = new();
+    private Vector2Int currentPatch_ = new(0, 0);
 
     private Vector2 cellDimension_;
 
-    public List<Cell> CreatePatch(Tuple<int, int> _patchCoord)
+    public List<Cell> CreatePatch(Vector2Int _patchCoord)
     {
         var patchObject = new GameObject($"Patch {_patchCoord}");
         patchObject.transform.SetParent(transform);
@@ -26,8 +26,8 @@ public class InfiniteGridSystem : MonoBehaviour
 
         // set patch's position
         var patchPos = new Vector2(
-            _patchCoord.Item1 * patchDimension.x * cellDimension_.x,
-            _patchCoord.Item2 * patchDimension.y * cellDimension_.y
+            _patchCoord.x * patchDimension.x * cellDimension_.x,
+            _patchCoord.y * patchDimension.y * cellDimension_.y
         );
         patchObject.transform.position = patchPos;
         patches_.Add(_patchCoord, patch);
@@ -48,44 +48,55 @@ public class InfiniteGridSystem : MonoBehaviour
         cellDimensionChangedEvent.Raise();
     }
 
-    public Cell GetCell(Tuple<int, int> _patchPosition, int _x, int _y)
+    public Cell GetCell(Vector2Int _patchPosition, int _x, int _y)
     {
         if (!patches_.ContainsKey(_patchPosition))
         {
             XLogger.LogWarning(Category.GridSystem, $"patch {_patchPosition} not found");
             return null;
         }
-
         return patches_[_patchPosition].GetCell(_x, _y);
     }
-    public Tuple<int, int> GridToPatchPosition(int _x, int _y)
+    public Vector2Int GridToPatchPosition(int _x, int _y)
     {
         var patchX = _x < 0 ? (_x + 1) / patchDimension.x - 1 : _x / patchDimension.x;
         var patchY = _y < 0 ? (_y + 1) / patchDimension.y - 1 : _y / patchDimension.y;
-        return new Tuple<int, int>(patchX, patchY);
+        return new Vector2Int(patchX, patchY);
     }
-    public Tuple<int, int> GridToCellInPatchPosition(int _x, int _y)
+    // overload
+    public Vector2Int GridToPatchPosition(Vector2Int _gridPosition)
+    {
+        return GridToPatchPosition(_gridPosition.x, _gridPosition.y);
+    }
+    public Vector2Int GridToCellInPatchPosition(int _x, int _y)
     {
         _x %= patchDimension.x;
         _y %= patchDimension.y;
         if (_x < 0) _x += patchDimension.x;
         if (_y < 0) _y += patchDimension.y;
-        return new Tuple<int, int>(_x, _y);
+        return new Vector2Int(_x, _y);
     }
     public Vector3 GridToWorldPosition(int _x, int _y)
     {
-        var patchPosition = GridToPatchPosition(_x, _y);
-        var cellPosition = GridToCellInPatchPosition(_x, _y);
-        var cell = GetCell(patchPosition, cellPosition);
+        Vector2Int patchPosition = GridToPatchPosition(_x, _y);
+        Vector2Int cellPosition = GridToCellInPatchPosition(_x, _y);
+        Cell cell = GetCell(patchPosition, cellPosition);
         return cell.transform.position;
     }
-    public Cell GetCell(Tuple<int, int> _patchPosition, Tuple<int, int> _cellPosition)
+    
+    // overload
+    public Cell GetCell(Vector2Int _patchPosition, Vector2Int _cellPosition)
     {
-        return GetCell(_patchPosition, _cellPosition.Item1, _cellPosition.Item2);
+        return GetCell(_patchPosition, _cellPosition.x, _cellPosition.y);
     }
 
     public Vector2 GetCellDimension()
     {
         return cellDimension_;
+    }
+
+    public bool IsPatchCreated(Vector2Int _patchPosition)
+    {
+        return patches_.ContainsKey(_patchPosition);
     }
 }

@@ -824,7 +824,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2e1efd7d7075a64894401ee15c98beb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  patchGenerationStrategy: {fileID: 11400000, guid: 35ed0fc194c0bde4ba9520dcdfea74b3, type: 2}
+  patchGenerationStrategy: {fileID: 11400000, guid: ba601eb8501606b4793adad488c72928, type: 2}
   infGridSystem: {fileID: 831660507}
 --- !u!1 &778496440
 GameObject:
@@ -946,7 +946,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   margin: 0
   cellPrefab: {fileID: 5425937733918714787, guid: 5df407ae666f8c049bba06a57bc826c1, type: 3}
-  patchDimension: {x: 15, y: 15}
+  patchDimension: {x: 7, y: 11}
   visibleAreaDimension: {x: 5, y: 9}
   cellDimensionChangedEvent: {fileID: 11400000, guid: aaeaba415b222b645aac547e50a52feb, type: 2}
 --- !u!4 &831660508
