@@ -8,6 +8,7 @@ using Random = UnityEngine.Random;
 
 public class NumberCell : MonoBehaviour
 {
+    private ColorPreset colorPreset_;
     private TextMeshProUGUI text_;
     private CanvasGroup canvasGroup_;
 
@@ -18,7 +19,7 @@ public class NumberCell : MonoBehaviour
     private int y_;
     private int visitedNum_;
 
-    public void Init(Cell _cell)
+    public void Init(Cell _cell, ColorPreset _colorPreset)
     {
         cell_ = _cell;
         x_ = cell_.x;
@@ -26,7 +27,10 @@ public class NumberCell : MonoBehaviour
         visitedNum_ = 0;
         text_ = GetComponentInChildren<TextMeshProUGUI>();
         canvasGroup_ = GetComponent<CanvasGroup>();
-        SetTransparency(1.0f);
+        // color
+        colorPreset_ = _colorPreset;
+        cell_.spriteRenderer.color = colorPreset_.activeColor;
+        text_.color = colorPreset_.activeTextColor;
     }
 
     public void SetVisited()
@@ -35,12 +39,12 @@ public class NumberCell : MonoBehaviour
         text_.color = new Color(0, 0, 0, 0);
         if (visitedNum_ == 1) // first time visited
         {
-            cell_.spriteRenderer.color = new Color(0.8f, 0.8f, 0.8f, 1);
-            text_.color = new Color(0.6f, 0.6f, 0.6f, 1);
+            cell_.spriteRenderer.color = colorPreset_.visitedColor;
+            text_.color = colorPreset_.visitedTextColor;
             text_.text = "+1";
         }
         else if (visitedNum_ > 1) // second time visited
-            cell_.spriteRenderer.color = Color.black;
+            cell_.spriteRenderer.color = colorPreset_.inactiveColor;
     }
 
     public bool IsActive()

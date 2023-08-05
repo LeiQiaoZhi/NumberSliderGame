@@ -16,6 +16,13 @@ public class ColorPreset : ScriptableObject
     [Header("Wall")]
     public Color wallColor;
     public Color wallTextColor;
+    [Header("Default Cell")] public Color activeColor;
+    public Color activeTextColor;
+    [Space(10)]
+    public Color visitedColor;
+    public Color visitedTextColor;
+    [Space(10)]
+    public Color inactiveColor;
 
     public Color GetColor(int _number)
     {

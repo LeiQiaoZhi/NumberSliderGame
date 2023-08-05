@@ -8,6 +8,7 @@ using Random = UnityEngine.Random;
 
 public class NumberGridGenerator : MonoBehaviour
 {
+    public ColorPreset colorPreset;
     [Header("References")] public InfiniteGridSystem infGridSystem;
     private Vector2Int currentPatch_ = new(0, 0);
     private World world_;
@@ -45,7 +46,7 @@ public class NumberGridGenerator : MonoBehaviour
         foreach (Cell cell in cells)
         {
             var numberCell = cell.AddComponent<NumberCell>();
-            numberCell.Init(cell);
+            numberCell.Init(cell, colorPreset);
             numberCells.Add(numberCell);
         }
 
