@@ -10,7 +10,8 @@ public class PatchGenerationStrategy : ScriptableObject
     protected List<NumberCell> numberCells;
     protected Vector2Int patchDimension;
     
-    public void GetData(List<NumberCell> _numberCells, Vector2Int _patchDimension)
+    // get data from number grid generator
+    public virtual void Init(List<NumberCell> _numberCells, Vector2Int _patchDimension)
     {
         numberCells = _numberCells;
         patchDimension = _patchDimension;

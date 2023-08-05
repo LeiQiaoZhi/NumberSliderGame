@@ -17,9 +17,9 @@ public class PlayerMovement : MonoBehaviour
     // because it uses grid coordinates, not patch coordinates
     private Vector2Int position_;
 
-    private void Start()
+    public void OnGameStart(NumberGridGenerator _numberGridGenerator)
     {
-        numberGridGenerator_ = FindObjectOfType<NumberGridGenerator>();
+        numberGridGenerator_ = _numberGridGenerator;
         numberGridGenerator_.StartingGeneration();
         position_ = new Vector2Int(numberGridGenerator_.GetPatchWidth() / 2,
             numberGridGenerator_.GetPatchHeight() / 2);

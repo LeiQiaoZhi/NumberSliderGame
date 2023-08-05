@@ -13,6 +13,9 @@ public class ColorPreset : ScriptableObject
 {
     public List<ColorItem> colorItems;
     public Color defaultColor;
+    [Header("Wall")]
+    public Color wallColor;
+    public Color wallTextColor;
 
     public Color GetColor(int _number)
     {
@@ -25,4 +28,12 @@ public class ColorPreset : ScriptableObject
         return defaultColor;
     }
 
+    public Color GetWallColor()
+    {
+        return wallColor;
+    }
+    public Color GetWallTextColor()
+    {
+        return wallTextColor;
+    }
 }

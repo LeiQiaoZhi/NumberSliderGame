@@ -20,7 +20,9 @@ namespace UnityEngine
         GridSystem,
         Wfc,
         Cell,
-        Movement
+        Movement,
+        GameManager,
+        Generation
     }
     
     public static class XLogger

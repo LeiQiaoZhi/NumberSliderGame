@@ -8,14 +8,15 @@ using Random = UnityEngine.Random;
 
 public class NumberGridGenerator : MonoBehaviour
 {
-    [Header("Generation")] public PatchGenerationStrategy patchGenerationStrategy;
     [Header("References")] public InfiniteGridSystem infGridSystem;
     private Vector2Int currentPatch_ = new(0, 0);
+    private World world_;
 
+    // generate the first patch
     public void StartingGeneration()
     {
         infGridSystem.CalculateCellDimension();
-        GeneratePatch(currentPatch_);
+        GeneratePatch(currentPatch_, world_.startingGenerationStrategy);
     }
 
     // test whether new patch needs to be generated
@@ -30,13 +31,13 @@ public class NumberGridGenerator : MonoBehaviour
                 var scanPositionGrid = new Vector2Int(_playerPosition.x + x*scanHalfDimension.x, _playerPosition.y + y*scanHalfDimension.y);
                 Vector2Int scanPositionPatch = infGridSystem.GridToPatchPosition(scanPositionGrid);
                 if (!infGridSystem.IsPatchCreated(scanPositionPatch))
-                    GeneratePatch(scanPositionPatch);
+                    GeneratePatch(scanPositionPatch, world_.GetRandomStrategy());
             }
         }
 
     }
 
-    private void GeneratePatch(Vector2Int _patchPosition)
+    private void GeneratePatch(Vector2Int _patchPosition, PatchGenerationStrategy _patchGenerationStrategy)
     {
         currentPatch_ = _patchPosition;
         var cells = infGridSystem.CreatePatch(_patchPosition);
@@ -49,8 +50,8 @@ public class NumberGridGenerator : MonoBehaviour
         }
 
         // apply patch generation strategy
-        patchGenerationStrategy.GetData(numberCells, infGridSystem.patchDimension);
-        patchGenerationStrategy.Generate();
+        _patchGenerationStrategy.Init(numberCells, infGridSystem.patchDimension);
+        _patchGenerationStrategy.Generate();
     }
 
     public NumberCell GetCell(int _x, int _y)
@@ -75,5 +76,10 @@ public class NumberGridGenerator : MonoBehaviour
     public int GetPatchHeight()
     {
         return infGridSystem.patchDimension.y;
+    }
+
+    public void SetWorld(World _world)
+    {
+        world_ = _world;
     }
 }

@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ba898941cd5469f95b98d72ae7b419c, type: 3}
+  m_Name: World 1
+  m_EditorClassIdentifier: 
+  startingGenerationStrategy: {fileID: 11400000, guid: 35ed0fc194c0bde4ba9520dcdfea74b3, type: 2}
+  generationStrategies:
+  - generationStrategy: {fileID: 11400000, guid: ba601eb8501606b4793adad488c72928, type: 2}
+    weight: 0
+  - generationStrategy: {fileID: 11400000, guid: 35ed0fc194c0bde4ba9520dcdfea74b3, type: 2}
+    weight: 0
+  - generationStrategy: {fileID: 11400000, guid: e3aafc37b8f55fa4b85a1a2ea5ac1c45, type: 2}
+    weight: 0
+  - generationStrategy: {fileID: 11400000, guid: b41998fd846e55f44817d430c1c7c386, type: 2}
+    weight: 10
