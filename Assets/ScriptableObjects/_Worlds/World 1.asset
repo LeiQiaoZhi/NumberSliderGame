@@ -19,6 +19,10 @@ MonoBehaviour:
   - generationStrategy: {fileID: 11400000, guid: 35ed0fc194c0bde4ba9520dcdfea74b3, type: 2}
     weight: 0
   - generationStrategy: {fileID: 11400000, guid: e3aafc37b8f55fa4b85a1a2ea5ac1c45, type: 2}
-    weight: 0
+    weight: 3
   - generationStrategy: {fileID: 11400000, guid: b41998fd846e55f44817d430c1c7c386, type: 2}
-    weight: 10
+    weight: 2
+  - generationStrategy: {fileID: 11400000, guid: 8e5fbed468011bf478d479a17e902c29, type: 2}
+    weight: 2
+  - generationStrategy: {fileID: 11400000, guid: 6360d163ae26b5e46a9f25404e6720ac, type: 2}
+    weight: 1

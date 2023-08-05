@@ -9,12 +9,14 @@ public class SameNumberGenerationStrategy : PatchGenerationStrategy
     [Header("Same Number Generation Strategy")]
     public List<int> sameNumberPool;
 
+    [Header("Inclusive Ranges")]
     public Vector2Int clusterNumberRange;
     
     public Vector2Int sameNumberSizeMin;
 
     public Vector2Int sameNumberSizeMax;
     
+    [Header("Color")]
     public ColorPreset colorPreset;
 
     // generate clusters of same number, rest are random

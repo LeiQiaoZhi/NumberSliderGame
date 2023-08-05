@@ -12,7 +12,7 @@ public class WallGenerationStrategy : PatchGenerationStrategy
     [Header("Wall Generation Strategy")] public List<int> wallNumberPool;
     public List<int> doorNumberPool;
 
-    [Header("Wall Size")] [Tooltip("1 means 1 cell, 2 means 3 cells, etc.")]
+    [Header("Wall Size")] [Tooltip("0 means 1 cell, 1 means 3 cells, etc.")]
     public Vector2Int doorHalfDimension;
 
     public Vector2Int wallHalfDimension;
@@ -74,7 +74,7 @@ public class WallGenerationStrategy : PatchGenerationStrategy
         // top and bottom
         for (int x = -wallHalfDimension.x; x <= wallHalfDimension.x; x++)
         {
-            if (Math.Abs(x) < doorHalfDimension.x) // skip door
+            if (Math.Abs(x) <= doorHalfDimension.x) // skip door
                 continue;
             edgeCells.Add(GetCell(center.x + x, center.y - wallHalfDimension.y));
             edgeCells.Add(GetCell(center.x + x, center.y + wallHalfDimension.y));
@@ -83,7 +83,7 @@ public class WallGenerationStrategy : PatchGenerationStrategy
         // left and right
         for (int y = -wallHalfDimension.y + 1; y < wallHalfDimension.y; y++)
         {
-            if (Math.Abs(y) < doorHalfDimension.y) // skip door
+            if (Math.Abs(y) <= doorHalfDimension.y) // skip door
                 continue;
             edgeCells.Add(GetCell(center.x - wallHalfDimension.x, center.y + y));
             edgeCells.Add(GetCell(center.x + wallHalfDimension.x, center.y + y));
@@ -105,7 +105,7 @@ public class WallGenerationStrategy : PatchGenerationStrategy
         // top and bottom
         for (int x = -doorHalfDimension.x; x <= doorHalfDimension.x; x++)
         {
-            if (Math.Abs(x) < doorHalfDimension.x)
+            if (Math.Abs(x) <= doorHalfDimension.x)
             {
                 doorCells.Add(GetCell(center.x + x, center.y - wallHalfDimension.y));
                 doorCells.Add(GetCell(center.x + x, center.y + wallHalfDimension.y));
@@ -114,7 +114,7 @@ public class WallGenerationStrategy : PatchGenerationStrategy
         // left and right
         for (int y = -wallHalfDimension.y + 1; y < wallHalfDimension.y; y++)
         {
-            if (Math.Abs(y) < doorHalfDimension.y)
+            if (Math.Abs(y) <= doorHalfDimension.y)
             {
                 doorCells.Add(GetCell(center.x - wallHalfDimension.x, center.y + y));
                 doorCells.Add(GetCell(center.x + wallHalfDimension.x, center.y + y));

@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5dae8510919740b0aef31ea861b8c768, type: 3}
-  m_Name: Wall Generation Strategy
+  m_Name: Wall GS Large
   m_EditorClassIdentifier: 
-  pool: 0200000004000000060000000800000009000000
-  wallNumberPool: 1000000020000000
+  pool: 02000000040000000600000008000000090000000c000000
+  wallNumberPool: 100000002000000040000000
   doorNumberPool: 03000000
-  doorHalfDimension: {x: 2, y: 1}
-  wallHalfDimension: {x: 3, y: 5}
+  doorHalfDimension: {x: 0, y: 1}
+  wallHalfDimension: {x: 2, y: 3}
   wallOnPatchEdges: 1
   colorPreset: {fileID: 11400000, guid: 76dbd49e2ba0d6a44991a8bf1109686a, type: 2}

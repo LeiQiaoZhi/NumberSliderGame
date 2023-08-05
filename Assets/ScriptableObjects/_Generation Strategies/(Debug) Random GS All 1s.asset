@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d4e0716b8efd4ccb80f406c134243521, type: 3}
-  m_Name: Random Generation Strategy Easy
+  m_Name: (Debug) Random GS All 1s
   m_EditorClassIdentifier: 
-  pool: 0200000003000000040000000600000008000000090000000c0000001000000012000000
+  pool: 01000000

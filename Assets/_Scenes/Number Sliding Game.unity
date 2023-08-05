@@ -900,7 +900,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 10
   m_Sprite: {fileID: 7482667652216324306, guid: befb3ccf20af6cf4d984e6427592f876, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.8784314}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.6156863}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -946,7 +946,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   margin: 0
   cellPrefab: {fileID: 5425937733918714787, guid: 5df407ae666f8c049bba06a57bc826c1, type: 3}
-  patchDimension: {x: 7, y: 11}
+  patchDimension: {x: 7, y: 7}
   visibleAreaDimension: {x: 5, y: 7}
   cellDimensionChangedEvent: {fileID: 11400000, guid: aaeaba415b222b645aac547e50a52feb, type: 2}
 --- !u!4 &831660508

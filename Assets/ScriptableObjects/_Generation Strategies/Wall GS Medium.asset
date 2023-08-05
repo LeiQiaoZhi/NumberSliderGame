@@ -9,12 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8edd52001104b79b716175da2303135, type: 3}
-  m_Name: Same Number Generation Strategy
+  m_Script: {fileID: 11500000, guid: 5dae8510919740b0aef31ea861b8c768, type: 3}
+  m_Name: Wall GS Medium
   m_EditorClassIdentifier: 
-  pool: 020000000300000004000000060000000800000009000000
-  sameNumberPool: 0c0000001000000012000000
-  clusterNumberRange: {x: 1, y: 3}
-  sameNumberSizeMin: {x: 1, y: 2}
-  sameNumberSizeMax: {x: 3, y: 4}
+  pool: 02000000040000000600000008000000090000000c000000
+  wallNumberPool: 100000002000000040000000
+  doorNumberPool: 03000000
+  doorHalfDimension: {x: 0, y: 0}
+  wallHalfDimension: {x: 2, y: 2}
+  wallOnPatchEdges: 0
   colorPreset: {fileID: 11400000, guid: 76dbd49e2ba0d6a44991a8bf1109686a, type: 2}
