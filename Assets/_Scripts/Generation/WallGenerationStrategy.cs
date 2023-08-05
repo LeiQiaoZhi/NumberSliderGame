@@ -40,7 +40,7 @@ public class WallGenerationStrategy : PatchGenerationStrategy
     }
 
     // generate wall on the edges of the patch
-    private void Wall()
+    protected void Wall()
     {
         // set wall cells
         foreach (NumberCell cell in GetEdgeCells())
