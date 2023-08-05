@@ -12,17 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ba898941cd5469f95b98d72ae7b419c, type: 3}
   m_Name: World 1
   m_EditorClassIdentifier: 
-  startingGenerationStrategy: {fileID: 11400000, guid: 35ed0fc194c0bde4ba9520dcdfea74b3, type: 2}
+  startingGenerationStrategy: {fileID: 11400000, guid: ee21c6ff6e3e7474697cb8a20f0e6897, type: 2}
   generationStrategies:
-  - generationStrategy: {fileID: 11400000, guid: ba601eb8501606b4793adad488c72928, type: 2}
-    weight: 0
-  - generationStrategy: {fileID: 11400000, guid: 35ed0fc194c0bde4ba9520dcdfea74b3, type: 2}
-    weight: 0
-  - generationStrategy: {fileID: 11400000, guid: e3aafc37b8f55fa4b85a1a2ea5ac1c45, type: 2}
-    weight: 3
-  - generationStrategy: {fileID: 11400000, guid: b41998fd846e55f44817d430c1c7c386, type: 2}
-    weight: 2
-  - generationStrategy: {fileID: 11400000, guid: 8e5fbed468011bf478d479a17e902c29, type: 2}
-    weight: 2
-  - generationStrategy: {fileID: 11400000, guid: 6360d163ae26b5e46a9f25404e6720ac, type: 2}
+  - generationStrategy: {fileID: 11400000, guid: a127fe2d203956e4c9f7addc6346f96f, type: 2}
     weight: 1
+  - generationStrategy: {fileID: 11400000, guid: ee21c6ff6e3e7474697cb8a20f0e6897, type: 2}
+    weight: 3

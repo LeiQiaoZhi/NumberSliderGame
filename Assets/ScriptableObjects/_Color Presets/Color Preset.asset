@@ -25,16 +25,12 @@ MonoBehaviour:
     color: {r: 0.75686276, g: 1, b: 0.81960785, a: 1}
   - number: 6
     color: {r: 0.81960785, g: 0.75686276, b: 1, a: 1}
-  - number: 7
-    color: {r: 1, g: 0.75686276, b: 0.9529412, a: 1}
   - number: 8
     color: {r: 0.75686276, g: 0.9529412, b: 1, a: 1}
   - number: 9
     color: {r: 0.9529412, g: 0.75686276, b: 1, a: 1}
   - number: 10
     color: {r: 1, g: 0.81960785, b: 0.8901961, a: 1}
-  - number: 11
-    color: {r: 0.81960785, g: 0.8901961, b: 1, a: 1}
   - number: 12
     color: {r: 0.8901961, g: 0.81960785, b: 1, a: 1}
   - number: 16
@@ -43,8 +39,14 @@ MonoBehaviour:
     color: {r: 0.8901961, g: 1, b: 0.75686276, a: 1}
   - number: 24
     color: {r: 0.81960785, g: 0.75686276, b: 1, a: 1}
+  - number: 27
+    color: {r: 0.81960785, g: 0.8901961, b: 1, a: 1}
   - number: 32
     color: {r: 1, g: 0.7568628, b: 0.95294124, a: 1}
+  - number: 36
+    color: {r: 1, g: 0.8196079, b: 0.7568628, a: 1}
+  - number: 64
+    color: {r: 0.89019614, g: 1, b: 0.7568628, a: 1}
   defaultColor: {r: 1, g: 1, b: 1, a: 0}
   wallColor: {r: 0.1981132, g: 0.1981132, b: 0.1981132, a: 1}
   wallTextColor: {r: 0.9528302, g: 0.9528302, b: 0.9528302, a: 0.84313726}
@@ -53,3 +55,4 @@ MonoBehaviour:
   visitedColor: {r: 0.7169812, g: 0.7169812, b: 0.7169812, a: 1}
   visitedTextColor: {r: 0.5471698, g: 0.5471698, b: 0.5471698, a: 1}
   inactiveColor: {r: 0.3018868, g: 0.3018868, b: 0.3018868, a: 1}
+  portalColor: {r: 1, g: 0.35444742, b: 0.38237995, a: 1}
