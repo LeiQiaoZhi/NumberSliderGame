@@ -7,16 +7,20 @@ public class PlayerMovement : MonoBehaviour
 {
     [Header("Event")]
     public GameEvent playerMoveEvent;
+    public GameEvent gameOverEvent;
 
     private NumberGridGenerator numberGridGenerator_;
+    private GameStates gameStates_;
 
     // note this position may exceed or go below dimensions of a patch
     // because it uses grid coordinates, not patch coordinates
     private Vector2Int position_;
 
-    public void OnGameStart(NumberGridGenerator _numberGridGenerator)
+    public void OnGameStart(NumberGridGenerator _numberGridGenerator, GameStates _gameStates)
     {
         numberGridGenerator_ = _numberGridGenerator;
+        gameStates_ = _gameStates;
+        
         numberGridGenerator_.StartingGeneration();
         position_ = new Vector2Int(numberGridGenerator_.GetPatchWidth() / 2,
             numberGridGenerator_.GetPatchHeight() / 2);
@@ -27,6 +31,9 @@ public class PlayerMovement : MonoBehaviour
 
     public void Move(Vector2Int _vector2Int)
     {
+        if (!gameStates_.IsPlaying())
+            return;
+        
         NumberCell currentCell = numberGridGenerator_.GetCell(position_);
         var targetPosition = new Vector2Int(position_.x + _vector2Int.x, position_.y + _vector2Int.y);
         NumberCell targetCell = numberGridGenerator_.GetCell(targetPosition);
@@ -46,9 +53,11 @@ public class PlayerMovement : MonoBehaviour
         if (Merge(currentCell, targetCell, targetPosition))
             return;
 
-        // invalid merge
+        // invalid merge, game over
         XLogger.LogWarning(Category.Movement, $"invalid merge, game over");
-        // TODO: game over
+        gameStates_.state = GameStates.GameState.Over;
+        gameOverEvent.Raise();
+        gameObject.SetActive(false);
     }
 
     private bool Merge(NumberCell _currentCell, NumberCell _targetCell, Vector2Int _targetPosition)

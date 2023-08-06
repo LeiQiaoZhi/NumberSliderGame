@@ -15,6 +15,7 @@ public class NumberGridGenerator : MonoBehaviour
 
     private Vector2Int currentPatch_ = new(0, 0);
     private List<Vector2Int> portalPositions_ = new();
+    private GameStates gameStates_;
 
     /// generate the first patch
     public void StartingGeneration()
@@ -88,13 +89,11 @@ public class NumberGridGenerator : MonoBehaviour
         return infGridSystem.patchDimension.y;
     }
 
-    public void SetWorld(World _world)
-    {
-        world_ = _world;
-    }
 
-    public void SetColorPreset(ColorPreset _colorPreset)
+    public void Init(ColorPreset _colorPreset, World _world, GameStates _gameStates)
     {
         colorPreset_ = _colorPreset;
+        world_ = _world;
+        gameStates_ = _gameStates;
     }
 }
