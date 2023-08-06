@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public World world;
+    public ColorPreset colorPreset;
     
     private PlayerMovement playerMovement_;
     private NumberGridGenerator numberGridGenerator_;
@@ -20,6 +21,7 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
+        numberGridGenerator_.SetColorPreset(colorPreset);
         numberGridGenerator_.SetWorld(world);
         playerMovement_.OnGameStart(numberGridGenerator_);
     }

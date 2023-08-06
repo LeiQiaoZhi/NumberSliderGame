@@ -8,11 +8,12 @@ using Random = UnityEngine.Random;
 
 public class NumberGridGenerator : MonoBehaviour
 {
-    public ColorPreset colorPreset;
     [Header("References")] public InfiniteGridSystem infGridSystem;
 
-    private Vector2Int currentPatch_ = new(0, 0);
     private World world_;
+    private ColorPreset colorPreset_;
+
+    private Vector2Int currentPatch_ = new(0, 0);
     private List<Vector2Int> portalPositions_ = new();
 
     /// generate the first patch
@@ -53,7 +54,7 @@ public class NumberGridGenerator : MonoBehaviour
         foreach (Cell cell in cells)
         {
             var numberCell = cell.AddComponent<NumberCell>();
-            numberCell.Init(cell, colorPreset);
+            numberCell.Init(cell, colorPreset_);
             numberCells.Add(numberCell);
         }
 
@@ -90,5 +91,10 @@ public class NumberGridGenerator : MonoBehaviour
     public void SetWorld(World _world)
     {
         world_ = _world;
+    }
+
+    public void SetColorPreset(ColorPreset _colorPreset)
+    {
+        colorPreset_ = _colorPreset;
     }
 }

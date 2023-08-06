@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [System.Serializable]
@@ -8,11 +9,13 @@ public class ColorItem
     public Color color;
 }
 
-[CreateAssetMenu(fileName = "Color Preset", menuName = "ColorPreset", order = 0)]
+[CreateAssetMenu(fileName = "Color Preset", menuName = "Color/ColorPreset", order = 0)]
 public class ColorPreset : ScriptableObject
 {
-    public List<ColorItem> colorItems;
     public Color defaultColor;
+    [Header("Themes")]
+    public ColorTheme.ThemeName defaultTheme;
+    public List<ColorTheme> colorThemes;
     [Header("Wall")]
     public Color wallColor;
     public Color wallTextColor;
@@ -31,21 +34,12 @@ public class ColorPreset : ScriptableObject
 
     public Color GetColor(int _number)
     {
-        foreach (var item in colorItems)
-        {
-            if (item.number == _number)
-                return item.color;
-        }
-
-        return defaultColor;
+        return GetColor(_number, defaultTheme);
     }
-
-    public Color GetWallColor()
+    public Color GetColor(int _number, ColorTheme.ThemeName _theme)
     {
-        return wallColor;
-    }
-    public Color GetWallTextColor()
-    {
-        return wallTextColor;
+        ColorTheme theme = colorThemes.Find(_x => _x.themeName == _theme);
+        ColorItem item = theme.colorItems.Find(_x => _x.number == _number);
+        return item?.color ?? defaultColor;
     }
 }

@@ -47,10 +47,8 @@ public class WallGenerationStrategy : PatchGenerationStrategy
         {
             var number = wallNumberPool[Random.Range(0, wallNumberPool.Count)];
             cell.SetNumber(number);
-            Color wallColor = colorPreset.GetWallColor();
-            Color wallTextColor = colorPreset.GetWallTextColor();
-            cell.SetColor(wallColor);
-            cell.SetTextColor(wallTextColor);
+            cell.SetColor(colorPreset.wallColor);
+            cell.SetTextColor(colorPreset.wallTextColor);
         }
 
         // set door cells
