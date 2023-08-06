@@ -2,12 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [Header("Event")]
-    public GameEvent playerMoveEvent;
-    public GameEvent gameOverEvent;
+    [Header("Event")] [SerializeField] private GameEvent playerMoveEvent;
+    [SerializeField] private GameEvent gameOverEvent;
+    [SerializeField] private GameEvent enterPortalEvent;
 
     private NumberGridGenerator numberGridGenerator_;
     private GameStates gameStates_;
@@ -20,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
     {
         numberGridGenerator_ = _numberGridGenerator;
         gameStates_ = _gameStates;
-        
+
         numberGridGenerator_.StartingGeneration();
         position_ = new Vector2Int(numberGridGenerator_.GetPatchWidth() / 2,
             numberGridGenerator_.GetPatchHeight() / 2);
@@ -33,7 +34,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!gameStates_.IsPlaying())
             return;
-        
+
         NumberCell currentCell = numberGridGenerator_.GetCell(position_);
         var targetPosition = new Vector2Int(position_.x + _vector2Int.x, position_.y + _vector2Int.y);
         NumberCell targetCell = numberGridGenerator_.GetCell(targetPosition);
@@ -73,6 +74,14 @@ public class PlayerMovement : MonoBehaviour
             // test whether new patch needs to be generated
             numberGridGenerator_.OnPlayerMove(position_);
             playerMoveEvent.Raise();
+            // test whether the cell is a portal
+            if (_targetCell.isPortal)
+            {
+                XLogger.Log(Category.Movement, $"Player enters portal {_targetPosition}");
+                enterPortalEvent.Raise();
+                gameObject.SetActive(false);
+            }
+
             return true;
         }
 

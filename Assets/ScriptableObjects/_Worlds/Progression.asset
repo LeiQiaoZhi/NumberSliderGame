@@ -9,7 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 644bd97647788c1469f174976f06e788, type: 3}
-  m_Name: GameOver
+  m_Script: {fileID: 11500000, guid: d2548df8874a4f1e9d3a57ec85dc62f0, type: 3}
+  m_Name: Progression
   m_EditorClassIdentifier: 
-  DeveloperDescription: 
+  worldPool:
+  - {fileID: 11400000, guid: f39e42462691efe448307ab3358bddbc, type: 2}
+  nextProgression: {fileID: 11400000}

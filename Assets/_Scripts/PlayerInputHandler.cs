@@ -5,7 +5,6 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerMovement))]
 public class PlayerInputHandler : MonoBehaviour
 {
-    public GameStates gameStates;
     private PlayerMovement playerMovement_;
     private void Start()
     {

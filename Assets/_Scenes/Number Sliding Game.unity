@@ -644,6 +644,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerMoveEvent: {fileID: 11400000, guid: a493705e7f2907b4babdb9030bbc61f1, type: 2}
   gameOverEvent: {fileID: 11400000, guid: 4b7b6b8548f6ce7409b3dfcdc3db7ef5, type: 2}
+  enterPortalEvent: {fileID: 11400000, guid: a3fc83ef54894754ca5bd607f44ff2e1, type: 2}
 --- !u!114 &305291490
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -656,7 +657,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19c81cc37f485f242bae87ca5abbf131, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameStates: {fileID: 0}
 --- !u!1 &341366685 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4344630199659080556, guid: 235160131561a22488b82f8496e891da, type: 3}
@@ -1659,6 +1659,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1372095831}
   - component: {fileID: 1372095830}
+  - component: {fileID: 1372095832}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1678,7 +1679,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2abe82f6bb762464583f1f8cc8cf0153, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  world: {fileID: 11400000, guid: f39e42462691efe448307ab3358bddbc, type: 2}
+  progression: {fileID: 11400000, guid: 75db808399a83594c95ddcde4c3d0d18, type: 2}
   colorPreset: {fileID: 11400000, guid: 76dbd49e2ba0d6a44991a8bf1109686a, type: 2}
   gameStates: {fileID: 11400000, guid: f811420542146dd4cac66f77a4bbc020, type: 2}
 --- !u!4 &1372095831
@@ -1696,6 +1697,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1372095832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1372095829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db64a66747c59d04db81eced9d2de940, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  event: {fileID: 11400000, guid: a3fc83ef54894754ca5bd607f44ff2e1, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1372095830}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: EnterPortal
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1415941796
 GameObject:
   m_ObjectHideFlags: 0

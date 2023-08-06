@@ -3,8 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// singleton
+/// </summary>
 public class SceneLoader : MonoBehaviour
 {
+    public static SceneLoader Instance { get; private set; }
+    
+    private void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+        else
+            Destroy(gameObject);
+    }
+    
     public void ReloadScene()
     {
         XLogger.Log(Category.Scene,"reload scene");

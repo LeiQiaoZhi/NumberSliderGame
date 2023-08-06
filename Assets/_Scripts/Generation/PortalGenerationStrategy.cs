@@ -27,6 +27,6 @@ public class PortalGenerationStrategy : WallGenerationStrategy
         NumberCell centerCell = GetCell(center.x, center.y);
         centerCell.SetNumber(0);
         centerCell.SetColor(colorPreset.portalColor);
-        // TODO: portal functionality
+        centerCell.isPortal = true;
     }
 }

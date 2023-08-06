@@ -26,10 +26,9 @@ MonoBehaviour:
     weight: 0
   - generationStrategy: {fileID: 11400000, guid: 6360d163ae26b5e46a9f25404e6720ac, type: 2}
     weight: 0
-  portalGenerationGuarantee: 3
-  portalGenerationMissCounter: 2
+  portalGenerationGuarantee: 1
   portalGenerationStrategies:
   - generationStrategy: {fileID: 11400000, guid: a127fe2d203956e4c9f7addc6346f96f, type: 2}
     weight: 1
-  minPortalDistanceFromCenter: 3
-  minPortalDistanceFromEachOther: 2
+  minPortalDistanceFromCenter: 0
+  minPortalDistanceFromEachOther: 0

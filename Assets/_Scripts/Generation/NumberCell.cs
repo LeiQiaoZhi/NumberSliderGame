@@ -8,6 +8,8 @@ using Random = UnityEngine.Random;
 
 public class NumberCell : MonoBehaviour
 {
+    public bool isPortal = false;
+    
     private ColorPreset colorPreset_;
     private TextMeshProUGUI text_;
     private CanvasGroup canvasGroup_;
