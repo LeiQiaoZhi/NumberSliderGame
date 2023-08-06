@@ -43,7 +43,7 @@ public class WallGenerationStrategy : PatchGenerationStrategy
     protected void Wall()
     {
         // set wall cells
-        foreach (NumberCell cell in GetEdgeCells())
+        foreach (NumberCell cell in GetEdgeCells(wallHalfDimension, doorHalfDimension))
         {
             var number = wallNumberPool[Random.Range(0, wallNumberPool.Count)];
             cell.SetNumber(number);
@@ -54,72 +54,11 @@ public class WallGenerationStrategy : PatchGenerationStrategy
         }
 
         // set door cells
-        foreach (NumberCell cell in GetDoorCells())
+        foreach (NumberCell cell in GetDoorCells(wallHalfDimension, doorHalfDimension))
         {
             var number = doorNumberPool[Random.Range(0, doorNumberPool.Count)];
             cell.SetNumber(number);
         }
     }
 
-    private List<NumberCell> GetEdgeCells()
-    {
-        var center = new Vector2Int(patchDimension.x / 2, patchDimension.y / 2);
-        if (wallHalfDimension.x > center.x || wallHalfDimension.y > center.y)
-        {
-            XLogger.LogError(Category.Generation, "Wall half dimension is too big");
-            return null;
-        }
-
-        var edgeCells = new List<NumberCell>();
-        // top and bottom
-        for (int x = -wallHalfDimension.x; x <= wallHalfDimension.x; x++)
-        {
-            if (Math.Abs(x) <= doorHalfDimension.x) // skip door
-                continue;
-            edgeCells.Add(GetCell(center.x + x, center.y - wallHalfDimension.y));
-            edgeCells.Add(GetCell(center.x + x, center.y + wallHalfDimension.y));
-        }
-
-        // left and right
-        for (int y = -wallHalfDimension.y + 1; y < wallHalfDimension.y; y++)
-        {
-            if (Math.Abs(y) <= doorHalfDimension.y) // skip door
-                continue;
-            edgeCells.Add(GetCell(center.x - wallHalfDimension.x, center.y + y));
-            edgeCells.Add(GetCell(center.x + wallHalfDimension.x, center.y + y));
-        }
-
-        return edgeCells;
-    }
-
-    private List<NumberCell> GetDoorCells()
-    {
-        var center = new Vector2Int(patchDimension.x / 2, patchDimension.y / 2);
-        if (wallHalfDimension.x > center.x || wallHalfDimension.y > center.y)
-        {
-            XLogger.LogError(Category.Generation, "Wall half dimension is too big");
-            return null;
-        }
-
-        var doorCells = new List<NumberCell>();
-        // top and bottom
-        for (int x = -doorHalfDimension.x; x <= doorHalfDimension.x; x++)
-        {
-            if (Math.Abs(x) <= doorHalfDimension.x)
-            {
-                doorCells.Add(GetCell(center.x + x, center.y - wallHalfDimension.y));
-                doorCells.Add(GetCell(center.x + x, center.y + wallHalfDimension.y));
-            }
-        }
-        // left and right
-        for (int y = -wallHalfDimension.y + 1; y < wallHalfDimension.y; y++)
-        {
-            if (Math.Abs(y) <= doorHalfDimension.y)
-            {
-                doorCells.Add(GetCell(center.x - wallHalfDimension.x, center.y + y));
-                doorCells.Add(GetCell(center.x + wallHalfDimension.x, center.y + y));
-            }
-        }
-        return doorCells;
-    }
 }

@@ -25,6 +25,9 @@ public class ColorPreset : ScriptableObject
     public Color inactiveColor;
     [Space(10)]
     public Color portalColor;
+    [Space(10)]
+    public Color playerColor;
+    public Color playerTextColor;
 
     public Color GetColor(int _number)
     {

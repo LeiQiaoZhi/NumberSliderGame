@@ -5,9 +5,6 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [Header("Look")]
-    public Color activeColor;
-    public Color activeTextColor;
     [Header("Event")]
     public GameEvent playerMoveEvent;
 
@@ -23,15 +20,9 @@ public class PlayerMovement : MonoBehaviour
         numberGridGenerator_.StartingGeneration();
         position_ = new Vector2Int(numberGridGenerator_.GetPatchWidth() / 2,
             numberGridGenerator_.GetPatchHeight() / 2);
-        SetActiveCell(numberGridGenerator_.GetCell(position_));
+        numberGridGenerator_.GetCell(position_).SetPlayerCell();
         numberGridGenerator_.GetCell(position_).SetNumber(1);
         numberGridGenerator_.OnPlayerMove(position_);
-    }
-
-    private void SetActiveCell(NumberCell _activeCell)
-    {
-        _activeCell.SetColor(activeColor);
-        _activeCell.SetTextColor(activeTextColor);
     }
 
     public void Move(Vector2Int _vector2Int)
@@ -69,7 +60,7 @@ public class PlayerMovement : MonoBehaviour
             _currentCell.SetVisited();
             position_ = _targetPosition;
             _targetCell.SetNumber(mergeResult);
-            SetActiveCell(_targetCell);
+            _targetCell.SetPlayerCell();
             // test whether new patch needs to be generated
             numberGridGenerator_.OnPlayerMove(position_);
             playerMoveEvent.Raise();

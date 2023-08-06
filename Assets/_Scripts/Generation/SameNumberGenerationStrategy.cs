@@ -42,18 +42,4 @@ public class SameNumberGenerationStrategy : PatchGenerationStrategy
         }
     }
 
-    // fill a rectangle with same number
-    private void Rect(Vector2Int _topLeft, Vector2Int _size, int _number, Color _color)
-    {
-        for (var x = _topLeft.x; x < _topLeft.x + _size.x; ++x)
-        {
-            for (var y = _topLeft.y; y < _topLeft.y + _size.y; ++y)
-            {
-                NumberCell cell = GetCell(x, y);
-                if (cell == null) continue;
-                cell.SetNumber(_number);
-                cell.SetColor(_color);
-            }
-        }
-    }
 }

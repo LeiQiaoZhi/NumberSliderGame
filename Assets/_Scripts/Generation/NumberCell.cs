@@ -95,4 +95,10 @@ public class NumberCell : MonoBehaviour
         cell_.spriteRenderer.color = color;
         canvasGroup_.alpha = _alpha;
     }
+
+    public void SetPlayerCell()
+    {
+        cell_.spriteRenderer.color = colorPreset_.playerColor;
+        text_.color = colorPreset_.playerTextColor;
+    }
 }
