@@ -6,7 +6,7 @@ public class GameStates : ScriptableObject
 {
     public enum GameState
     {
-        Start,
+        Prepare,
         Playing,
         Pause,
         Over
@@ -16,7 +16,7 @@ public class GameStates : ScriptableObject
 
     public void Init()
     {
-        state = GameState.Start;
+        state = GameState.Prepare;
     }
     public bool IsPlaying()
     {

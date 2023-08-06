@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -8,6 +9,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject levelEndScreen;
     [SerializeField] GameObject pauseScreen;
     [SerializeField] GameObject pauseButton;
+    [SerializeField] TextMeshProUGUI scoreText;
     [Header("Game State")]
     public GameStates gameStates;
 
@@ -16,6 +18,16 @@ public class UIManager : MonoBehaviour
         SetEnableGameOverScreen(false);
         SetEnableLevelEndScreen(false);
         Resume();
+    }
+
+    private void OnEnable()
+    {
+        ScoreManger.OnScoreChange += UpdateScoreText;
+    }
+
+    private void UpdateScoreText(int _score)
+    {
+        scoreText.text = _score.ToString();
     }
 
     public void SetEnableGameOverScreen(bool _enable)

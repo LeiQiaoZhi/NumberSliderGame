@@ -10,6 +10,9 @@ public class GameManager : MonoBehaviour
     public Progression progression;
     public ColorPreset colorPreset;
     public GameStates gameStates;
+    
+    public delegate void GameStart();
+    public static event GameStart OnGameStart;
 
     private PlayerMovement playerMovement_;
     private NumberGridGenerator numberGridGenerator_;
@@ -53,6 +56,7 @@ public class GameManager : MonoBehaviour
         numberGridGenerator_.Init(colorPreset, progression.GetWorld(), gameStates);
         playerMovement_.OnGameStart(numberGridGenerator_, gameStates);
         gameStates.state = GameStates.GameState.Playing;
+        OnGameStart?.Invoke();
     }
 
     public void EnterPortal()

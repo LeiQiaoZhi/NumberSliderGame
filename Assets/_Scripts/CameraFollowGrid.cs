@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,26 +9,25 @@ public class CameraFollowGrid : MonoBehaviour
     [FormerlySerializedAs("camera")] public Camera cam;
     public float speed = 0.1f;
     
-    private PlayerMovement playerMovement_;
     private Vector3 target_;
 
     private void Start()
     {
-        playerMovement_ = FindObjectOfType<PlayerMovement>();
+        PlayerMovement.OnPlayerMove += OnPlayerMove;
     }
 
-    public void OnPlayerMove()
+    private void OnPlayerMove(NumberCell _targetCell)
     {
-        target_ = playerMovement_.GetPlayerPositionWorld();
+        target_ = _targetCell.transform.position;
     }
 
     private void LateUpdate()
     {
         // move towards target if not already close
-        if (Vector2.SqrMagnitude(cam.transform.position - target_) > 0.01f)
+        if (Vector2.SqrMagnitude(cam.transform.position - target_) > 0.0001f)
         {
             Vector3 camPos = cam.transform.position;
-            Vector2 lerpPos = Vector2.Lerp(camPos, target_, speed);
+            Vector2 lerpPos = Vector2.Lerp(camPos, target_, speed * Time.deltaTime);
             camPos = new Vector3(lerpPos.x, lerpPos.y, camPos.z);
             cam.transform.position = camPos;
         }

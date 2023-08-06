@@ -6,9 +6,13 @@ using UnityEngine.Serialization;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [Header("Event")] [SerializeField] private GameEvent playerMoveEvent;
+    [Header("Event")] 
     [SerializeField] private GameEvent gameOverEvent;
     [SerializeField] private GameEvent enterPortalEvent;
+    
+    // event for player movement
+    public delegate void PlayerMove(NumberCell _targetCell);
+    public static event PlayerMove OnPlayerMove;
 
     private NumberGridGenerator numberGridGenerator_;
     private GameStates gameStates_;
@@ -73,7 +77,7 @@ public class PlayerMovement : MonoBehaviour
             _targetCell.SetPlayerCell();
             // test whether new patch needs to be generated
             numberGridGenerator_.OnPlayerMove(position_);
-            playerMoveEvent.Raise();
+            OnPlayerMove?.Invoke(_targetCell);
             // test whether the cell is a portal
             if (_targetCell.isPortal)
             {
