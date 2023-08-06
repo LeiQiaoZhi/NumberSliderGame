@@ -10,32 +10,39 @@ public class NumberGridGenerator : MonoBehaviour
 {
     public ColorPreset colorPreset;
     [Header("References")] public InfiniteGridSystem infGridSystem;
+
     private Vector2Int currentPatch_ = new(0, 0);
     private World world_;
+    private List<Vector2Int> portalPositions_ = new();
 
-    // generate the first patch
+    /// generate the first patch
     public void StartingGeneration()
     {
         infGridSystem.CalculateCellDimension();
         GeneratePatch(currentPatch_, world_.startingGenerationStrategy);
     }
 
-    // test whether new patch needs to be generated
+    /// test whether new patch needs to be generated
     public void OnPlayerMove(Vector2Int _playerPosition)
     {
-        Vector2Int scanHalfDimension = infGridSystem.visibleAreaDimension/2 + Vector2Int.one * 2;
+        Vector2Int scanHalfDimension = infGridSystem.visibleAreaDimension / 2 + Vector2Int.one * 2;
         // scan in 8 directions
         for (var x = -1; x <= 1; ++x)
         {
             for (var y = -1; y <= 1; ++y)
             {
-                var scanPositionGrid = new Vector2Int(_playerPosition.x + x*scanHalfDimension.x, _playerPosition.y + y*scanHalfDimension.y);
+                var scanPositionGrid = new Vector2Int(_playerPosition.x + x * scanHalfDimension.x,
+                    _playerPosition.y + y * scanHalfDimension.y);
                 Vector2Int scanPositionPatch = infGridSystem.GridToPatchPosition(scanPositionGrid);
                 if (!infGridSystem.IsPatchCreated(scanPositionPatch))
-                    GeneratePatch(scanPositionPatch, world_.GetRandomStrategy());
+                {
+                    PatchGenerationStrategy strategy = world_.GetStrategy(scanPositionPatch, portalPositions_);
+                    GeneratePatch(scanPositionPatch, strategy);
+                    if (world_.IsPortalStrategy(strategy))
+                        portalPositions_.Add(scanPositionPatch);
+                }
             }
         }
-
     }
 
     private void GeneratePatch(Vector2Int _patchPosition, PatchGenerationStrategy _patchGenerationStrategy)
@@ -63,6 +70,7 @@ public class NumberGridGenerator : MonoBehaviour
         Cell cell = infGridSystem.GetCell(patchPosition, cellPosition);
         return cell == null ? null : cell.GetComponent<NumberCell>();
     }
+
     // overload
     public NumberCell GetCell(Vector2Int _position)
     {

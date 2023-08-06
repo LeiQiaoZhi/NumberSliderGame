@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d8edd52001104b79b716175da2303135, type: 3}
-  m_Name: W1 Same Number GS
+  m_Name: W1 Same Number Rect GS
   m_EditorClassIdentifier: 
   pool: 0200000003000000040000000600000008000000090000000c000000100000001200000018000000
   sameNumberPool: 1b000000200000002400000040000000

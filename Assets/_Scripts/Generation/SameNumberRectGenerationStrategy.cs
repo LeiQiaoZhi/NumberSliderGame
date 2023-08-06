@@ -2,9 +2,9 @@
 using UnityEngine;
 using UnityEngine.Assertions;
 
-[CreateAssetMenu(fileName = "Same Number Generation Strategy", menuName = "Generation/SameNumberGenerationStrategy",
+[CreateAssetMenu(fileName = "Same Number Rect GS", menuName = "Generation/SameNumberRect",
     order = 0)]
-public class SameNumberGenerationStrategy : PatchGenerationStrategy
+public class SameNumberRectGenerationStrategy : PatchGenerationStrategy
 {
     [Header("Same Number Generation Strategy")]
     public List<int> sameNumberPool;
