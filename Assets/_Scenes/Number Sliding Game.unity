@@ -944,6 +944,7 @@ GameObject:
   m_Component:
   - component: {fileID: 226063558}
   - component: {fileID: 226063557}
+  - component: {fileID: 226063559}
   m_Layer: 0
   m_Name: ScoreManager
   m_TagString: Untagged
@@ -963,6 +964,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f4f5ebffd0d4baaa6d55c3c776a5174, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoreMultiplier: 1
+  portalScore: 100
 --- !u!4 &226063558
 Transform:
   m_ObjectHideFlags: 0
@@ -978,6 +981,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &226063559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 226063556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db64a66747c59d04db81eced9d2de940, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  event: {fileID: 11400000, guid: a3fc83ef54894754ca5bd607f44ff2e1, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 226063557}
+        m_TargetAssemblyTypeName: ScoreManger, Assembly-CSharp
+        m_MethodName: AddPortalScore
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &274911038 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 274911038, guid: afc9e0cc663eb5a4ba03cf61348d146c, type: 3}
@@ -2509,7 +2540,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 56.925, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1254013548

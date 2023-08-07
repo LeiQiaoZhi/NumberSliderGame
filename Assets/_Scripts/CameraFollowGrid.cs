@@ -16,9 +16,9 @@ public class CameraFollowGrid : MonoBehaviour
         PlayerMovement.OnPlayerMove += OnPlayerMove;
     }
 
-    private void OnPlayerMove(NumberCell _targetCell)
+    private void OnPlayerMove(PlayerMovement.MergeResult _mergeResult)
     {
-        target_ = _targetCell.transform.position;
+        target_ = _mergeResult.targetTransform.position;
     }
 
     private void LateUpdate()

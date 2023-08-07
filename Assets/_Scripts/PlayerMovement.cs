@@ -6,12 +6,29 @@ using UnityEngine.Serialization;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [Header("Event")] 
-    [SerializeField] private GameEvent gameOverEvent;
+    [Header("Event")] [SerializeField] private GameEvent gameOverEvent;
     [SerializeField] private GameEvent enterPortalEvent;
-    
+
+    public enum MergeType
+    {
+        Fail,
+        Minus,
+        Divide,
+        PlusOne
+    }
+
+    public class MergeResult
+    {
+        public MergeType type;
+        public int result;
+        public int original;
+        public int other;
+        public Transform targetTransform;
+    }
+
     // event for player movement
-    public delegate void PlayerMove(NumberCell _targetCell);
+    public delegate void PlayerMove(MergeResult _targetCell);
+
     public static event PlayerMove OnPlayerMove;
 
     private NumberGridGenerator numberGridGenerator_;
@@ -67,42 +84,52 @@ public class PlayerMovement : MonoBehaviour
 
     private bool Merge(NumberCell _currentCell, NumberCell _targetCell, Vector2Int _targetPosition)
     {
-        var mergeResult = GetMergeResult(_currentCell, _targetCell);
-        if (mergeResult > 0)
+        MergeResult mergeResult = GetMergeResult(_currentCell, _targetCell);
+        if (mergeResult.type == MergeType.Fail) return false;
+        // valid merge, player moves to target cell
+        _currentCell.SetVisited();
+        position_ = _targetPosition;
+        _targetCell.SetNumber(mergeResult.result);
+        _targetCell.SetPlayerCell();
+        // test whether new patch needs to be generated
+        numberGridGenerator_.OnPlayerMove(position_);
+        mergeResult.targetTransform = _targetCell.transform;
+        OnPlayerMove?.Invoke(mergeResult);
+        // test whether the cell is a portal
+        if (_targetCell.isPortal)
         {
-            // valid merge, player moves to target cell
-            _currentCell.SetVisited();
-            position_ = _targetPosition;
-            _targetCell.SetNumber(mergeResult);
-            _targetCell.SetPlayerCell();
-            // test whether new patch needs to be generated
-            numberGridGenerator_.OnPlayerMove(position_);
-            OnPlayerMove?.Invoke(_targetCell);
-            // test whether the cell is a portal
-            if (_targetCell.isPortal)
-            {
-                XLogger.Log(Category.Movement, $"Player enters portal {_targetPosition}");
-                enterPortalEvent.Raise();
-                gameObject.SetActive(false);
-            }
-
-            return true;
+            XLogger.Log(Category.Movement, $"Player enters portal {_targetPosition}");
+            enterPortalEvent.Raise();
+            gameObject.SetActive(false);
         }
-
-        return false;
+        return true;
     }
 
-    private int GetMergeResult(NumberCell _currentCell, NumberCell _targetCell)
+    private MergeResult GetMergeResult(NumberCell _currentCell, NumberCell _targetCell)
     {
+        var mergeResult = new MergeResult();
         var currentNumber = _currentCell.GetNumber();
+        mergeResult.original = currentNumber;
         var targetNumber = _targetCell.GetNumber();
+        mergeResult.other = targetNumber;
         if (_targetCell.IsVisited())
-            return currentNumber + 1;
-        if (currentNumber > targetNumber)
-            return currentNumber - targetNumber;
-        if (targetNumber % currentNumber == 0)
-            return targetNumber / currentNumber;
-        return -1;
+        {
+            mergeResult.result = currentNumber + 1;
+            mergeResult.type = MergeType.PlusOne;
+        }
+        else if (currentNumber > targetNumber)
+        {
+            mergeResult.result = currentNumber - targetNumber;
+            mergeResult.type = MergeType.Minus;
+        }
+        else if (targetNumber % currentNumber == 0)
+        {
+            mergeResult.result = targetNumber / currentNumber;
+            mergeResult.type = MergeType.Divide;
+        }
+        else
+            mergeResult.type = MergeType.Fail;
+        return mergeResult;
     }
 
     public Vector2Int GetPlayerPosition()
