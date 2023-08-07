@@ -34,18 +34,6 @@ public class SameNumberDiagonalGenerationStrategy : PatchGenerationStrategy
             cell.SetColor(color);   
         }
     }
-    
-    protected List<NumberCell> GetDiagonal(bool _positiveSlope, bool _negativeSlope)
-    {
-        var diagonal = new List<NumberCell>();
-        for (var i = 0; i < patchDimension.x; ++i)
-        {
-            if (_positiveSlope)
-                diagonal.Add(GetCell(i, i));
-            if (_negativeSlope)
-                diagonal.Add(GetCell(i, patchDimension.y - i - 1));
-        }
-        return diagonal;
-    }
+   
 
 }

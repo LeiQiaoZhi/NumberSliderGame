@@ -27,12 +27,34 @@ public class PatchGenerationStrategy : ScriptableObject
         }
     }
 
+    protected Vector2Int GetCenterCoord()
+    {
+        return new Vector2Int(Mathf.FloorToInt(patchDimension.x / 2.0f),
+            Mathf.FloorToInt(patchDimension.y / 2.0f));
+    }
+
     protected NumberCell GetCell(int _x, int _y)
     {
         if (_x < 0 || _x >= patchDimension.x || _y < 0 || _y >= patchDimension.y)
+        {
+            XLogger.LogWarning(Category.Generation, $"  GetCell({_x}, {_y}) out of range.");
             return null;
+        }
         var index = _x + _y * patchDimension.x;
         return numberCells[index];
+    }
+    
+    protected List<NumberCell> GetDiagonal(bool _positiveSlope, bool _negativeSlope)
+    {
+        var diagonal = new List<NumberCell>();
+        for (var i = 0; i < patchDimension.x; i++)
+        {
+            if (_positiveSlope)
+                diagonal.Add(GetCell(i, i));
+            if (_negativeSlope)
+                diagonal.Add(GetCell(i, patchDimension.y - i - 1));
+        }
+        return diagonal;
     }
     
     // fill a rectangle with same number

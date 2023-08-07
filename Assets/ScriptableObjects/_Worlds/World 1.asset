@@ -17,7 +17,10 @@ MonoBehaviour:
   - generationStrategy: {fileID: 11400000, guid: ee21c6ff6e3e7474697cb8a20f0e6897, type: 2}
     weight: 3
   - generationStrategy: {fileID: 11400000, guid: ad739568a4414e741861c69115af91f8, type: 2}
-    weight: 3
+    weight: 2
+  - generationStrategy: {fileID: 11400000, guid: 1d72ea96f89c985448adef1e496bfa23, type: 2}
+    weight: 2
+  portalGenerationGuarantee: 5
   portalGenerationStrategies:
   - generationStrategy: {fileID: 11400000, guid: a127fe2d203956e4c9f7addc6346f96f, type: 2}
     weight: 1
