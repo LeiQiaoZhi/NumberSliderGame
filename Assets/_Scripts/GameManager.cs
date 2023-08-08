@@ -7,7 +7,8 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class GameManager : MonoBehaviour
 {
-    public Progression progression;
+    public Progression startingProgression;
+    private Progression progression_;
     public ColorPreset colorPreset;
     public GameStates gameStates;
     
@@ -19,7 +20,6 @@ public class GameManager : MonoBehaviour
 
     private static GameManager Instance { get; set; }
 
-    /// this will only call once
     private void Awake()
     {
         if (Instance == null)
@@ -27,7 +27,8 @@ public class GameManager : MonoBehaviour
         else
             Destroy(gameObject);
         
-        gameStates.Init();
+        // this will only call once
+        progression_ = startingProgression;
         DontDestroyOnLoad(gameObject);
     }
 
@@ -35,7 +36,7 @@ public class GameManager : MonoBehaviour
     /// this will call every time a scene is loaded
     private void OnSceneLoaded(Scene _scene, LoadSceneMode _mode)
     {
-        StartGame();
+        StartGeneration();
     }
 
     private void OnEnable()
@@ -48,20 +49,34 @@ public class GameManager : MonoBehaviour
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
-    private void StartGame()
+    private void StartGeneration()
     {
+        Time.timeScale = 1.0f;
+        gameStates.state = GameStates.GameState.Generation;
         playerMovement_ = FindObjectOfType<PlayerMovement>();
         numberGridGenerator_ = FindObjectOfType<NumberGridGenerator>();
 
-        numberGridGenerator_.Init(colorPreset, progression.GetWorld(), gameStates);
-        playerMovement_.OnGameStart(numberGridGenerator_, gameStates);
+        numberGridGenerator_.Init(colorPreset, progression_.GetWorld(), gameStates);
+        playerMovement_.OnGenerationStart(numberGridGenerator_, gameStates);
+    }
+
+    // after scene opening animation
+    public void StartGame()
+    {
         gameStates.state = GameStates.GameState.Playing;
         OnGameStart?.Invoke();
     }
 
     public void EnterPortal()
     {
-        progression = progression.nextProgression;
+        progression_ = progression_.nextProgression;
+        SceneLoader.Instance.ReloadScene();
+    }
+
+    public void RestartGame()
+    {
+        Time.timeScale = 1.0f;
+        gameStates.state = GameStates.GameState.Over;
         SceneLoader.Instance.ReloadScene();
     }
 }

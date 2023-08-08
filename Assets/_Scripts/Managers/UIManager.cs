@@ -6,7 +6,6 @@ using TMPro;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] GameObject gameOverScreen;
-    [SerializeField] GameObject levelEndScreen;
     [SerializeField] GameObject pauseScreen;
     [SerializeField] GameObject pauseButton;
     [SerializeField] TextMeshProUGUI scoreText;
@@ -16,7 +15,6 @@ public class UIManager : MonoBehaviour
     private void Awake()
     {
         SetEnableGameOverScreen(false);
-        SetEnableLevelEndScreen(false);
         pauseScreen.SetActive(false);
     }
 
@@ -33,11 +31,6 @@ public class UIManager : MonoBehaviour
     public void SetEnableGameOverScreen(bool _enable)
     {
         gameOverScreen.SetActive(_enable);
-    }
-
-    public void SetEnableLevelEndScreen(bool _enable)
-    {
-        levelEndScreen.SetActive(_enable);
     }
 
     public void DisplayAchievementUnlockMessage(int _i)

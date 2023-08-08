@@ -6,7 +6,7 @@ public class GameStates : ScriptableObject
 {
     public enum GameState
     {
-        Prepare,
+        Generation,
         Playing,
         Pause,
         Over
@@ -14,10 +14,6 @@ public class GameStates : ScriptableObject
 
     [FormerlySerializedAs("gameState")] public GameState state;
 
-    public void Init()
-    {
-        state = GameState.Prepare;
-    }
     public bool IsPlaying()
     {
         return state == GameState.Playing;

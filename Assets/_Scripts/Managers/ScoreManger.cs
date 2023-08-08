@@ -17,7 +17,7 @@ public class ScoreManger : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         if (Instance == null)
         {
-            score_ = 0;
+            ResetScore();
             Instance = this;
         }
         else
@@ -34,7 +34,13 @@ public class ScoreManger : MonoBehaviour
     private void GameOver()
     {
         XLogger.Log(Category.Score, $"Game Over, score: {score_}");
-        AddScore(-score_);
+        ResetScore();
+    }
+
+    private void ResetScore()
+    {
+        score_ = 0;
+        OnScoreChange?.Invoke(score_);
     }
 
     private void OnGameStart()
@@ -79,8 +85,4 @@ public class ScoreManger : MonoBehaviour
         AddScore(portalScore);
     }
 
-    public void ResetScore()
-    {
-        score_ = 0;
-    }
 }
