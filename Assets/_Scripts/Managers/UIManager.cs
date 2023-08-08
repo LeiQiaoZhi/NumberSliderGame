@@ -17,7 +17,7 @@ public class UIManager : MonoBehaviour
     {
         SetEnableGameOverScreen(false);
         SetEnableLevelEndScreen(false);
-        Resume();
+        pauseScreen.SetActive(false);
     }
 
     private void OnEnable()
