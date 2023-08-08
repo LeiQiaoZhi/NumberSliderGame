@@ -1,18 +1,34 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
-public class TweenBase : MonoBehaviour
+public abstract class TweenBase
 {
-    // Start is called before the first frame update
-    void Start()
+    public Object targetObject;
+    public float duration = 1f;
+    public bool isLooping = false;
+
+    protected float elapsedTime = 0f;
+    protected bool isPlaying = false;
+
+    public void Play()
     {
-        
+        TweenManager.Instance.RegisterTween(this);
+        isPlaying = true;
+        elapsedTime = 0f;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Stop()
     {
-        
+        isPlaying = false;
+        TweenManager.Instance.DeregisterTween(this);
     }
+
+    public void Restart()
+    {
+        Stop();
+        Play();
+    }
+
+    public abstract void UpdateTween(float _deltaTime);
 }

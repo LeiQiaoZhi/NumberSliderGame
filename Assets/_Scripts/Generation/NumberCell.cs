@@ -41,12 +41,12 @@ public class NumberCell : MonoBehaviour
         text_.color = new Color(0, 0, 0, 0);
         if (visitedNum_ == 1) // first time visited
         {
-            cell_.spriteRenderer.color = colorPreset_.visitedColor;
+            SetColor(colorPreset_.visitedColor, 0.3f);
             text_.color = colorPreset_.visitedTextColor;
             text_.text = "+1";
         }
         else if (visitedNum_ > 1) // second time visited
-            cell_.spriteRenderer.color = colorPreset_.inactiveColor;
+            SetColor(colorPreset_.inactiveColor, 0.4f);
     }
 
     public bool IsActive()
@@ -59,9 +59,12 @@ public class NumberCell : MonoBehaviour
         return visitedNum_ > 0;
     }
 
-    public void SetColor(Color _color)
+    public void SetColor(Color _color, float _duration = 0.0f)
     {
-        cell_.spriteRenderer.color = _color;
+        if (_duration == 0.0f)
+            cell_.spriteRenderer.color = _color;
+        else
+            cell_.spriteRenderer.TweenColor(_color, _duration).Play();
     }
 
     public void SetTextColor(Color _color)
@@ -90,17 +93,9 @@ public class NumberCell : MonoBehaviour
         return cell_.ToString();
     }
 
-    public void SetTransparency(float _alpha)
-    {
-        Color color = cell_.spriteRenderer.color;
-        color.a = _alpha;
-        cell_.spriteRenderer.color = color;
-        canvasGroup_.alpha = _alpha;
-    }
-
     public void SetPlayerCell()
     {
-        cell_.spriteRenderer.color = colorPreset_.playerColor;
-        text_.color = colorPreset_.playerTextColor;
+        SetColor(colorPreset_.playerColor, 0.2f);
+        SetTextColor(colorPreset_.playerTextColor);
     }
 }

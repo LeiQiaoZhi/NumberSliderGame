@@ -22,7 +22,8 @@ namespace UnityEngine
         Cell,
         Movement,
         GameManager,
-        Generation
+        Generation,
+        Tween
     }
     
     public static class XLogger
