@@ -26,10 +26,13 @@ public class PlayerMovement : MonoBehaviour
         public Transform targetTransform;
     }
 
-    // event for player movement
     public delegate void PlayerMove(MergeResult _targetCell);
 
     public static event PlayerMove OnPlayerMove;
+
+    public delegate void GameOver();
+    public static event GameOver OnGameOver;
+    
 
     private NumberGridGenerator numberGridGenerator_;
     private GameStates gameStates_;
@@ -79,6 +82,7 @@ public class PlayerMovement : MonoBehaviour
         XLogger.LogWarning(Category.Movement, $"invalid merge, game over");
         gameStates_.state = GameStates.GameState.Over;
         gameOverEvent.Raise();
+        OnGameOver?.Invoke();
         gameObject.SetActive(false);
     }
 

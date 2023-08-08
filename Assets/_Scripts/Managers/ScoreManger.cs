@@ -27,7 +27,14 @@ public class ScoreManger : MonoBehaviour
     private void OnEnable()
     {
         PlayerMovement.OnPlayerMove += MovementScore;
+        PlayerMovement.OnGameOver += GameOver;
         GameManager.OnGameStart += OnGameStart;
+    }
+
+    private void GameOver()
+    {
+        XLogger.Log(Category.Score, $"Game Over, score: {score_}");
+        AddScore(-score_);
     }
 
     private void OnGameStart()
