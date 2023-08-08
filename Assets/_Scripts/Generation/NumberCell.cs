@@ -9,7 +9,7 @@ using Random = UnityEngine.Random;
 public class NumberCell : MonoBehaviour
 {
     public bool isPortal = false;
-    
+
     private ColorPreset colorPreset_;
     private TextMeshProUGUI text_;
     private CanvasGroup canvasGroup_;
@@ -38,11 +38,11 @@ public class NumberCell : MonoBehaviour
     public void SetVisited()
     {
         visitedNum_++;
-        text_.color = new Color(0, 0, 0, 0);
+        SetTextColor(new Color(0, 0, 0, 0));
         if (visitedNum_ == 1) // first time visited
         {
             SetColor(colorPreset_.visitedColor, 0.3f);
-            text_.color = colorPreset_.visitedTextColor;
+            SetTextColor(colorPreset_.visitedTextColor);
             text_.text = "+1";
         }
         else if (visitedNum_ > 1) // second time visited

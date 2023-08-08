@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 
 public static class TweenExtensions
 {
@@ -10,7 +11,12 @@ public static class TweenExtensions
     
     public static ColorTween TweenColor(this SpriteRenderer _target, Color _endColor, float _duration)
     {
-        return new ColorTween(_target, _endColor, _duration);
+        return new ColorTween(new SpriteRendererAdapter(_target), _endColor, _duration);
+    }
+    
+    public static ColorTween TweenColor(this TextMeshProUGUI _target, Color _endColor, float _duration)
+    {
+        return new ColorTween(new TextMeshProUGUIAdapter(_target), _endColor, _duration);
     }
     
     
