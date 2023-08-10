@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class CameraFollowGrid : MonoBehaviour
+public class FollowGridTarget : MonoBehaviour
 {
-    [FormerlySerializedAs("camera")] public Camera cam;
+    public Transform self;
     public float speed = 0.1f;
-    
+
     private Vector3 target_;
 
     private void Start()
@@ -24,12 +24,12 @@ public class CameraFollowGrid : MonoBehaviour
     private void LateUpdate()
     {
         // move towards target if not already close
-        if (Vector2.SqrMagnitude(cam.transform.position - target_) > 0.0001f)
+        if (Vector2.SqrMagnitude(self.transform.position - target_) > 0.0001f)
         {
-            Vector3 camPos = cam.transform.position;
+            Vector3 camPos = self.position;
             Vector2 lerpPos = Vector2.Lerp(camPos, target_, speed * Time.deltaTime);
             camPos = new Vector3(lerpPos.x, lerpPos.y, camPos.z);
-            cam.transform.position = camPos;
+            self.transform.position = camPos;
         }
     }
 }

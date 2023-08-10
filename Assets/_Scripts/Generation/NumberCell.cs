@@ -38,15 +38,17 @@ public class NumberCell : MonoBehaviour
     public void SetVisited()
     {
         visitedNum_++;
-        SetTextColor(new Color(0, 0, 0, 0));
         if (visitedNum_ == 1) // first time visited
         {
-            SetColor(colorPreset_.visitedColor, 0.3f);
-            SetTextColor(colorPreset_.visitedTextColor);
+            SetColor(colorPreset_.visitedColor, 0.2f);
+            SetTextColor(colorPreset_.visitedTextColor, 0.2f);
             text_.text = "+1";
         }
         else if (visitedNum_ > 1) // second time visited
-            SetColor(colorPreset_.inactiveColor, 0.4f);
+        {
+            SetColor(colorPreset_.inactiveColor, 0.3f);
+            SetTextColor(new Color(0, 0, 0, 0),0.3f);
+        }
     }
 
     public bool IsActive()
@@ -67,9 +69,12 @@ public class NumberCell : MonoBehaviour
             cell_.spriteRenderer.TweenColor(_color, _duration).Play();
     }
 
-    public void SetTextColor(Color _color)
+    public void SetTextColor(Color _color, float _duration = 0.0f)
     {
-        text_.color = _color;
+        if (_duration == 0.0f)
+            text_.color = _color;
+        else
+            text_.TweenColor(_color, _duration).Play();
     }
 
     public int GetNumber()
@@ -96,6 +101,7 @@ public class NumberCell : MonoBehaviour
     public void SetPlayerCell()
     {
         SetColor(colorPreset_.playerColor, 0.2f);
-        SetTextColor(colorPreset_.playerTextColor);
+        SetTextColor(new Color(1.0f, 1.0f, 1.0f, 0));
+        // SetTextColor(colorPreset_.playerTextColor);
     }
 }
