@@ -9,8 +9,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject pauseScreen;
     [SerializeField] GameObject pauseButton;
     [SerializeField] TextMeshProUGUI scoreText;
-    [Header("Game State")]
-    public GameStates gameStates;
+    [Header("Game State")] public GameStates gameStates;
 
     private void Awake()
     {
@@ -23,32 +22,19 @@ public class UIManager : MonoBehaviour
         ScoreManger.OnScoreChange += UpdateScoreText;
     }
 
+    private void OnDisable()
+    {
+        ScoreManger.OnScoreChange -= UpdateScoreText;
+    }
+
     private void UpdateScoreText(int _score)
     {
-        if (_score == 0)
-            scoreText.text = "0";
-        else
-            scoreText.TweenNumber(_score, 0.4f).Play();
+        scoreText.TweenNumber(_score, 0.4f).Play();
     }
 
     public void SetEnableGameOverScreen(bool _enable)
     {
         gameOverScreen.SetActive(_enable);
-    }
-
-    public void DisplayAchievementUnlockMessage(int _i)
-    {
-        AchievementManager achievementManager = AchievementManager.instance;
-        if (achievementManager.IsAchievementUnlocked(_i))
-        {
-            XLogger.Log(Category.Achievement,
-                $"Achivement {achievementManager.achievementNames[_i]} is already unlocked");
-            return;
-        }
-
-        achievementManager.UnlockAchievement(_i);
-        MessageManager.instance.DisplayMessage(
-            $"Achievement Unlock: {achievementManager.achievementNames[_i].ToUpper()}");
     }
 
     public void Pause()

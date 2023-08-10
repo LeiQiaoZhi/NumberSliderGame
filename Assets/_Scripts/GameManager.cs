@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
     
     public delegate void GameStart();
     public static event GameStart OnGameStart;
+    public delegate void GameRestart();
+    public static event GameRestart OnGameRestart;
 
     private PlayerMovement playerMovement_;
     private NumberGridGenerator numberGridGenerator_;
@@ -69,6 +71,12 @@ public class GameManager : MonoBehaviour
 
     public void EnterPortal()
     {
+        StartCoroutine(EnterPortalCoroutine());
+    }
+
+    private IEnumerator EnterPortalCoroutine()
+    {
+        yield return new WaitForSeconds(3.0f);
         progression_ = progression_.nextProgression;
         SceneLoader.Instance.ReloadScene();
     }
@@ -76,7 +84,9 @@ public class GameManager : MonoBehaviour
     public void RestartGame()
     {
         Time.timeScale = 1.0f;
+        progression_ = startingProgression;
         gameStates.state = GameStates.GameState.Over;
+        OnGameRestart?.Invoke();
         SceneLoader.Instance.ReloadScene();
     }
 }

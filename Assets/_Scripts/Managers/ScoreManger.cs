@@ -26,12 +26,13 @@ public class ScoreManger : MonoBehaviour
 
     private void OnEnable()
     {
-        PlayerMovement.OnPlayerMove += MovementScore;
-        PlayerMovement.OnGameOver += GameOver;
+        PlayerMovement.OnPlayerMove += OnMovementScore;
+        PlayerMovement.OnGameOver += OnGameOver;
         GameManager.OnGameStart += OnGameStart;
+        GameManager.OnGameRestart += ResetScore;
     }
 
-    private void GameOver()
+    private void OnGameOver()
     {
         XLogger.Log(Category.Score, $"Game Over, score: {score_}");
         ResetScore();
@@ -48,7 +49,7 @@ public class ScoreManger : MonoBehaviour
         OnScoreChange?.Invoke(score_);
     }
 
-    private void MovementScore(PlayerMovement.MergeResult _mergeResult)
+    private void OnMovementScore(PlayerMovement.MergeResult _mergeResult)
     {
         switch (_mergeResult.type)
         {
@@ -70,13 +71,14 @@ public class ScoreManger : MonoBehaviour
 
     private void AddScore(int _score)
     {
+        if (_score == 0) return;
         score_ += Mathf.RoundToInt(_score * scoreMultiplier);
         OnScoreChange?.Invoke(score_);
     }
     
     private void OnDisable()
     {
-        PlayerMovement.OnPlayerMove -= MovementScore;
+        PlayerMovement.OnPlayerMove -= OnMovementScore;
         GameManager.OnGameStart -= OnGameStart;
     }
     

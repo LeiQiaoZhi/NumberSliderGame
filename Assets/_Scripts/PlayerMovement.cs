@@ -107,7 +107,7 @@ public class PlayerMovement : MonoBehaviour
         {
             XLogger.Log(Category.Movement, $"Player enters portal {_targetPosition}");
             enterPortalEvent.Raise();
-            gameObject.SetActive(false);
+            gameStates_.state = GameStates.GameState.Pause;
         }
         return true;
     }
