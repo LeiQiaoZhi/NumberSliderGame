@@ -19,6 +19,10 @@ public static class TweenExtensions
         return new ColorTween(new TextMeshProUGUIAdapter(_target), _endColor, _duration);
     }
     
+    public static NumberTween TweenNumber(this TextMeshProUGUI _target, int _endNumber, float _duration, int _maxSteps = 10)
+    {
+        return new NumberTween(_target, _endNumber, _duration, _maxSteps);
+    }
     
 
     // You can add more extension methods here for other tween types.

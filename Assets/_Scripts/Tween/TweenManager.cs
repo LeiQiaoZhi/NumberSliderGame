@@ -30,13 +30,13 @@ public class TweenManager : MonoBehaviour
 
     public void RegisterTween(TweenBase _tween)
     {
-        TweenBase duplicateTween = activeTweens_.Find(_t => _t.targetObject.GetHashCode() == _tween.targetObject.GetHashCode());
-        if (duplicateTween != null)
-        {
-            // override existing tween
-            XLogger.Log(Category.Tween, $"Overriding existing tween for {_tween.targetObject.name}");
-            duplicateTween.Stop();
-        }
+        // TweenBase duplicateTween = activeTweens_.Find(_t => _t.targetObject == _tween.targetObject);
+        // if (duplicateTween != null)
+        // {
+        //     // override existing tween
+        //     XLogger.Log(Category.Tween, $"Overriding existing tween for {_tween.targetObject.name}");
+        //     duplicateTween.Stop();
+        // }
 
         activeTweens_.Add(_tween);
     }

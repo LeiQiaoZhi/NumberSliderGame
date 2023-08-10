@@ -4,7 +4,6 @@ using Object = UnityEngine.Object;
 
 public abstract class TweenBase
 {
-    public Object targetObject;
     public float duration = 1f;
     public bool isLooping = false;
 

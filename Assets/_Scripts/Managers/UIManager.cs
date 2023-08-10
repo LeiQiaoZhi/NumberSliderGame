@@ -25,7 +25,10 @@ public class UIManager : MonoBehaviour
 
     private void UpdateScoreText(int _score)
     {
-        scoreText.text = _score.ToString();
+        if (_score == 0)
+            scoreText.text = "0";
+        else
+            scoreText.TweenNumber(_score, 0.4f).Play();
     }
 
     public void SetEnableGameOverScreen(bool _enable)

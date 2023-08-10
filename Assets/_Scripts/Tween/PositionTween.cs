@@ -12,7 +12,6 @@ public class PositionTween : TweenBase
         startPosition_ = _target.position;
         endPosition_ = _endPosition;
         duration = _duration;
-        targetObject = _target;
     }
 
     public override void UpdateTween(float _deltaTime)

@@ -58,7 +58,6 @@ public class ColorTween : TweenBase
         startColor_ = _target.Color;
         endColor_ = _endColor;
         duration = _duration;
-        targetObject = _target.GetTargetObject();
     }
 
     public override void UpdateTween(float _deltaTime)

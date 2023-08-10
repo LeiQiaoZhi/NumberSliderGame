@@ -20,9 +20,17 @@ public class PlayerEffect : MonoBehaviour
         PlayerMovement.OnPlayerMove += OnPlayerMove;
     }
 
-    private void OnPlayerMove(PlayerMovement.MergeResult _targetcell)
+    private void OnPlayerMove(PlayerMovement.MergeResult _mergeResult)
     {
         if (numberText != null)
-            numberText.text = _targetcell.result.ToString();
+            numberText.TweenNumber(_mergeResult.result, 0.14f, 5).Play();
+        if (_mergeResult.type == PlayerMovement.MergeType.Divide)
+        {
+            // effect
+        }
+        if (_mergeResult.type == PlayerMovement.MergeType.Minus)
+        {
+            // effect
+        }
     }
 }
