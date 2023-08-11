@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,11 @@ public class AudioEventListener : MonoBehaviour
     private void OnEnable()
     {
         PlayerMovement.OnPlayerMove += OnPlayerMove;
+    }
+
+    private void OnDisable()
+    {
+        PlayerMovement.OnPlayerMove -= OnPlayerMove;
     }
 
     private void OnPlayerMove(PlayerMovement.MergeResult _mergeResult)

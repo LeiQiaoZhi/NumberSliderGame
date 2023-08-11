@@ -5,6 +5,7 @@ public class ScoreManger : MonoBehaviour
 {
     public float scoreMultiplier = 1f;
     public int portalScore = 100;
+
     public delegate void ScoreChange(int _score);
 
     public static event ScoreChange OnScoreChange;
@@ -32,7 +33,15 @@ public class ScoreManger : MonoBehaviour
         GameManager.OnGameRestart += ResetScore;
     }
 
-    private void OnGameOver()
+    private void OnDisable()
+    {
+        PlayerMovement.OnPlayerMove -= OnMovementScore;
+        PlayerMovement.OnGameOver -= OnGameOver;
+        GameManager.OnGameStart -= OnGameStart;
+        GameManager.OnGameRestart -= ResetScore;
+    }
+
+    private void OnGameOver(Vector2Int _direction)
     {
         XLogger.Log(Category.Score, $"Game Over, score: {score_}");
         ResetScore();
@@ -75,16 +84,10 @@ public class ScoreManger : MonoBehaviour
         score_ += Mathf.RoundToInt(_score * scoreMultiplier);
         OnScoreChange?.Invoke(score_);
     }
-    
-    private void OnDisable()
-    {
-        PlayerMovement.OnPlayerMove -= OnMovementScore;
-        GameManager.OnGameStart -= OnGameStart;
-    }
-    
+
+
     public void AddPortalScore()
     {
         AddScore(portalScore);
     }
-
 }

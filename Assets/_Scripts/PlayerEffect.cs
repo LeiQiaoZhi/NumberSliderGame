@@ -8,6 +8,7 @@ public class PlayerEffect : MonoBehaviour
 {
     public TextMeshProUGUI numberText;
     private InfiniteGridSystem gridSystem_;
+
     void Start()
     {
         gridSystem_ = FindObjectOfType<InfiniteGridSystem>();
@@ -20,6 +21,11 @@ public class PlayerEffect : MonoBehaviour
         PlayerMovement.OnPlayerMove += OnPlayerMove;
     }
 
+    private void OnDisable()
+    {
+        PlayerMovement.OnPlayerMove -= OnPlayerMove;
+    }
+
     private void OnPlayerMove(PlayerMovement.MergeResult _mergeResult)
     {
         if (numberText != null)
@@ -28,6 +34,7 @@ public class PlayerEffect : MonoBehaviour
         {
             // effect
         }
+
         if (_mergeResult.type == PlayerMovement.MergeType.Minus)
         {
             // effect

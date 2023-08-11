@@ -26,11 +26,11 @@ public class PlayerMovement : MonoBehaviour
         public Transform targetTransform;
     }
 
+    public delegate void PlayerInvalidMove(Vector2Int _direction);
+    public static event PlayerInvalidMove OnPlayerInvalidMove;
     public delegate void PlayerMove(MergeResult _targetCell);
-
     public static event PlayerMove OnPlayerMove;
-
-    public delegate void GameOver();
+    public delegate void GameOver(Vector2Int _direction);
     public static event GameOver OnGameOver;
     
 
@@ -57,13 +57,13 @@ public class PlayerMovement : MonoBehaviour
         numberGridGenerator_.OnPlayerMove(position_);
     }
 
-    public void Move(Vector2Int _vector2Int)
+    public void Move(Vector2Int _direction)
     {
         if (!gameStates_.IsPlaying())
             return;
 
         NumberCell currentCell = numberGridGenerator_.GetCell(position_);
-        var targetPosition = new Vector2Int(position_.x + _vector2Int.x, position_.y + _vector2Int.y);
+        var targetPosition = new Vector2Int(position_.x + _direction.x, position_.y + _direction.y);
         NumberCell targetCell = numberGridGenerator_.GetCell(targetPosition);
         if (targetCell == null)
         {
@@ -73,7 +73,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (!targetCell.IsActive())
         {
-            XLogger.LogWarning(Category.Movement, $"target cell {targetPosition} is inactive");
+            OnPlayerInvalidMove?.Invoke(_direction);
             return;
         }
 
@@ -81,11 +81,11 @@ public class PlayerMovement : MonoBehaviour
         if (Merge(currentCell, targetCell, targetPosition))
             return;
 
-        // invalid merge, game over
+        // invalid merge, GAME OVER
         XLogger.LogWarning(Category.Movement, $"invalid merge, game over");
         gameStates_.state = GameStates.GameState.Over;
         gameOverEvent.Raise();
-        OnGameOver?.Invoke();
+        OnGameOver?.Invoke(_direction);
         gameObject.SetActive(false);
     }
 
