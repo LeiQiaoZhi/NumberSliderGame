@@ -11,7 +11,7 @@ public class SameNumberRectGenerationStrategy : PatchGenerationStrategy
 
     [Header("Inclusive Ranges")]
     public Vector2Int clusterNumberRange;
-    public Vector2Int sameNumberDimensionRange;
+    public List<Vector2Int> sameNumberDimensions;
     
     [Header("Color")]
     public ColorPreset colorPreset;
@@ -29,15 +29,15 @@ public class SameNumberRectGenerationStrategy : PatchGenerationStrategy
         var clusterNumber = Random.Range(clusterNumberRange.x, clusterNumberRange.y+1);
         for (var i = 0; i < clusterNumber; ++i)
         {
-            var topLeft = new Vector2Int(Random.Range(0, patchDimension.x - sameNumberDimensionRange.x),
-                Random.Range(0, patchDimension.y - sameNumberDimensionRange.y));
-            var size = new Vector2Int(Random.Range(sameNumberDimensionRange.x, sameNumberDimensionRange.y+1),
-                Random.Range(sameNumberDimensionRange.x, sameNumberDimensionRange.y+1));
+            Vector2Int size = sameNumberDimensions[Random.Range(0, sameNumberDimensions.Count)];
             // apply random rotation
             if (Random.Range(0,2) == 0)
                 (size.x, size.y) = (size.y, size.x);
-            var number = sameNumberPool[Random.Range(0, sameNumberPool.Count)];
-            Color color = colorPreset.GetColor(number);
+            var topLeft = new Vector2Int(Random.Range(0, patchDimension.x - size.x + 1),
+                Random.Range(0, patchDimension.y - size.y + 1));
+            var index = Random.Range(0, sameNumberPool.Count);
+            var number = sameNumberPool[index];
+            Color color = colorPreset.GetColorViaIndex(index);
             Rect(topLeft, size, number, color);
         }
     }

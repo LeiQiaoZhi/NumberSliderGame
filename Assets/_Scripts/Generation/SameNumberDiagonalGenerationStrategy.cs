@@ -26,8 +26,9 @@ public class SameNumberDiagonalGenerationStrategy : PatchGenerationStrategy
             cell.SetNumber(random);
         }
 
-        var number = sameNumberPool[Random.Range(0, sameNumberPool.Count)];
-        Color color = colorPreset.GetColor(number);
+        var index = Random.Range(0, sameNumberPool.Count);
+        var number = sameNumberPool[index];
+        Color color = colorPreset.GetColorViaIndex(index);
         foreach (NumberCell cell in GetDiagonal(positiveSlope, negativeSlope))
         {
             cell.SetNumber(number);

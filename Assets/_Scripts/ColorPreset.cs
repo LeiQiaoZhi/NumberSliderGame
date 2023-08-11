@@ -42,4 +42,15 @@ public class ColorPreset : ScriptableObject
         ColorItem item = theme.colorItems.Find(_x => _x.number == _number);
         return item?.color ?? defaultColor;
     }
+
+    public Color GetColorViaIndex(int _index)
+    {
+        return GetColorViaIndex(_index, defaultTheme);
+    }
+
+    private Color GetColorViaIndex(int _index, ColorTheme.ThemeName _theme)
+    {
+        ColorTheme theme = colorThemes.Find(_x => _x.themeName == _theme);
+        return theme.colorItems[_index % theme.colorItems.Count].color;
+    }
 }

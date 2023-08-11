@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ba898941cd5469f95b98d72ae7b419c, type: 3}
+  m_Name: World 2
+  m_EditorClassIdentifier: 
+  startingGenerationStrategy: {fileID: 11400000, guid: 9c73a7a58a5cd7c46a385a832b7382ed, type: 2}
+  generationStrategies:
+  - generationStrategy: {fileID: 11400000, guid: 28054b34a5691cd40871c7d8c16aaf34, type: 2}
+    weight: 2
+  - generationStrategy: {fileID: 11400000, guid: 9c73a7a58a5cd7c46a385a832b7382ed, type: 2}
+    weight: 2
+  - generationStrategy: {fileID: 11400000, guid: 932120bac795e6e408f435ebd842ec9d, type: 2}
+    weight: 3
+  portalGenerationGuarantee: 6
+  portalGenerationStrategies:
+  - generationStrategy: {fileID: 11400000, guid: 0c9e3f899c4f5404aa6efa2d29335740, type: 2}
+    weight: 1
+  minPortalDistanceFromCenter: 3
+  minPortalDistanceFromEachOther: 3
