@@ -2211,6 +2211,24 @@ MonoBehaviour:
     playOnAwake: 0
     source: {fileID: 0}
     output: {fileID: 4533460643899935376, guid: 3b8f0db582eb1814fa9ac9f46f8d64b0, type: 2}
+  - name: whoosh
+    clip: {fileID: 8300000, guid: 7c8c448be1ffdc440816c184b34ac997, type: 3}
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+    output: {fileID: 4533460643899935376, guid: 3b8f0db582eb1814fa9ac9f46f8d64b0, type: 2}
+  - name: error
+    clip: {fileID: 8300000, guid: 8fc405797865f824eb00bc7c2c233b95, type: 3}
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+    output: {fileID: 4533460643899935376, guid: 3b8f0db582eb1814fa9ac9f46f8d64b0, type: 2}
+  - name: dark bell
+    clip: {fileID: 8300000, guid: a3523a406235a7149bf7d17d22b72f53, type: 3}
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+    output: {fileID: 4533460643899935376, guid: 3b8f0db582eb1814fa9ac9f46f8d64b0, type: 2}
   soundSets: []
   bgms: []
 --- !u!1 &673619802
@@ -3860,8 +3878,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1213306642}
+  - component: {fileID: 1213306645}
   - component: {fileID: 1213306644}
   - component: {fileID: 1213306643}
+  - component: {fileID: 1213306646}
   m_Layer: 0
   m_Name: Event Listener
   m_TagString: Untagged
@@ -3938,6 +3958,47 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: click
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1213306645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1213306641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ace00b470c220ac4fa1c2175d6578754, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerMoveSoundName: whoosh
+--- !u!114 &1213306646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1213306641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db64a66747c59d04db81eced9d2de940, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  event: {fileID: 11400000, guid: 4b7b6b8548f6ce7409b3dfcdc3db7ef5, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 668623096}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: error
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &1254013546
