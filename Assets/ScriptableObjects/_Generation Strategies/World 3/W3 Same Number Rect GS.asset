@@ -13,11 +13,10 @@ MonoBehaviour:
   m_Name: W3 Same Number Rect GS
   m_EditorClassIdentifier: 
   pool: 03000000050000000700000008000000090000000b0000000c0000000e0000000f00000010000000120000001500000018000000190000001c000000
-  sameNumberPool: 23000000270000002a0000004100000042000000
+  sameNumberPool: 230000002a0000004200000046000000
   clusterNumberRange: {x: 2, y: 4}
   sameNumberDimensions:
   - {x: 1, y: 2}
   - {x: 1, y: 3}
   - {x: 2, y: 2}
   - {x: 2, y: 3}
-  colorPreset: {fileID: 11400000, guid: f4475665a3cbed140892cd0cd6dc7108, type: 2}

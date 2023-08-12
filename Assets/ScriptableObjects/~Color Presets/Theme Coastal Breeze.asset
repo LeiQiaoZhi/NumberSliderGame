@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08e0e7b6a98f4d6894c9c8b2c05b08fa, type: 3}
   m_Name: Theme Coastal Breeze
   m_EditorClassIdentifier: 
-  themeName: 3
+  themeName: 4
   colorItems:
   - number: 27
     color: {r: 0.92941177, g: 0.8980392, b: 0.8509804, a: 1}

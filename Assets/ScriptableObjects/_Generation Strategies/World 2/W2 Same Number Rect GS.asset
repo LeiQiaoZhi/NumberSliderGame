@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8edd52001104b79b716175da2303135, type: 3}
   m_Name: W2 Same Number Rect GS
   m_EditorClassIdentifier: 
-  pool: 02000000030000000500000008000000090000000c0000000f000000100000001200000018000000190000001b0000001e000000
+  pool: 02000000030000000500000008000000090000000a0000000c0000000f00000010000000120000001800000019000000
   sameNumberPool: 2300000024000000280000002d000000
   clusterNumberRange: {x: 2, y: 4}
   sameNumberDimensions:
@@ -20,4 +20,3 @@ MonoBehaviour:
   - {x: 1, y: 3}
   - {x: 2, y: 2}
   - {x: 2, y: 3}
-  colorPreset: {fileID: 11400000, guid: 928767aaaeb4efa47bcb1b522e66cdf7, type: 2}
