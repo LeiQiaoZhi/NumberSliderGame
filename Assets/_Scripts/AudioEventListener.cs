@@ -5,11 +5,20 @@ using UnityEngine;
 
 public class AudioEventListener : MonoBehaviour
 {
-    public string playerMoveSoundName;
+    public string playerMoveDivideSoundName;
+    public string playerMoveMinusSoundName;
+    public string playerMovePlusOneSoundName;
+    public string playerMoveInvalidSoundName;
     
     private void OnEnable()
     {
         PlayerMovement.OnPlayerMove += OnPlayerMove;
+        PlayerMovement.OnPlayerInvalidMove += OnPlayerInvalidMove;
+    }
+
+    private void OnPlayerInvalidMove(Vector2Int _direction)
+    {
+        AudioManager.instance.PlaySound(playerMoveInvalidSoundName);
     }
 
     private void OnDisable()
@@ -19,6 +28,17 @@ public class AudioEventListener : MonoBehaviour
 
     private void OnPlayerMove(PlayerMovement.MergeResult _mergeResult)
     {
-        AudioManager.instance.PlaySound(playerMoveSoundName);
+        if (_mergeResult.type == PlayerMovement.MergeType.Divide)
+        {
+            AudioManager.instance.PlaySound(playerMoveDivideSoundName);
+        }
+        else if (_mergeResult.type == PlayerMovement.MergeType.Minus)
+        {
+            AudioManager.instance.PlaySound(playerMoveMinusSoundName);
+        }
+        else if (_mergeResult.type == PlayerMovement.MergeType.PlusOne)
+        {
+            AudioManager.instance.PlaySound(playerMovePlusOneSoundName);
+        }
     }
 }

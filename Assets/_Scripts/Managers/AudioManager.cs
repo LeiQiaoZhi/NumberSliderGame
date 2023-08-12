@@ -28,6 +28,7 @@ public class SoundSet
 public class AudioManager : MonoBehaviour
 {
     private const string MusicVolumeParameterName = "Volume";
+    
     [Tooltip("Just an empty child object. Script will add AudioSource to it")]
     public GameObject audioSourceHolder; // where audio sources are attached
     public List<Sound> soundBank = new List<Sound>();
@@ -153,6 +154,19 @@ public class AudioManager : MonoBehaviour
             float volume = Mathf.Lerp(startVolume, _targetVolume, currentTime / _fadeTime);
             _audioMixer.SetFloat(MusicVolumeParameterName, volume);
             yield return new WaitForSecondsRealtime(0.01f);
+        }
+    }
+
+    private float previousVolume_ = -70;
+    public void ToggleMixerMute(AudioMixer _mixer)
+    {
+        _mixer.GetFloat(MusicVolumeParameterName, out var volume);
+        if (volume < -70)
+            _mixer.SetFloat(MusicVolumeParameterName, previousVolume_);
+        else
+        {
+            previousVolume_ = volume;
+            _mixer.SetFloat(MusicVolumeParameterName, -80);
         }
     }
 }
