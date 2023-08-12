@@ -13,9 +13,6 @@ public class SameNumberRectGenerationStrategy : PatchGenerationStrategy
     public Vector2Int clusterNumberRange;
     public List<Vector2Int> sameNumberDimensions;
     
-    [Header("Color")]
-    public ColorPreset colorPreset;
-
     // generate clusters of same number, rest are random
     public override void Generate()
     {

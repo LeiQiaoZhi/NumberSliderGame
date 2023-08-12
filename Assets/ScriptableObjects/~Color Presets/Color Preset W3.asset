@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 435d817ac06a428bb942268d624ccfb8, type: 3}
+  m_Name: Color Preset W3
+  m_EditorClassIdentifier: 
+  defaultColor: {r: 1, g: 1, b: 1, a: 0}
+  defaultTheme: 3
+  colorThemes:
+  - {fileID: 11400000, guid: d9cefd4daf5282a4ca05de291c283eaa, type: 2}
+  - {fileID: 11400000, guid: 9230b0c553f1015479b644ecf91e9c34, type: 2}
+  - {fileID: 11400000, guid: 1570994cd58e0234baa44b21bb61cb1b, type: 2}
+  - {fileID: 11400000, guid: 1faf26ff2fa3d40499ed54d60d60e696, type: 2}
+  wallColor: {r: 0.34901962, g: 0.34901962, b: 0.34901962, a: 1}
+  wallTextColor: {r: 0.9528302, g: 0.9528302, b: 0.9528302, a: 0.84313726}
+  activeColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+  activeTextColor: {r: 0.3490566, g: 0.3490566, b: 0.3490566, a: 1}
+  visitedColor: {r: 0.8773585, g: 0.8773585, b: 0.8773585, a: 1}
+  visitedTextColor: {r: 0.6886792, g: 0.6886792, b: 0.6886792, a: 1}
+  inactiveColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  portalColor: {r: 1, g: 0.5393102, b: 0.35294116, a: 1}
+  playerColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+  playerTextColor: {r: 0.1981132, g: 0.1981132, b: 0.1981132, a: 1}

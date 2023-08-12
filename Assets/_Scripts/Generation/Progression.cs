@@ -6,8 +6,11 @@ public class Progression : ScriptableObject
 {
     public List<World> worldPool;
     public Progression nextProgression;
+
     public World GetWorld()
     {
-        return worldPool[Random.Range(0, worldPool.Count)];
+        World world = worldPool[Random.Range(0, worldPool.Count)];
+        world.InitColorPreset();
+        return world;
     }
 }

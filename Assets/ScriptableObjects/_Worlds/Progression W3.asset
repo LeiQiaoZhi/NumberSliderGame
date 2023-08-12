@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d2548df8874a4f1e9d3a57ec85dc62f0, type: 3}
-  m_Name: Progression W2
+  m_Name: Progression W3
   m_EditorClassIdentifier: 
   worldPool:
-  - {fileID: 11400000, guid: 8485aa2e1f168884987d1b0d99f1e29d, type: 2}
-  nextProgression: {fileID: 11400000, guid: 9729b0000abc31742a8f241d24130233, type: 2}
+  - {fileID: 11400000, guid: 8bc742d980433c14695957e6bf2e510a, type: 2}
+  nextProgression: {fileID: 11400000}

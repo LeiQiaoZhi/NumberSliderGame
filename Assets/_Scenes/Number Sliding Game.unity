@@ -5141,7 +5141,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingProgression: {fileID: 11400000, guid: 75db808399a83594c95ddcde4c3d0d18, type: 2}
-  colorPreset: {fileID: 11400000, guid: 76dbd49e2ba0d6a44991a8bf1109686a, type: 2}
   gameStates: {fileID: 11400000, guid: f811420542146dd4cac66f77a4bbc020, type: 2}
 --- !u!4 &1372095831
 Transform:

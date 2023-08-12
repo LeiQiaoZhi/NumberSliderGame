@@ -17,7 +17,7 @@ MonoBehaviour:
   - generationStrategy: {fileID: 11400000, guid: ee21c6ff6e3e7474697cb8a20f0e6897, type: 2}
     weight: 3
   - generationStrategy: {fileID: 11400000, guid: ad739568a4414e741861c69115af91f8, type: 2}
-    weight: 2
+    weight: 1
   - generationStrategy: {fileID: 11400000, guid: 1d72ea96f89c985448adef1e496bfa23, type: 2}
     weight: 2
   portalGenerationGuarantee: 5
@@ -26,3 +26,4 @@ MonoBehaviour:
     weight: 1
   minPortalDistanceFromCenter: 2
   minPortalDistanceFromEachOther: 2
+  colorPreset: {fileID: 11400000, guid: 76dbd49e2ba0d6a44991a8bf1109686a, type: 2}

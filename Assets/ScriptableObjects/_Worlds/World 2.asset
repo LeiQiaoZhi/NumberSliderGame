@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ba898941cd5469f95b98d72ae7b419c, type: 3}
   m_Name: World 2
   m_EditorClassIdentifier: 
-  startingGenerationStrategy: {fileID: 11400000, guid: 9c73a7a58a5cd7c46a385a832b7382ed, type: 2}
+  startingGenerationStrategy: {fileID: 11400000, guid: 28054b34a5691cd40871c7d8c16aaf34, type: 2}
   generationStrategies:
   - generationStrategy: {fileID: 11400000, guid: 28054b34a5691cd40871c7d8c16aaf34, type: 2}
     weight: 2
@@ -26,3 +26,4 @@ MonoBehaviour:
     weight: 1
   minPortalDistanceFromCenter: 3
   minPortalDistanceFromEachOther: 3
+  colorPreset: {fileID: 11400000, guid: 928767aaaeb4efa47bcb1b522e66cdf7, type: 2}

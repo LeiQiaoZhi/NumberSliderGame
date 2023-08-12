@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ba898941cd5469f95b98d72ae7b419c, type: 3}
+  m_Name: World 3
+  m_EditorClassIdentifier: 
+  startingGenerationStrategy: {fileID: 11400000, guid: fe4b4ba579e098b43a7a7439d7e96363, type: 2}
+  generationStrategies:
+  - generationStrategy: {fileID: 11400000, guid: af4c629add789dc4b8dbf90775d362af, type: 2}
+    weight: 2
+  - generationStrategy: {fileID: 11400000, guid: fe4b4ba579e098b43a7a7439d7e96363, type: 2}
+    weight: 3
+  - generationStrategy: {fileID: 11400000, guid: 4e490a54043556b468b1fef9c89f3c33, type: 2}
+    weight: 2
+  portalGenerationGuarantee: 7
+  portalGenerationStrategies:
+  - generationStrategy: {fileID: 11400000, guid: 66277285e1a03384abc19a20d51c9ecc, type: 2}
+    weight: 1
+  minPortalDistanceFromCenter: 3
+  minPortalDistanceFromEachOther: 3
+  colorPreset: {fileID: 11400000, guid: f4475665a3cbed140892cd0cd6dc7108, type: 2}

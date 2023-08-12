@@ -10,7 +10,8 @@ public class PatchGenerationStrategy : ScriptableObject
 
     protected List<NumberCell> numberCells;
     protected Vector2Int patchDimension;
-    
+    protected ColorPreset colorPreset;
+
     // get data from number grid generator
     public virtual void Init(List<NumberCell> _numberCells, Vector2Int _patchDimension)
     {
@@ -132,5 +133,10 @@ public class PatchGenerationStrategy : ScriptableObject
             }
         }
         return doorCells;
+    }
+
+    public void SetColorPreset(ColorPreset _colorPreset)
+    {
+        colorPreset = _colorPreset;
     }
 }

@@ -13,9 +13,6 @@ public class SameNumberDiagonalGenerationStrategy : PatchGenerationStrategy
     public bool positiveSlope;
     public bool negativeSlope;
     
-    [Header("Color")]
-    public ColorPreset colorPreset;
-
     // generate clusters of same number, rest are random
     public override void Generate()
     {

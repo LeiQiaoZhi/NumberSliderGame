@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4718efc299a44a22a7ef275608ee7b42, type: 3}
+  m_Name: W3 Portal GS
+  m_EditorClassIdentifier: 
+  pool: 0a0000000b0000000d0000000e0000000f0000001100000016000000190000001a0000001c0000002100000023000000
+  wallNumberPool: 310000004d0000005500000063000000
+  doorNumberPool: 0e0000000f0000001100000016000000190000001a0000001c00000021000000
+  doorHalfDimension: {x: 0, y: 0}
+  wallHalfDimension: {x: 3, y: 3}
+  wallOnPatchEdges: 1
+  colorPreset: {fileID: 11400000, guid: f4475665a3cbed140892cd0cd6dc7108, type: 2}

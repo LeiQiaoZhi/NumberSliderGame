@@ -25,8 +25,19 @@ public class World : ScriptableObject
     public List<GenerationStrategyItem> portalGenerationStrategies;
     [Space(10)] public int minPortalDistanceFromCenter = 2;
     public int minPortalDistanceFromEachOther = 2;
+    [Header("Color")] public ColorPreset colorPreset;
 
     private int portalGenerationMissCounter_ = 0;
+
+    // pass color preset to all generation strategies
+    public void InitColorPreset()
+    {
+        startingGenerationStrategy.SetColorPreset(colorPreset);
+        foreach (GenerationStrategyItem item in generationStrategies)
+            item.generationStrategy.SetColorPreset(colorPreset);
+        foreach (GenerationStrategyItem item in portalGenerationStrategies)
+            item.generationStrategy.SetColorPreset(colorPreset);
+    }
 
     public PatchGenerationStrategy GetStrategy(Vector2Int _patchPosition, List<Vector2Int> _portalPositions)
     {
@@ -69,30 +80,5 @@ public class World : ScriptableObject
     public bool IsPortalStrategy(PatchGenerationStrategy _strategy)
     {
         return portalGenerationStrategies.Any(_item => (_item.generationStrategy == _strategy && _item.weight > 0));
-    }
-}
-
-public class GameUtils
-{
-    public static int ManhattenDistance(Vector2Int _a, Vector2Int _b = default)
-    {
-        return Mathf.Abs(_a.x - _b.x) + Mathf.Abs(_a.y - _b.y);
-    }
-
-    public static bool GuaranteeRandom(int _guarantee, ref int _missCounter)
-    {
-        if (_missCounter >= _guarantee - 1)
-        {
-            _missCounter = 0;
-            return true;
-        }
-
-        var probability = 1 / (_guarantee - _missCounter);
-        var result = Random.Range(0.0f, 1.0f) < probability;
-        if (result)
-            _missCounter = 0;
-        else
-            _missCounter += 1;
-        return result;
     }
 }

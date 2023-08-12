@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 629f854d431e4b3c8c3bb9b16ea21514, type: 3}
+  m_Name: W3 Same Number Diamond GS
+  m_EditorClassIdentifier: 
+  pool: 03000000050000000700000008000000090000000b0000000c0000000e0000000f00000010000000120000001500000018000000190000001c000000
+  sameNumberPool: 23000000270000002a0000004100000042000000
+  colorPreset: {fileID: 11400000, guid: f4475665a3cbed140892cd0cd6dc7108, type: 2}

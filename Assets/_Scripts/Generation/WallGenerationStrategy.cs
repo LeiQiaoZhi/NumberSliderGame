@@ -17,7 +17,6 @@ public class WallGenerationStrategy : PatchGenerationStrategy
 
     public Vector2Int wallHalfDimension;
     public bool wallOnPatchEdges = false;
-    [Header("Color")] public ColorPreset colorPreset;
 
     public override void Init(List<NumberCell> _numberCells, Vector2Int _patchDimension)
     {

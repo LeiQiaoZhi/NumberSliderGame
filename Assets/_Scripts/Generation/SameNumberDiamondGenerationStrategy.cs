@@ -11,8 +11,6 @@ public class SameNumberDiamondGenerationStrategy : PatchGenerationStrategy
     [Header("Same Number Generation Strategy")]
     public List<int> sameNumberPool;
 
-    [Header("Color")] public ColorPreset colorPreset;
-
     // generate clusters of same number, rest are random
     public override void Generate()
     {

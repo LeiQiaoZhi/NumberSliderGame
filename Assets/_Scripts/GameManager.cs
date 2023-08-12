@@ -9,7 +9,6 @@ public class GameManager : MonoBehaviour
 {
     public Progression startingProgression;
     private Progression progression_;
-    public ColorPreset colorPreset;
     public GameStates gameStates;
     
     public delegate void GameStart();
@@ -58,7 +57,8 @@ public class GameManager : MonoBehaviour
         playerMovement_ = FindObjectOfType<PlayerMovement>();
         numberGridGenerator_ = FindObjectOfType<NumberGridGenerator>();
 
-        numberGridGenerator_.Init(colorPreset, progression_.GetWorld(), gameStates);
+        World world = progression_.GetWorld();
+        numberGridGenerator_.Init(world.colorPreset, world, gameStates);
         playerMovement_.OnGenerationStart(numberGridGenerator_, gameStates);
     }
 
