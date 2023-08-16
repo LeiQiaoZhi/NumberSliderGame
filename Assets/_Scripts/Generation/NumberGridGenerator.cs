@@ -8,6 +8,8 @@ using Random = UnityEngine.Random;
 
 public class NumberGridGenerator : MonoBehaviour
 {
+    [Tooltip("If true, the grid will be generated infinitely. Otherwise, the grid will be generated in a finite area.")]
+    public bool infinite;
     [Header("References")] public InfiniteGridSystem infGridSystem;
 
     private World world_;
@@ -27,6 +29,9 @@ public class NumberGridGenerator : MonoBehaviour
     /// test whether new patch needs to be generated
     public void OnPlayerMove(Vector2Int _playerPosition)
     {
+        if (!infinite) // finite grid
+            return;
+        
         Vector2Int scanHalfDimension = infGridSystem.visibleAreaDimension / 2 + Vector2Int.one * 2;
         // scan in 8 directions
         for (var x = -1; x <= 1; ++x)

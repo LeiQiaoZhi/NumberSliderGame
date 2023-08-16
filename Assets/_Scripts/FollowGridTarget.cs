@@ -11,9 +11,14 @@ public class FollowGridTarget : MonoBehaviour
 
     private Vector3 target_;
 
-    private void Start()
+    private void OnEnable()
     {
         PlayerMovement.OnPlayerMove += OnPlayerMove;
+    }
+    
+    private void OnDisable()
+    {
+        PlayerMovement.OnPlayerMove -= OnPlayerMove;
     }
 
     private void OnPlayerMove(PlayerMovement.MergeResult _mergeResult)
