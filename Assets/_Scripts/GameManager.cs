@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     private PlayerMovement playerMovement_;
     private NumberGridGenerator numberGridGenerator_;
 
-    private static GameManager Instance { get; set; }
+    public static GameManager Instance { get; set; }
 
     private void Awake()
     {
@@ -69,6 +69,7 @@ public class GameManager : MonoBehaviour
         OnGameStart?.Invoke();
     }
 
+
     public void EnterPortal()
     {
         StartCoroutine(EnterPortalCoroutine());
@@ -88,5 +89,14 @@ public class GameManager : MonoBehaviour
         gameStates.state = GameStates.GameState.Over;
         OnGameRestart?.Invoke();
         SceneLoader.Instance.ReloadScene();
+    }
+
+    public void PauseGame()
+    {
+        gameStates.state = GameStates.GameState.Pause;
+    }
+    public void ResumeGame()
+    {
+        gameStates.state = GameStates.GameState.Playing;
     }
 }

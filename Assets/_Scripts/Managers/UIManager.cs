@@ -40,9 +40,8 @@ public class UIManager : MonoBehaviour
     public void Pause()
     {
         pauseScreen.SetActive(true);
-        Time.timeScale = 0;
         pauseButton.SetActive(false);
-        gameStates.state = GameStates.GameState.Pause;
+        GameManager.Instance.PauseGame();
     }
 
     public void Resume()
@@ -50,8 +49,7 @@ public class UIManager : MonoBehaviour
         if (gameStates.state == GameStates.GameState.Over)
             return;
         pauseScreen.SetActive(false);
-        Time.timeScale = 1;
         pauseButton.SetActive(true);
-        gameStates.state = GameStates.GameState.Playing;
+        GameManager.Instance.ResumeGame();
     }
 }
