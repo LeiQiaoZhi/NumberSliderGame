@@ -74,7 +74,7 @@ public class ScoreManger : MonoBehaviour
                 AddScore(1);
                 break;
             default:
-                throw new ArgumentOutOfRangeException(nameof(_mergeResult));
+                break;
         }
     }
 

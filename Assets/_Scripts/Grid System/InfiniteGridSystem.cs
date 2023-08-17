@@ -7,6 +7,8 @@ public class InfiniteGridSystem : MonoBehaviour
     public float margin = 0.05f;
     public GameObject cellPrefab;
     [Header("Game Events")] public GameEvent cellDimensionChangedEvent;
+    public delegate void CellDimensionChanged();
+    public static event CellDimensionChanged OnCellDimensionChanged;
 
     private Vector2Int patchDimension_;
     private Vector2Int screenAreaDimension_;
@@ -36,15 +38,9 @@ public class InfiniteGridSystem : MonoBehaviour
     public void CalculateCellDimension()
     {
         // find suitable world cell width and height for the grid
-        Vector3 botLeft = Camera.main.ViewportToWorldPoint(Vector2.zero) * (1 - 2 * margin);
-        Vector3 topRight = Camera.main.ViewportToWorldPoint(Vector2.one) * (1 - 2 * margin);
-        XLogger.Log(Category.GridSystem, $"bot left in world coord: {botLeft}");
-        XLogger.Log(Category.GridSystem, $"top right in world coord: {topRight}");
-        var cellWidth = (topRight - botLeft).x / screenAreaDimension_.x;
-        var cellHeight = (topRight - botLeft).y / screenAreaDimension_.y;
-        cellDimension_ = Vector2.one * Mathf.Min(cellWidth, cellHeight);
-        XLogger.Log(Category.GridSystem, $"cell dimension : {cellDimension_}");
+        cellDimension_ = GameUtils.CalculateCellDimension(Camera.main, margin, screenAreaDimension_);
         cellDimensionChangedEvent.Raise();
+        OnCellDimensionChanged?.Invoke();
     }
 
     public Cell GetCell(Vector2Int _patchPosition, int _x, int _y)
@@ -110,8 +106,13 @@ public class InfiniteGridSystem : MonoBehaviour
         screenAreaDimension_ = _worldScreenAreaDimension;
     }
 
-    public Vector2 GetSreenAreaDimension()
+    public Vector2Int GetSreenAreaDimension()
     {
         return screenAreaDimension_;
+    }
+
+    public Vector2Int GetPatchDimension()
+    {
+        return patchDimension_;
     }
 }

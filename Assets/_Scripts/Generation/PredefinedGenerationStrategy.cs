@@ -42,10 +42,13 @@ public class PredefinedGenerationStrategy : PatchGenerationStrategy
 
         // for each line, split by spaces and parse into int
         var lines = _levelStr.Split('\n');
+        var parsedRows = 0;
         for (var row = 0; row < lines.Length; row++)
         {
             if (lines[row].Trim().Length == 0)
                 continue;
+            if (parsedRows++ >= patchDimension.y)
+                break;
             var numbers = lines[row].Trim().Split(' ');
             for (var col = 0; col < numbers.Length; col++)
             {

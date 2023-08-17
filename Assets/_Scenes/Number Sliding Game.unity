@@ -1287,7 +1287,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   visibilityMask: {fileID: 120488724}
-  useGridSystemVisibleDimension: 0
+  areaType: 0
   customVisibleAreaDimension: {x: 7, y: 7}
   borderWidth: 0.025
 --- !u!1 &126060175
@@ -2111,7 +2111,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IgnoreLayout: 0
   m_MinWidth: -1
-  m_MinHeight: 10
+  m_MinHeight: 40
   m_PreferredWidth: -1
   m_PreferredHeight: 60
   m_FlexibleWidth: -1
@@ -2720,8 +2720,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa71beaa7a30cf644b23f0f8bd235372, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  refPointType: 0
+  alwaysAboveGrid: 0
+  aboveAmount: 0
   gridPos: {x: 0, y: 0}
   size: {x: 0.95, y: 0.95}
+  useCustomGridDimension: 0
+  customGridDimension: {x: 0, y: 0}
 --- !u!1 &491874973
 GameObject:
   m_ObjectHideFlags: 0
@@ -2974,7 +2979,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   visibilityMask: {fileID: 524768963}
-  useGridSystemVisibleDimension: 0
+  areaType: 1
   customVisibleAreaDimension: {x: 5, y: 7}
   borderWidth: 0.05
 --- !u!114 &524768962
@@ -4883,8 +4888,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa71beaa7a30cf644b23f0f8bd235372, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridPos: {x: -2.2, y: 4.2}
+  refPointType: 0
+  alwaysAboveGrid: 1
+  aboveAmount: 0.7
+  gridPos: {x: 0.3, y: 4.2}
   size: {x: 0.6, y: 0.6}
+  useCustomGridDimension: 1
+  customGridDimension: {x: 5, y: 9}
 --- !u!4 &747180327
 Transform:
   m_ObjectHideFlags: 0
@@ -5105,8 +5115,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   margin: 0.05
   cellPrefab: {fileID: 5425937733918714787, guid: 5df407ae666f8c049bba06a57bc826c1, type: 3}
-  patchDimension: {x: 5, y: 7}
-  visibleAreaDimension: {x: 5, y: 9}
   cellDimensionChangedEvent: {fileID: 11400000, guid: aaeaba415b222b645aac547e50a52feb, type: 2}
 --- !u!4 &831660508
 Transform:
@@ -6259,7 +6267,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 13.4
+  m_fontSize: 19.1
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -6823,10 +6831,10 @@ MonoBehaviour:
   m_Padding:
     m_Left: 80
     m_Right: 80
-    m_Top: 100
-    m_Bottom: 100
+    m_Top: 50
+    m_Bottom: 50
   m_ChildAlignment: 4
-  m_Spacing: 40
+  m_Spacing: 20
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 1
@@ -8692,9 +8700,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IgnoreLayout: 0
   m_MinWidth: -1
-  m_MinHeight: 10
+  m_MinHeight: 30
   m_PreferredWidth: -1
-  m_PreferredHeight: 60
+  m_PreferredHeight: 40
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
@@ -8745,11 +8753,11 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 39.5
+  m_fontSize: 26.9
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 18
+  m_fontSizeMin: 1
   m_fontSizeMax: 72
   m_fontStyle: 16
   m_HorizontalAlignment: 2
@@ -8781,7 +8789,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: 0, w: 10}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -10007,7 +10015,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 13.4
+  m_fontSize: 19.1
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -10285,7 +10293,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IgnoreLayout: 0
   m_MinWidth: -1
-  m_MinHeight: 10
+  m_MinHeight: 40
   m_PreferredWidth: -1
   m_PreferredHeight: 60
   m_FlexibleWidth: -1
@@ -10568,8 +10576,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa71beaa7a30cf644b23f0f8bd235372, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridPos: {x: 2.2, y: 4.2}
+  refPointType: 1
+  alwaysAboveGrid: 1
+  aboveAmount: 0.7
+  gridPos: {x: -0.3, y: 4.2}
   size: {x: 0.6, y: 0.6}
+  useCustomGridDimension: 1
+  customGridDimension: {x: 5, y: 9}
 --- !u!1 &2041582079
 GameObject:
   m_ObjectHideFlags: 0
@@ -10655,7 +10668,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 13.4
+  m_fontSize: 19.1
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -11223,7 +11236,7 @@ GameObject:
   - component: {fileID: 2124855978}
   - component: {fileID: 2124855977}
   m_Layer: 5
-  m_Name: InputField (TMP)
+  m_Name: Level Input
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11689,8 +11702,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa71beaa7a30cf644b23f0f8bd235372, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridPos: {x: -1.4, y: 4.2}
+  refPointType: 0
+  alwaysAboveGrid: 1
+  aboveAmount: 0.7
+  gridPos: {x: 1.1, y: 4.2}
   size: {x: 0.6, y: 0.6}
+  useCustomGridDimension: 1
+  customGridDimension: {x: 5, y: 9}
 --- !u!114 &2133456576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11704,8 +11722,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelEditorPanel: {fileID: 2126290846}
-  inputField: {fileID: 2124855978}
+  levelInput: {fileID: 2124855978}
+  dimensionInputX: {fileID: 966972625}
+  dimensionInputY: {fileID: 1890742600}
+  portalInput: {fileID: 689233462}
   predefinedGenerationStrategy: {fileID: 11400000, guid: 8c18c6ed3e576874caab5ea3744269f4, type: 2}
+  fixedWorld: {fileID: 11400000, guid: 4ac3bec3f01015645bcfecafc3c087f3, type: 2}
 --- !u!114 &239585004550727812
 MonoBehaviour:
   m_ObjectHideFlags: 0

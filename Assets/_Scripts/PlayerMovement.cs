@@ -14,7 +14,8 @@ public class PlayerMovement : MonoBehaviour
         Fail,
         Minus,
         Divide,
-        PlusOne
+        PlusOne,
+        Start
     }
 
     public class MergeResult
@@ -53,6 +54,14 @@ public class PlayerMovement : MonoBehaviour
             numberGridGenerator_.GetPatchHeight() / 2);
         numberGridGenerator_.GetCell(position_).SetNumber(1);
         numberGridGenerator_.GetCell(position_).SetPlayerCell();
+        OnPlayerMove?.Invoke(new MergeResult
+        {
+            type = MergeType.Start,
+            result = 1,
+            original = 0,
+            other = 0,
+            targetTransform = numberGridGenerator_.GetCell(position_).transform
+        });
         // generate surrounding patches
         numberGridGenerator_.OnPlayerMove(position_);
     }
