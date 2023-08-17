@@ -67,7 +67,9 @@ public class PlayerMovement : MonoBehaviour
         NumberCell targetCell = numberGridGenerator_.GetCell(targetPosition);
         if (targetCell == null)
         {
+            // border of a fixed patch
             XLogger.LogWarning(Category.Movement, $"target cell {targetPosition} is null");
+            OnPlayerInvalidMove?.Invoke(_direction);
             return;
         }
 

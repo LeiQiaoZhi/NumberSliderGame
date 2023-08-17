@@ -2944,7 +2944,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &524768960
 Transform:
   m_ObjectHideFlags: 0
@@ -2975,8 +2975,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   visibilityMask: {fileID: 524768963}
   useGridSystemVisibleDimension: 0
-  customVisibleAreaDimension: {x: 5, y: 5}
-  borderWidth: 0.025
+  customVisibleAreaDimension: {x: 5, y: 7}
+  borderWidth: 0.05
 --- !u!114 &524768962
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6667,7 +6667,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 20
   m_Sprite: {fileID: 7482667652216324306, guid: befb3ccf20af6cf4d984e6427592f876, type: 3}
-  m_Color: {r: 0.8301887, g: 0.8301887, b: 0.8301887, a: 0.8352941}
+  m_Color: {r: 0.7830189, g: 0.7830189, b: 0.7830189, a: 0.8352941}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
