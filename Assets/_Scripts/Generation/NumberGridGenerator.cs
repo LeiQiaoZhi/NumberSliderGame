@@ -22,6 +22,7 @@ public class NumberGridGenerator : MonoBehaviour
     /// generate the first patch
     public void StartingGeneration()
     {
+        infGridSystem.InitDimensions(world_.patchDimension, world_.screenAreaDimension);
         infGridSystem.CalculateCellDimension();
         GeneratePatch(currentPatch_, world_.startingGenerationStrategy);
     }
@@ -32,7 +33,7 @@ public class NumberGridGenerator : MonoBehaviour
         if (!infinite) // finite grid
             return;
         
-        Vector2Int scanHalfDimension = infGridSystem.visibleAreaDimension / 2 + Vector2Int.one * 2;
+        Vector2Int scanHalfDimension = world_.screenAreaDimension / 2 + Vector2Int.one * 2;
         // scan in 8 directions
         for (var x = -1; x <= 1; ++x)
         {
@@ -65,7 +66,7 @@ public class NumberGridGenerator : MonoBehaviour
         }
 
         // apply patch generation strategy
-        _patchGenerationStrategy.Init(numberCells, infGridSystem.patchDimension);
+        _patchGenerationStrategy.Init(numberCells, world_.patchDimension);
         _patchGenerationStrategy.Generate();
     }
 
@@ -86,12 +87,12 @@ public class NumberGridGenerator : MonoBehaviour
 
     public int GetPatchWidth()
     {
-        return infGridSystem.patchDimension.x;
+        return world_.patchDimension.x;
     }
 
     public int GetPatchHeight()
     {
-        return infGridSystem.patchDimension.y;
+        return world_.patchDimension.y;
     }
 
 

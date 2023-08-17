@@ -34,3 +34,6 @@ MonoBehaviour:
     weight: 1
   minPortalDistanceFromCenter: 1
   minPortalDistanceFromEachOther: 1
+  colorPreset: {fileID: 0}
+  patchDimension: {x: 7, y: 7}
+  screenAreaDimension: {x: 5, y: 9}

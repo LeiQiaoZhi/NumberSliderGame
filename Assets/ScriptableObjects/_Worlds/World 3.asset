@@ -27,3 +27,5 @@ MonoBehaviour:
   minPortalDistanceFromCenter: 3
   minPortalDistanceFromEachOther: 3
   colorPreset: {fileID: 11400000, guid: f4475665a3cbed140892cd0cd6dc7108, type: 2}
+  patchDimension: {x: 7, y: 7}
+  screenAreaDimension: {x: 5, y: 9}

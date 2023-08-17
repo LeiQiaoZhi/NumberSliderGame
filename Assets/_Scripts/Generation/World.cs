@@ -24,6 +24,10 @@ public class World : ScriptableObject
     [Space(10)] public int minPortalDistanceFromCenter = 2;
     public int minPortalDistanceFromEachOther = 2;
     [Header("Color")] public ColorPreset colorPreset;
+    [Header("Grid")] public Vector2Int patchDimension;
+    [Tooltip("Used to calculate cell dimension")]
+    public Vector2Int screenAreaDimension;
+
 
     private int portalGenerationMissCounter_ = 0;
 
