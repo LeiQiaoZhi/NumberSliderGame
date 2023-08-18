@@ -1,10 +1,6 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class LevelEditor : MonoBehaviour
 {
@@ -25,6 +21,12 @@ public class LevelEditor : MonoBehaviour
     {
         GameManager.OnGameStart += ExtractLevelStr;
         GameManager.OnGameStart += ExtractLevelDimension;
+        GameManager.OnGameStart += ExtractPortalNumber;
+    }
+
+    private void ExtractPortalNumber()
+    {
+        portalInput.text = predefinedGenerationStrategy.portalNumber.ToString();
     }
 
     private void ExtractLevelDimension()
@@ -37,6 +39,7 @@ public class LevelEditor : MonoBehaviour
     {
         GameManager.OnGameStart -= ExtractLevelStr;
         GameManager.OnGameStart -= ExtractLevelDimension;
+        GameManager.OnGameStart -= ExtractPortalNumber;
     }
 
     private void ExtractLevelStr()
@@ -81,7 +84,13 @@ public class LevelEditor : MonoBehaviour
         var level = levelInput.text;
         predefinedGenerationStrategy.levelStr = level;
         SetDimension();
+        SetPortalNumber();
         SceneLoader.Instance.ReloadScene();
+    }
+
+    private void SetPortalNumber()
+    {
+        predefinedGenerationStrategy.portalNumber = int.Parse(portalInput.text);
     }
     
     private void SetDimension()

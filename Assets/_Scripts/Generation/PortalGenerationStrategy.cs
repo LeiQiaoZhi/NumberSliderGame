@@ -25,8 +25,6 @@ public class PortalGenerationStrategy : WallGenerationStrategy
         // generate portal
         Vector2Int center = patchDimension / 2;
         NumberCell centerCell = GetCell(center.x, center.y);
-        centerCell.SetNumber(0);
-        centerCell.SetColor(colorPreset.portalColor);
-        centerCell.isPortal = true;
+        centerCell.SetPortal(0, colorPreset);
     }
 }

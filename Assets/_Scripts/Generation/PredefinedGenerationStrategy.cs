@@ -6,6 +6,7 @@ using UnityEngine.Assertions;
     order = 0)]
 public class PredefinedGenerationStrategy : PatchGenerationStrategy
 {
+    public int portalNumber;
     [TextArea(10, 10)] public string levelStr;
 
     public override void Generate()
@@ -17,7 +18,11 @@ public class PredefinedGenerationStrategy : PatchGenerationStrategy
         {
             for (int y = 0; y < patchDimension.y; y++)
             {
-                GetCell(x, y).SetNumber(level[x, y]);
+                var number = level[x, y];
+                NumberCell cell = GetCell(x, y);
+                cell.SetNumber(number);
+                if (number == portalNumber)
+                    cell.SetPortal(portalNumber, colorPreset);
             }
         }
     }

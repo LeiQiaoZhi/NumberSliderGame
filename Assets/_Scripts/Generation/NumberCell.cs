@@ -104,4 +104,12 @@ public class NumberCell : MonoBehaviour
         SetTextColor(new Color(1.0f, 1.0f, 1.0f, 0));
         // SetTextColor(colorPreset_.playerTextColor);
     }
+
+    public void SetPortal(int _number, ColorPreset _colorPreset)
+    {
+        isPortal = true;
+        SetNumber(_number);
+        SetColor(_colorPreset.portalColor);
+        SetTextColor(_colorPreset.portalTextColor);
+    }
 }

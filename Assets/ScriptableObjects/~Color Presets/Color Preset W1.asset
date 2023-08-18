@@ -27,5 +27,6 @@ MonoBehaviour:
   visitedTextColor: {r: 0.6886792, g: 0.6886792, b: 0.6886792, a: 1}
   inactiveColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   portalColor: {r: 1, g: 0.35294124, b: 0.35294116, a: 1}
+  portalTextColor: {r: 0.16981131, g: 0.044169247, b: 0.044169247, a: 1}
   playerColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
   playerTextColor: {r: 0.1981132, g: 0.1981132, b: 0.1981132, a: 1}
