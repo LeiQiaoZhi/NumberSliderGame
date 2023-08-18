@@ -4,10 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 
+[RequireComponent(typeof(PlayerHealth))]
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Event")] [SerializeField] private GameEvent gameOverEvent;
     [SerializeField] private GameEvent enterPortalEvent;
+    private PlayerHealth playerHealth_;
 
     public enum MergeType
     {
@@ -28,12 +30,17 @@ public class PlayerMovement : MonoBehaviour
     }
 
     public delegate void PlayerInvalidMove(Vector2Int _direction);
+
     public static event PlayerInvalidMove OnPlayerInvalidMove;
+
     public delegate void PlayerMove(MergeResult _targetCell);
+
     public static event PlayerMove OnPlayerMove;
+
     public delegate void GameOver(Vector2Int _direction);
+
     public static event GameOver OnGameOver;
-    
+
 
     private NumberGridGenerator numberGridGenerator_;
     private GameStates gameStates_;
@@ -44,6 +51,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnGenerationStart(NumberGridGenerator _numberGridGenerator, GameStates _gameStates)
     {
+        playerHealth_ = GetComponent<PlayerHealth>();
         numberGridGenerator_ = _numberGridGenerator;
         gameStates_ = _gameStates;
 
@@ -92,12 +100,22 @@ public class PlayerMovement : MonoBehaviour
         if (Merge(currentCell, targetCell, targetPosition))
             return;
 
-        // invalid merge, GAME OVER
-        XLogger.LogWarning(Category.Movement, $"invalid merge, game over");
-        gameStates_.state = GameStates.GameState.Over;
-        gameOverEvent.Raise();
-        OnGameOver?.Invoke(_direction);
-        gameObject.SetActive(false);
+        // can't merge, reduce health
+        playerHealth_.ChangeHealth(-1);
+        if (playerHealth_.GetHealth() > 0)
+        {
+            OnPlayerInvalidMove?.Invoke(_direction);
+            if (!targetCell.isPortal)
+                targetCell.SetVisited();
+        }
+        else // Game Over
+        {
+            XLogger.LogWarning(Category.Movement, $"invalid merge, game over");
+            gameStates_.state = GameStates.GameState.Over;
+            gameOverEvent.Raise();
+            OnGameOver?.Invoke(_direction);
+            gameObject.SetActive(false);
+        }
     }
 
     private bool Merge(NumberCell _currentCell, NumberCell _targetCell, Vector2Int _targetPosition)
@@ -120,6 +138,7 @@ public class PlayerMovement : MonoBehaviour
             enterPortalEvent.Raise();
             gameStates_.state = GameStates.GameState.Pause;
         }
+
         return true;
     }
 
@@ -147,6 +166,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
             mergeResult.type = MergeType.Fail;
+
         return mergeResult;
     }
 

@@ -6,8 +6,10 @@ using UnityEngine.Serialization;
 public class VisibilityMask : MonoBehaviour
 {
     public SpriteMask visibilityMask;
+    [Space(10)]
     public AreaType areaType;
     public Vector2Int customVisibleAreaDimension;
+    [Space(10)]
     public float borderWidth = 0.1f;
 
     private InfiniteGridSystem gridSystem_;
