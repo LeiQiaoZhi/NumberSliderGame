@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Tutorial Cell Config
   m_EditorClassIdentifier: 
   text: 
+  textColor: {r: 0, g: 0, b: 0, a: 0}
   color: {r: 0.9607843, g: 0.6332439, b: 0.62352943, a: 1}
   overlayPrefab: {fileID: 3029030228868746610, guid: e39cdfd9565050b40940b56900aca36a, type: 3}
-  visitEvent: {fileID: 11400000, guid: a6f5ceddd512b8347bcc9c53fce60b0f, type: 2}
-  progression: {fileID: 11400000, guid: a3ac4da05af1bb24ca378d663f2092a0, type: 2}
+  visitEvent: {fileID: 11400000, guid: fa4f0409f40b0e94c9cf453f275b3756, type: 2}
+  progression: {fileID: 0}

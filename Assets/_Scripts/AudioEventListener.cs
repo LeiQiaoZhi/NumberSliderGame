@@ -36,7 +36,7 @@ public class AudioEventListener : MonoBehaviour
         {
             AudioManager.instance.PlaySound(playerMoveMinusSoundName);
         }
-        else if (_mergeResult.type == PlayerMovement.MergeType.PlusOne)
+        else if (_mergeResult.type == PlayerMovement.MergeType.PlusOne || _mergeResult.type == PlayerMovement.MergeType.Static)
         {
             AudioManager.instance.PlaySound(playerMovePlusOneSoundName);
         }

@@ -15,3 +15,4 @@ MonoBehaviour:
   worldPool:
   - {fileID: 11400000, guid: f39e42462691efe448307ab3358bddbc, type: 2}
   nextProgression: {fileID: 11400000, guid: 2c1c2d192c478a040a5c5c4934d81f8a, type: 2}
+  restartProgression: {fileID: 11400000}

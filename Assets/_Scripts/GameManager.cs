@@ -10,10 +10,13 @@ public class GameManager : MonoBehaviour
     public Progression startingProgression;
     private Progression progression_;
     public GameStates gameStates;
-    
+
     public delegate void GameStart();
+
     public static event GameStart OnGameStart;
+
     public delegate void GameRestart();
+
     public static event GameRestart OnGameRestart;
 
     private PlayerMovement playerMovement_;
@@ -27,7 +30,7 @@ public class GameManager : MonoBehaviour
             Instance = this;
         else
             Destroy(gameObject);
-        
+
         // this will only call once
         progression_ = startingProgression;
         DontDestroyOnLoad(gameObject);
@@ -56,10 +59,17 @@ public class GameManager : MonoBehaviour
         gameStates.state = GameStates.GameState.Generation;
         playerMovement_ = FindObjectOfType<PlayerMovement>();
         numberGridGenerator_ = FindObjectOfType<NumberGridGenerator>();
+        // happens when going to the tutorial scene
+        if (playerMovement_ == null || numberGridGenerator_ == null)
+        {
+            XLogger.LogWarning(Category.GameManager, "PlayerMovement or NumberGridGenerator not found");
+            Destroy(gameObject);
+            return;
+        }
 
         World world = progression_.GetWorld();
         numberGridGenerator_.Init(world.colorPreset, world);
-        playerMovement_.OnGenerationStart(numberGridGenerator_, gameStates);
+        playerMovement_.OnGenerationStart(numberGridGenerator_, gameStates, world.GetPlayerStartPosition());
     }
 
     // after scene opening animation
@@ -71,19 +81,31 @@ public class GameManager : MonoBehaviour
 
     public void EnterPortal()
     {
-        StartCoroutine(LoadLevelCoroutine(progression_.nextProgression));
+        StartCoroutine(LoadLevelCoroutine(progression_.nextProgression, 3.0f));
     }
 
-    private IEnumerator LoadLevelCoroutine(Progression _progression)
+    private IEnumerator LoadLevelCoroutine(Progression _progression, float _animationTime)
     {
-        yield return new WaitForSeconds(3.0f);
+        yield return new WaitForSeconds(_animationTime);
         progression_ = _progression;
         SceneLoader.Instance.ReloadScene();
     }
 
+    public void LoadLevel(Progression _progression, float _animationTime = 3.0f)
+    {
+        StartCoroutine(LoadLevelCoroutine(_progression, _animationTime));
+    }
+
     public void RestartGame()
     {
-        Time.timeScale = 1.0f;
+        progression_ = progression_.GetRestartProgression();
+        gameStates.state = GameStates.GameState.Over;
+        OnGameRestart?.Invoke();
+        SceneLoader.Instance.ReloadScene();
+    }
+
+    public void ToMainMenu()
+    {
         progression_ = startingProgression;
         gameStates.state = GameStates.GameState.Over;
         OnGameRestart?.Invoke();
@@ -94,13 +116,9 @@ public class GameManager : MonoBehaviour
     {
         gameStates.state = GameStates.GameState.Pause;
     }
+
     public void ResumeGame()
     {
         gameStates.state = GameStates.GameState.Playing;
-    }
-
-    public void LoadLevel(Progression _progression)
-    {
-        StartCoroutine(LoadLevelCoroutine(_progression));
     }
 }

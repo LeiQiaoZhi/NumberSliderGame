@@ -11,7 +11,6 @@ public class FollowFixedTarget : MonoBehaviour
     public Transform zero;
     
     public float speed = 0.1f;
-    private bool infinite_;
     private Transform target_;
 
     private void OnEnable()
@@ -26,7 +25,7 @@ public class FollowFixedTarget : MonoBehaviour
 
     private void SetTarget(World _world, InfiniteGridSystem _gridsystem)
     {
-        target_ = (_world.infinite) ? player : zero;
+        target_ = (_world.cameraFollow) ? player : zero;
     }
 
     private void LateUpdate()

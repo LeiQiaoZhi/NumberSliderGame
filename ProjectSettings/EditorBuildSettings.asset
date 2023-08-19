@@ -5,10 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/_Scenes/TutorialScene.unity
-    guid: f279a94cb77b11c46927139bdeabfefd
   - enabled: 1
     path: Assets/_Scenes/Number Sliding Game.unity
     guid: cb7c88a732ae77644b51caaa7377e7d6
+  - enabled: 1
+    path: Assets/_Scenes/TutorialScene.unity
+    guid: f279a94cb77b11c46927139bdeabfefd
   m_configObjects: {}

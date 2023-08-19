@@ -16,4 +16,4 @@ MonoBehaviour:
   color: {r: 0.58275694, g: 0.8528997, b: 0.9716981, a: 1}
   overlayPrefab: {fileID: 6018830662425923386, guid: e32638c0ebaaca748b1e40a118c9c939, type: 3}
   visitEvent: {fileID: 11400000, guid: a6f5ceddd512b8347bcc9c53fce60b0f, type: 2}
-  progression: {fileID: 11400000, guid: 5d7443839ab21e3488b3761d83d45a3d, type: 2}
+  progression: {fileID: 11400000, guid: c87f0debf1636e741b89b91b85c774a8, type: 2}

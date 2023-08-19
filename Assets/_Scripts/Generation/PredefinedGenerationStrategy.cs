@@ -8,10 +8,13 @@ public class PredefinedGenerationStrategy : PatchGenerationStrategy
 {
     public int portalNumber;
     [TextArea(10, 10)] public string levelStr;
+    [Space(10)]
+    public int playerStartHealth = 1;
 
     public override void Generate()
     {
-        // create a 2d array of
+        FindObjectOfType<PlayerHealth>().SetMaxHealth(playerStartHealth);
+        
         var level = ParseLevelStr(levelStr);
 
         for (int x = 0; x < patchDimension.x; x++)

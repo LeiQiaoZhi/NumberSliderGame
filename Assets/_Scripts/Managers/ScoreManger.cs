@@ -31,6 +31,13 @@ public class ScoreManger : MonoBehaviour
         PlayerMovement.OnGameOver += OnGameOver;
         GameManager.OnGameStart += OnGameStart;
         GameManager.OnGameRestart += ResetScore;
+        NumberGridGenerator.OnGenerationStart += GenerationStart;
+    }
+
+    private void GenerationStart(World _world, InfiniteGridSystem _gridsystem)
+    {
+        if (_world.enterResetScore)
+            ResetScore();
     }
 
     private void OnDisable()
@@ -39,6 +46,7 @@ public class ScoreManger : MonoBehaviour
         PlayerMovement.OnGameOver -= OnGameOver;
         GameManager.OnGameStart -= OnGameStart;
         GameManager.OnGameRestart -= ResetScore;
+        NumberGridGenerator.OnGenerationStart -= GenerationStart;
     }
 
     private void OnGameOver(Vector2Int _direction)
@@ -47,7 +55,7 @@ public class ScoreManger : MonoBehaviour
         ResetScore();
     }
 
-    private void ResetScore()
+    public void ResetScore()
     {
         score_ = 0;
         OnScoreChange?.Invoke(score_);
@@ -62,8 +70,6 @@ public class ScoreManger : MonoBehaviour
     {
         switch (_mergeResult.type)
         {
-            case PlayerMovement.MergeType.Fail:
-                break;
             case PlayerMovement.MergeType.Minus:
                 AddScore(_mergeResult.other);
                 break;

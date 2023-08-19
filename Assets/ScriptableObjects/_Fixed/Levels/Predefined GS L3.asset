@@ -10,21 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4fa8fd92c9784d079ae1418751d6d847, type: 3}
-  m_Name: Predefined GS Level Editor
+  m_Name: Predefined GS L3
   m_EditorClassIdentifier: 
   pool: 
-  levelStr: '| 1 | 2 | 3 | 4 | 5 |
-
-    | 1 | 2 | 3 | 4 | 5 |
-
-    | 1 | 2 | 3 |
-    4 | 5 |
-
-    | 1 | 2 | 3 | 4 | 5 |
-
-    | 1 | 2 | 3 | 4 | 5 |
-
-    | 1 | 2 |
-    3 | 4 | 5 |
-
-    | 7 | 2 | 3 | 7 | 7 |'
+  portalNumber: 9
+  levelStr: "5   2   3   9   \n3   12  5   4   \n4   7   4   2   \n6   2   6   15 
+    \n1   4   5   3   \n"
+  playerStartHealth: 1

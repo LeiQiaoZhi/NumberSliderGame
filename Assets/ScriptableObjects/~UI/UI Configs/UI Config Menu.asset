@@ -17,3 +17,4 @@ MonoBehaviour:
   score: 0
   health: 0
   gameTitle: 1
+  visibilityMaskFollowCamera: 0

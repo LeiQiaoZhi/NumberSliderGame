@@ -23,7 +23,7 @@ public class WorldUIManager : MonoBehaviour
         NumberGridGenerator.OnGenerationStart -= SetUpUI;
     }
 
-    public void SetUpUI(InfiniteGridSystem _gridSystem, UIConfig _uiConfig, Vector2Int _visibleAreaDimension,
+    private void SetUpUI(InfiniteGridSystem _gridSystem, UIConfig _uiConfig, Vector2Int _visibleAreaDimension,
         Vector2Int _visibleAreaDimensionOuter)
     {
         var uiGameObjects = new List<GridWorldPosSetter> { pauseButton, editorButton, scorePanel, healthPanel };
@@ -39,6 +39,11 @@ public class WorldUIManager : MonoBehaviour
             visibilityMask.customVisibleAreaDimension = _visibleAreaDimension;
         if (visibilityMaskOuter.areaType == AreaType.CustomDimension)
             visibilityMaskOuter.customVisibleAreaDimension = _visibleAreaDimensionOuter;
+        if (!_uiConfig.visibilityMaskFollowCamera)
+        {
+            visibilityMask.transform.SetParent(null);
+            visibilityMaskOuter.transform.SetParent(null);
+        }
         visibilityMask.ChangeMaskSize();
         visibilityMaskOuter.ChangeMaskSize();
         
@@ -49,7 +54,7 @@ public class WorldUIManager : MonoBehaviour
         }
     }
 
-    public void SetUpUI(World _world, InfiniteGridSystem _gridSystem)
+    private void SetUpUI(World _world, InfiniteGridSystem _gridSystem)
     {
         SetUpUI(_gridSystem, _world.UIConfig, _world.visibleAreaDimension, _world.visibleAreaDimensionOuter);
     }

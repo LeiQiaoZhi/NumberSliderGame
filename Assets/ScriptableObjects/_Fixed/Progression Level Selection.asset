@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d2548df8874a4f1e9d3a57ec85dc62f0, type: 3}
-  m_Name: Progressin Fixed Menu
+  m_Name: Progression Level Selection
   m_EditorClassIdentifier: 
   worldPool:
-  - {fileID: 11400000, guid: 17cea3ec5dbc6604493c55ce5095d869, type: 2}
+  - {fileID: 11400000, guid: 06109e22832cdfd4684173958b10c7e2, type: 2}
   nextProgression: {fileID: 11400000}

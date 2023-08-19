@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4ba898941cd5469f95b98d72ae7b419c, type: 3}
-  m_Name: World Fixed L1
+  m_Name: World L1
   m_EditorClassIdentifier: 
   infinite: 0
   startingGenerationStrategy: {fileID: 11400000, guid: d60a207408774174985f2e7f16744267, type: 2}
@@ -20,9 +20,10 @@ MonoBehaviour:
   minPortalDistanceFromCenter: 2
   minPortalDistanceFromEachOther: 2
   colorPreset: {fileID: 11400000, guid: 76dbd49e2ba0d6a44991a8bf1109686a, type: 2}
-  patchDimension: {x: 5, y: 7}
-  screenAreaDimension: {x: 5, y: 9}
+  patchDimension: {x: 3, y: 3}
+  screenAreaDimension: {x: 3, y: 5}
   automaticVisibleAreaDimension: 1
   visibleAreaDimension: {x: 0, y: 0}
   visibleAreaDimensionOuter: {x: 0, y: 0}
   UIConfig: {fileID: 11400000, guid: 88f37cbf9bd6a8141984b27912ea9885, type: 2}
+  playerStartPositionType: 1

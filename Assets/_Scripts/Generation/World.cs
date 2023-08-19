@@ -15,6 +15,8 @@ public class GenerationStrategyItem
 public class World : ScriptableObject
 {
     public bool infinite;
+    public bool cameraFollow;
+    public bool enterResetScore;
     [Space(10)]
     public PatchGenerationStrategy startingGenerationStrategy;
     public List<GenerationStrategyItem> generationStrategies;
@@ -29,11 +31,14 @@ public class World : ScriptableObject
     [Header("Grid")] public Vector2Int patchDimension;
     [Tooltip("Used to calculate cell dimension")]
     public Vector2Int screenAreaDimension;
+    [Space(10)]
     public bool automaticVisibleAreaDimension = true;
     public Vector2Int visibleAreaDimension;
     public Vector2Int visibleAreaDimensionOuter;
     [Space(10)]
     public UIConfig UIConfig;
+    [Space(10)]
+    public PlayerStartPositionType playerStartPositionType;
 
     private int portalGenerationMissCounter_ = 0;
 
@@ -98,4 +103,20 @@ public class World : ScriptableObject
             visibleAreaDimensionOuter = patchDimension;
         }
     }
+
+    public Vector2Int GetPlayerStartPosition()
+    {
+        return playerStartPositionType switch
+        {
+            PlayerStartPositionType.Center => patchDimension / 2,
+            PlayerStartPositionType.BotLeft => new Vector2Int(0, 0),
+            _ => patchDimension / 2
+        };
+    }
+}
+
+public enum PlayerStartPositionType
+{
+    Center,
+    BotLeft
 }

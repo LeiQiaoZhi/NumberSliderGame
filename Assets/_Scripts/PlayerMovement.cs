@@ -17,7 +17,8 @@ public class PlayerMovement : MonoBehaviour
         Minus,
         Divide,
         PlusOne,
-        Start
+        Start,
+        Static
     }
 
     public class MergeResult
@@ -49,7 +50,7 @@ public class PlayerMovement : MonoBehaviour
     // because it uses grid coordinates, not patch coordinates
     private Vector2Int position_;
 
-    public void OnGenerationStart(NumberGridGenerator _numberGridGenerator, GameStates _gameStates)
+    public void OnGenerationStart(NumberGridGenerator _numberGridGenerator, GameStates _gameStates, Vector2Int _startPosition)
     {
         playerHealth_ = GetComponent<PlayerHealth>();
         numberGridGenerator_ = _numberGridGenerator;
@@ -58,8 +59,7 @@ public class PlayerMovement : MonoBehaviour
         // the center patch
         numberGridGenerator_.StartingGeneration();
         // set player cell
-        position_ = new Vector2Int(numberGridGenerator_.GetPatchWidth() / 2,
-            numberGridGenerator_.GetPatchHeight() / 2);
+        position_ = _startPosition;
         numberGridGenerator_.GetCell(position_).SetNumber(1);
         numberGridGenerator_.GetCell(position_).SetPlayerCell();
         OnPlayerMove?.Invoke(new MergeResult
@@ -149,7 +149,12 @@ public class PlayerMovement : MonoBehaviour
         mergeResult.original = currentNumber;
         var targetNumber = _targetCell.GetNumber();
         mergeResult.other = targetNumber;
-        if (_targetCell.IsVisited())
+        if (_targetCell.isStatic)
+        {
+            mergeResult.result = currentNumber;
+            mergeResult.type = MergeType.Static;
+        }
+        else if (_targetCell.IsVisited())
         {
             mergeResult.result = currentNumber + 1;
             mergeResult.type = MergeType.PlusOne;

@@ -6,6 +6,9 @@ public class Progression : ScriptableObject
 {
     public List<World> worldPool;
     public Progression nextProgression;
+    [Tooltip("Null means restart with self")]
+    public Progression restartProgression;
+    
 
     public World GetWorld()
     {
@@ -13,5 +16,12 @@ public class Progression : ScriptableObject
         world.InitVisibleAreaDimensions();
         world.InitColorPreset();
         return world;
+    }
+
+    public Progression GetRestartProgression()
+    {
+        if (restartProgression == null)
+            return this;
+        return restartProgression;
     }
 }

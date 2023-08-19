@@ -10,12 +10,24 @@ public class MenuCell : MonoBehaviour
     {
         config_ = _config;
         numberCell_ = _numberCell;
-        // don't show the number
-        numberCell_.SetNumber(0);
-        numberCell_.SetTextColor(new Color(0,0,0,0));
+
+        if (config_.text == "")
+        {
+            numberCell_.SetNumber(0);
+            numberCell_.SetTextColor(new Color(0, 0, 0, 0));
+        }
+        else
+        {
+            numberCell_.SetText(_config.text);
+            numberCell_.SetTextColor(_config.textColor);
+        }
+
         numberCell_.SetColor(config_.color);
-        GameObject overlay = Instantiate(config_.overlayPrefab, transform);
-        overlay.transform.localScale = Vector3.one;
+        if (config_.overlayPrefab != null)
+        {
+            GameObject overlay = Instantiate(config_.overlayPrefab, transform);
+            overlay.transform.localScale = Vector3.one;
+        }
     }
 
     private void OnEnable()
@@ -27,13 +39,14 @@ public class MenuCell : MonoBehaviour
     {
         PlayerMovement.OnPlayerMove -= OnPlayerMove;
     }
+
     private void OnPlayerMove(PlayerMovement.MergeResult _result)
     {
         if (_result.targetTransform == numberCell_.transform)
         {
-            XLogger.Log(Category.Menu ,$"Player move to {config_}");
+            XLogger.Log(Category.Menu, $"Player moved to {config_}");
             config_.visitEvent.Raise();
-            GameManager.Instance.LoadLevel(config_.progression);
+            GameManager.Instance.LoadLevel(config_.progression, 0.1f);
         }
     }
 }

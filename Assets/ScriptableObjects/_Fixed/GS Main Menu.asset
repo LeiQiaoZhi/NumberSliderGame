@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bc8b4bb8b234482186278b9e108f0b41, type: 3}
-  m_Name: Main Menu GS
+  m_Name: GS Main Menu
   m_EditorClassIdentifier: 
   pool: 
   menuItems:
