@@ -112,4 +112,10 @@ public class NumberCell : MonoBehaviour
         SetColor(_colorPreset.portalColor);
         SetTextColor(_colorPreset.portalTextColor);
     }
+
+    public void SetTransparent()
+    {
+        SetColor(new Color(0, 0, 0, 0));
+        SetTextColor(new Color(0, 0, 0, 0));
+    }
 }

@@ -99,5 +99,7 @@ public class LevelEditor : MonoBehaviour
         var y = int.Parse(dimensionInputY.text);
         fixedWorld.patchDimension = new Vector2Int(x, y);
         fixedWorld.screenAreaDimension = new Vector2Int(x, y+2);
+        fixedWorld.visibleAreaDimension = new Vector2Int(x, y);
+        fixedWorld.visibleAreaDimensionOuter = fixedWorld.visibleAreaDimension;
     }
 }

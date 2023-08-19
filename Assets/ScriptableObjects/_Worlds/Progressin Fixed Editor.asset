@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d2548df8874a4f1e9d3a57ec85dc62f0, type: 3}
-  m_Name: Fixed Progression
+  m_Name: Progressin Fixed Editor
   m_EditorClassIdentifier: 
   worldPool:
   - {fileID: 11400000, guid: 4ac3bec3f01015645bcfecafc3c087f3, type: 2}

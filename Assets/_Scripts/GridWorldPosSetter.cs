@@ -16,41 +16,28 @@ public class GridWorldPosSetter : MonoBehaviour
     [Space(10)] public bool useCustomGridDimension;
     public Vector2Int customGridDimension;
 
-    private InfiniteGridSystem gridSystem_;
-
-    private void OnEnable()
+    public void SetPosition(InfiniteGridSystem _gridSystem)
     {
-        GameManager.OnGameStart += OnGameStart;
-    }
-
-    private void OnDisable()
-    {
-        GameManager.OnGameStart -= OnGameStart;
-    }
-
-    private void OnGameStart()
-    {
-        gridSystem_ = FindObjectOfType<InfiniteGridSystem>();
         Vector2 cellDimension = useCustomGridDimension
-            ? GameUtils.CalculateCellDimension(Camera.main, gridSystem_.margin, customGridDimension)
-            : gridSystem_.GetCellDimension();
+            ? GameUtils.CalculateCellDimension(Camera.main, _gridSystem.margin, customGridDimension)
+            : _gridSystem.GetCellDimension();
 
         XLogger.Log("cellDimension: " + cellDimension);
         transform.localScale = new Vector3(cellDimension.x * size.x, cellDimension.y * size.y, 1);
-        Vector3 refPos = GetRefPointWorldPos(refPointType);
-        XLogger.Log("botLeft: " + refPos);
+        Vector3 refPos = GetRefPointWorldPos(refPointType, _gridSystem);
+        XLogger.Log($"{refPointType}:  {refPos}");
         transform.position = refPos + new Vector3(cellDimension.x * gridPos.x, cellDimension.y * gridPos.y, 1);
 
-        ApplyYConstraint(cellDimension, refPos);
+        ApplyYConstraint(cellDimension, refPos, _gridSystem);
     }
 
-    private void ApplyYConstraint(Vector2 _cellDimension, Vector2 _refPos)
+    private void ApplyYConstraint(Vector2 _cellDimension, Vector2 _refPos, InfiniteGridSystem _gridSystem)
     {
         transform.position = yConstraint switch
         {
             YConstraint.AboveGrid
                 => new Vector3(transform.position.x,
-                    _refPos.y + gridSystem_.GetCellDimension().y * gridSystem_.GetPatchDimension().y +
+                    _refPos.y + _gridSystem.GetCellDimension().y * _gridSystem.GetVisibleAreaDimension().y +
                     _cellDimension.y * yOffset, transform.position.z),
             YConstraint.BelowGrid
                 => new Vector3(transform.position.x, _refPos.y - _cellDimension.y * yOffset,
@@ -60,13 +47,18 @@ public class GridWorldPosSetter : MonoBehaviour
         };
     }
 
-    private Vector2 GetRefPointWorldPos(RefPoint _refPoint)
+    private Vector2 GetRefPointWorldPos(RefPoint _refPoint, InfiniteGridSystem _gridSystem)
     {
+        Vector2 visibleToPatchHalfDimension =
+            (Vector2)(_gridSystem.GetPatchDimension() - _gridSystem.GetVisibleAreaDimension()) / 2.0f;
         if (_refPoint == RefPoint.BottomLeft)
-            return gridSystem_.GridToWorldPosition(0, 0) - (Vector3)gridSystem_.GetCellDimension() / 2.0f;
+            return _gridSystem.GridToWorldPosition((int)visibleToPatchHalfDimension.x,
+                       (int)visibleToPatchHalfDimension.y)
+                   - (Vector3)_gridSystem.GetCellDimension() / 2.0f;
         else
-            return gridSystem_.GridToWorldPosition(gridSystem_.GetPatchDimension().x - 1, 0) +
-                   new Vector3(gridSystem_.GetCellDimension().x / 2.0f, -gridSystem_.GetCellDimension().y / 2.0f, 0);
+            return _gridSystem.GridToWorldPosition(_gridSystem.GetPatchDimension().x - 1 - (int) visibleToPatchHalfDimension.x,
+                       (int)visibleToPatchHalfDimension.y)
+                   + new Vector3(_gridSystem.GetCellDimension().x / 2.0f, -_gridSystem.GetCellDimension().y / 2.0f, 0);
     }
 }
 

@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour
         numberGridGenerator_ = FindObjectOfType<NumberGridGenerator>();
 
         World world = progression_.GetWorld();
-        numberGridGenerator_.Init(world.colorPreset, world, gameStates);
+        numberGridGenerator_.Init(world.colorPreset, world);
         playerMovement_.OnGenerationStart(numberGridGenerator_, gameStates);
     }
 

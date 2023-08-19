@@ -177,6 +177,6 @@ public class PlayerMovement : MonoBehaviour
 
     public Vector3 GetPlayerPositionWorld()
     {
-        return numberGridGenerator_.infGridSystem.GridToWorldPosition(position_.x, position_.y);
+        return numberGridGenerator_.gridSystem.GridToWorldPosition(position_.x, position_.y);
     }
 }

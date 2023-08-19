@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ba898941cd5469f95b98d72ae7b419c, type: 3}
   m_Name: World 3
   m_EditorClassIdentifier: 
+  infinite: 1
   startingGenerationStrategy: {fileID: 11400000, guid: fe4b4ba579e098b43a7a7439d7e96363, type: 2}
   generationStrategies:
   - generationStrategy: {fileID: 11400000, guid: af4c629add789dc4b8dbf90775d362af, type: 2}
@@ -29,3 +30,7 @@ MonoBehaviour:
   colorPreset: {fileID: 11400000, guid: f4475665a3cbed140892cd0cd6dc7108, type: 2}
   patchDimension: {x: 7, y: 7}
   screenAreaDimension: {x: 5, y: 9}
+  automaticVisibleAreaDimension: 0
+  visibleAreaDimension: {x: 5, y: 5}
+  visibleAreaDimensionOuter: {x: 7, y: 7}
+  UIConfig: {fileID: 11400000, guid: 88f37cbf9bd6a8141984b27912ea9885, type: 2}

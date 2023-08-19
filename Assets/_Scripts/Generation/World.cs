@@ -14,6 +14,8 @@ public class GenerationStrategyItem
 [CreateAssetMenu(fileName = "World", menuName = "World", order = 0)]
 public class World : ScriptableObject
 {
+    public bool infinite;
+    [Space(10)]
     public PatchGenerationStrategy startingGenerationStrategy;
     public List<GenerationStrategyItem> generationStrategies;
 
@@ -27,7 +29,11 @@ public class World : ScriptableObject
     [Header("Grid")] public Vector2Int patchDimension;
     [Tooltip("Used to calculate cell dimension")]
     public Vector2Int screenAreaDimension;
-
+    public bool automaticVisibleAreaDimension = true;
+    public Vector2Int visibleAreaDimension;
+    public Vector2Int visibleAreaDimensionOuter;
+    [Space(10)]
+    public UIConfig UIConfig;
 
     private int portalGenerationMissCounter_ = 0;
 
@@ -82,5 +88,14 @@ public class World : ScriptableObject
     public bool IsPortalStrategy(PatchGenerationStrategy _strategy)
     {
         return portalGenerationStrategies.Any(_item => (_item.generationStrategy == _strategy && _item.weight > 0));
+    }
+
+    public void InitVisibleAreaDimensions()
+    {
+        if (automaticVisibleAreaDimension)
+        {
+            visibleAreaDimension = patchDimension;
+            visibleAreaDimensionOuter = patchDimension;
+        }
     }
 }

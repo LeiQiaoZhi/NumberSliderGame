@@ -12,12 +12,20 @@ public class InfiniteGridSystem : MonoBehaviour
 
     private Vector2Int patchDimension_;
     private Vector2Int screenAreaDimension_;
+    private Vector2Int visibleAreaDimension_;
 
     private Dictionary<Vector2Int, Patch> patches_ = new();
     private Vector2Int currentPatch_ = new(0, 0);
 
     private Vector2 cellDimension_;
 
+    public void InitDimensions(World _world)
+    {
+        patchDimension_ = _world.patchDimension;
+        screenAreaDimension_ = _world.screenAreaDimension;
+        visibleAreaDimension_ = _world.visibleAreaDimension;
+    }
+    
     public List<Cell> CreatePatch(Vector2Int _patchCoord)
     {
         var patchObject = new GameObject($"Patch {_patchCoord}");
@@ -100,11 +108,6 @@ public class InfiniteGridSystem : MonoBehaviour
         return patches_.ContainsKey(_patchPosition);
     }
 
-    public void InitDimensions(Vector2Int _worldPatchDimension, Vector2Int _worldScreenAreaDimension)
-    {
-        patchDimension_ = _worldPatchDimension;
-        screenAreaDimension_ = _worldScreenAreaDimension;
-    }
 
     public Vector2Int GetSreenAreaDimension()
     {
@@ -114,5 +117,10 @@ public class InfiniteGridSystem : MonoBehaviour
     public Vector2Int GetPatchDimension()
     {
         return patchDimension_;
+    }
+
+    public Vector2Int GetVisibleAreaDimension()
+    {
+        return visibleAreaDimension_;
     }
 }

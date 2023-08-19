@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ba898941cd5469f95b98d72ae7b419c, type: 3}
+  m_Name: World Menu
+  m_EditorClassIdentifier: 
+  infinite: 0
+  startingGenerationStrategy: {fileID: 11400000, guid: a3db15fc45c35f5468429fcb0ec10813, type: 2}
+  generationStrategies: []
+  portalGenerationGuarantee: 5
+  portalGenerationStrategies: []
+  minPortalDistanceFromCenter: 2
+  minPortalDistanceFromEachOther: 2
+  colorPreset: {fileID: 11400000, guid: 76dbd49e2ba0d6a44991a8bf1109686a, type: 2}
+  patchDimension: {x: 3, y: 3}
+  screenAreaDimension: {x: 3, y: 5}
+  automaticVisibleAreaDimension: 1
+  visibleAreaDimension: {x: 5, y: 7}
+  visibleAreaDimensionOuter: {x: 5, y: 7}
+  UIConfig: {fileID: 11400000, guid: aba9145700a2b084ab2bba8d1c001050, type: 2}

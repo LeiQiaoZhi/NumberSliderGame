@@ -1225,12 +1225,12 @@ GameObject:
   - component: {fileID: 120488725}
   - component: {fileID: 120488726}
   m_Layer: 0
-  m_Name: Visibility Mask
+  m_Name: Visibility Mask Outer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &120488723
 Transform:
   m_ObjectHideFlags: 0
@@ -1305,7 +1305,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 120488722}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: db64a66747c59d04db81eced9d2de940, type: 3}
   m_Name: 
@@ -1339,8 +1339,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   visibilityMask: {fileID: 120488724}
-  areaType: 0
-  customVisibleAreaDimension: {x: 7, y: 7}
+  areaType: 2
+  customVisibleAreaDimension: {x: 0, y: 0}
   borderWidth: 0.025
 --- !u!1 &126060175
 GameObject:
@@ -2507,7 +2507,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   self: {fileID: 519420032}
-  target: {fileID: 408619093}
+  player: {fileID: 491874974}
+  zero: {fileID: 1047884737}
   speed: 7
 --- !u!1 &420106780
 GameObject:
@@ -3013,7 +3014,7 @@ GameObject:
   - component: {fileID: 524768962}
   - component: {fileID: 524768961}
   m_Layer: 0
-  m_Name: Visibility Mask Inner
+  m_Name: Visibility Mask
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3048,9 +3049,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   visibilityMask: {fileID: 524768963}
-  areaType: 1
+  areaType: 2
   customVisibleAreaDimension: {x: 5, y: 7}
-  borderWidth: 0.05
+  borderWidth: 0.025
 --- !u!114 &524768962
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3058,7 +3059,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 524768959}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: db64a66747c59d04db81eced9d2de940, type: 3}
   m_Name: 
@@ -4329,8 +4330,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2e1efd7d7075a64894401ee15c98beb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  infinite: 0
-  infGridSystem: {fileID: 831660507}
+  gridSystem: {fileID: 831660507}
 --- !u!1 &689233459
 GameObject:
   m_ObjectHideFlags: 0
@@ -8142,7 +8142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2abe82f6bb762464583f1f8cc8cf0153, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingProgression: {fileID: 11400000, guid: 873c9bc0505bcf742aca226e4829c5b6, type: 2}
+  startingProgression: {fileID: 11400000, guid: a3ac4da05af1bb24ca378d663f2092a0, type: 2}
   gameStates: {fileID: 11400000, guid: f811420542146dd4cac66f77a4bbc020, type: 2}
 --- !u!4 &1372095831
 Transform:
@@ -9029,6 +9029,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89148d03ae5902142a3eb8338842d413, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1694860713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 159815835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cd83068fdda453fbc7ce023154e966a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseButton: {fileID: 747180325}
+  editorButton: {fileID: 2133456575}
+  scorePanel: {fileID: 2038466657}
+  healthPanel: {fileID: 7186131}
+  visibilityMask: {fileID: 524768961}
+  visibilityMaskOuter: {fileID: 120488726}
 --- !u!1 &1694871214
 GameObject:
   m_ObjectHideFlags: 0

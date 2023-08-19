@@ -3284,8 +3284,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2e1efd7d7075a64894401ee15c98beb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  infinite: 1
-  infGridSystem: {fileID: 831660507}
+  gridSystem: {fileID: 831660507}
 --- !u!1 &738952378
 GameObject:
   m_ObjectHideFlags: 0

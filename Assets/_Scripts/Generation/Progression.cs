@@ -10,6 +10,7 @@ public class Progression : ScriptableObject
     public World GetWorld()
     {
         World world = worldPool[Random.Range(0, worldPool.Count)];
+        world.InitVisibleAreaDimensions();
         world.InitColorPreset();
         return world;
     }
