@@ -69,16 +69,15 @@ public class GameManager : MonoBehaviour
         OnGameStart?.Invoke();
     }
 
-
     public void EnterPortal()
     {
-        StartCoroutine(EnterPortalCoroutine());
+        StartCoroutine(LoadLevelCoroutine(progression_.nextProgression));
     }
 
-    private IEnumerator EnterPortalCoroutine()
+    private IEnumerator LoadLevelCoroutine(Progression _progression)
     {
         yield return new WaitForSeconds(3.0f);
-        progression_ = progression_.nextProgression;
+        progression_ = _progression;
         SceneLoader.Instance.ReloadScene();
     }
 
@@ -98,5 +97,10 @@ public class GameManager : MonoBehaviour
     public void ResumeGame()
     {
         gameStates.state = GameStates.GameState.Playing;
+    }
+
+    public void LoadLevel(Progression _progression)
+    {
+        StartCoroutine(LoadLevelCoroutine(_progression));
     }
 }

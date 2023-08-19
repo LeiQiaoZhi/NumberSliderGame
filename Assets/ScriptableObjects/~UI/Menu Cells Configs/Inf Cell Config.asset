@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0e0b0d9fff64dc28eb55c112717c22b, type: 3}
+  m_Name: Inf Cell Config
+  m_EditorClassIdentifier: 
+  text: 
+  color: {r: 0.86493415, g: 0.6224889, b: 0.9622642, a: 1}
+  overlayPrefab: {fileID: 5596518865159830994, guid: 13a75fbbac88816499ffb5219bc52b83, type: 3}
+  visitEvent: {fileID: 11400000, guid: a6f5ceddd512b8347bcc9c53fce60b0f, type: 2}
+  progression: {fileID: 11400000, guid: 75db808399a83594c95ddcde4c3d0d18, type: 2}

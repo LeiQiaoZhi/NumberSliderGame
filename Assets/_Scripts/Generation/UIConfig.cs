@@ -7,4 +7,5 @@ public class UIConfig : ScriptableObject
     public bool editor;
     public bool score;
     public bool health;
+    public bool gameTitle;
 }

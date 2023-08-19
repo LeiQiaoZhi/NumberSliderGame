@@ -24,7 +24,8 @@ namespace UnityEngine
         GameManager,
         Generation,
         Tween,
-        Score
+        Score,
+        Menu
     }
     
     public static class XLogger

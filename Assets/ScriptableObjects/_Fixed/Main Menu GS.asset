@@ -13,3 +13,12 @@ MonoBehaviour:
   m_Name: Main Menu GS
   m_EditorClassIdentifier: 
   pool: 
+  menuItems:
+  - config: {fileID: 11400000, guid: 7064a7ac0bafa3444bfbd1370ceeb8f1, type: 2}
+    relativePosition: {x: 0, y: 1}
+  - config: {fileID: 11400000, guid: 8e63af84fa6edb747b7064f8ddb57f14, type: 2}
+    relativePosition: {x: -1, y: 0}
+  - config: {fileID: 11400000, guid: 4172dc6fb7879e941a6c2b6696c7bdbb, type: 2}
+    relativePosition: {x: 1, y: 0}
+  - config: {fileID: 11400000, guid: d897a38858c76a34eacdc239bce5e155, type: 2}
+    relativePosition: {x: 0, y: -1}

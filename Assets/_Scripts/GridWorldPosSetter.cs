@@ -22,10 +22,8 @@ public class GridWorldPosSetter : MonoBehaviour
             ? GameUtils.CalculateCellDimension(Camera.main, _gridSystem.margin, customGridDimension)
             : _gridSystem.GetCellDimension();
 
-        XLogger.Log("cellDimension: " + cellDimension);
         transform.localScale = new Vector3(cellDimension.x * size.x, cellDimension.y * size.y, 1);
         Vector3 refPos = GetRefPointWorldPos(refPointType, _gridSystem);
-        XLogger.Log($"{refPointType}:  {refPos}");
         transform.position = refPos + new Vector3(cellDimension.x * gridPos.x, cellDimension.y * gridPos.y, 1);
 
         ApplyYConstraint(cellDimension, refPos, _gridSystem);

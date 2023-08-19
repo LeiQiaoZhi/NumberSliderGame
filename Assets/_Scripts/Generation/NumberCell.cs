@@ -46,8 +46,8 @@ public class NumberCell : MonoBehaviour
         }
         else if (visitedNum_ > 1) // second time visited
         {
-            SetColor(colorPreset_.inactiveColor, 0.3f);
-            SetTextColor(new Color(0, 0, 0, 0),0.3f);
+            SetColor(colorPreset_.inactiveColor, 0.2f);
+            SetTextColor(new Color(0, 0, 0, 0),0.2f);
         }
     }
 
@@ -117,5 +117,11 @@ public class NumberCell : MonoBehaviour
     {
         SetColor(new Color(0, 0, 0, 0));
         SetTextColor(new Color(0, 0, 0, 0));
+    }
+
+    public void SetInActive()
+    {
+        visitedNum_ = 1;
+        SetVisited();
     }
 }

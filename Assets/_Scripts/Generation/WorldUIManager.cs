@@ -8,6 +8,7 @@ public class WorldUIManager : MonoBehaviour
     public GridWorldPosSetter editorButton;
     public GridWorldPosSetter scorePanel;
     public GridWorldPosSetter healthPanel;
+    public GridWorldPosSetter gameTitle;
     [Space(10)]
     public VisibilityMask visibilityMask;
     public VisibilityMask visibilityMaskOuter;
@@ -40,6 +41,12 @@ public class WorldUIManager : MonoBehaviour
             visibilityMaskOuter.customVisibleAreaDimension = _visibleAreaDimensionOuter;
         visibilityMask.ChangeMaskSize();
         visibilityMaskOuter.ChangeMaskSize();
+        
+        if (gameTitle != null)
+        {
+            gameTitle.gameObject.SetActive(_uiConfig.gameTitle);
+            gameTitle.SetPosition(_gridSystem);
+        }
     }
 
     public void SetUpUI(World _world, InfiniteGridSystem _gridSystem)
