@@ -39,6 +39,8 @@ public class World : ScriptableObject
     public UIConfig UIConfig;
     [Space(10)]
     public PlayerStartPositionType playerStartPositionType;
+    [Space(10)]
+    public float scoreMultiplier = 1.0f;
 
     private int portalGenerationMissCounter_ = 0;
 

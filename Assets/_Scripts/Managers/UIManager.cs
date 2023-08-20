@@ -2,6 +2,8 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Unity.VisualScripting;
+using Object = UnityEngine.Object;
 
 public class UIManager : MonoBehaviour
 {
@@ -9,6 +11,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject pauseScreen;
     [SerializeField] GameObject pauseButton;
     [SerializeField] TextMeshProUGUI scoreText;
+    [SerializeField] private GameObject scoreEffectPrefab;
+    public Transform scoreEffectHolder;
     [Header("Game State")] public GameStates gameStates;
 
     private void Awake()
@@ -27,9 +31,15 @@ public class UIManager : MonoBehaviour
         ScoreManger.OnScoreChange -= UpdateScoreText;
     }
 
-    private void UpdateScoreText(int _score)
+    private void UpdateScoreText(int _score, int _change)
     {
+        if (_change == 0)
+            return;
         scoreText.TweenNumber(_score, 0.4f).Play();
+        GameObject effect = Instantiate(scoreEffectPrefab, scoreEffectHolder);
+        effect.transform.localPosition = Vector3.zero;
+        effect.GetComponentInChildren<TextMeshProUGUI>().text = $"+{_change}";
+        Destroy(effect,2.0f);
     }
 
     public void SetEnableGameOverScreen(bool _enable)

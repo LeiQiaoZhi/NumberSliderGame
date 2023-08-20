@@ -6,7 +6,7 @@ public class ScoreManger : MonoBehaviour
     public float scoreMultiplier = 1f;
     public int portalScore = 100;
 
-    public delegate void ScoreChange(int _score);
+    public delegate void ScoreChange(int _score, int _change);
 
     public static event ScoreChange OnScoreChange;
     private static ScoreManger Instance { get; set; }
@@ -38,6 +38,7 @@ public class ScoreManger : MonoBehaviour
     {
         if (_world.enterResetScore)
             ResetScore();
+        scoreMultiplier = _world.scoreMultiplier;
     }
 
     private void OnDisable()
@@ -58,12 +59,12 @@ public class ScoreManger : MonoBehaviour
     public void ResetScore()
     {
         score_ = 0;
-        OnScoreChange?.Invoke(score_);
+        OnScoreChange?.Invoke(score_, 0);
     }
 
     private void OnGameStart()
     {
-        OnScoreChange?.Invoke(score_);
+        OnScoreChange?.Invoke(score_,0);
     }
 
     private void OnMovementScore(PlayerMovement.MergeResult _mergeResult)
@@ -84,11 +85,12 @@ public class ScoreManger : MonoBehaviour
         }
     }
 
-    private void AddScore(int _score)
+    private void AddScore(int _change)
     {
-        if (_score == 0) return;
-        score_ += Mathf.RoundToInt(_score * scoreMultiplier);
-        OnScoreChange?.Invoke(score_);
+        if (_change == 0) return;
+        var scaled = Mathf.RoundToInt(_change * scoreMultiplier);
+        score_ += scaled;
+        OnScoreChange?.Invoke(score_, scaled);
     }
 
 

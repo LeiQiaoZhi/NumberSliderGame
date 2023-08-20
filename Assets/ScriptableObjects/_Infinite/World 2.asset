@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   infinite: 1
   cameraFollow: 1
+  enterResetScore: 0
   startingGenerationStrategy: {fileID: 11400000, guid: 28054b34a5691cd40871c7d8c16aaf34, type: 2}
   generationStrategies:
   - generationStrategy: {fileID: 11400000, guid: 28054b34a5691cd40871c7d8c16aaf34, type: 2}
@@ -36,3 +37,4 @@ MonoBehaviour:
   visibleAreaDimensionOuter: {x: 7, y: 7}
   UIConfig: {fileID: 11400000, guid: 88f37cbf9bd6a8141984b27912ea9885, type: 2}
   playerStartPositionType: 0
+  scoreMultiplier: 2
