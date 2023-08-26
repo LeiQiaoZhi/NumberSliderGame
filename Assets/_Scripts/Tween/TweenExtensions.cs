@@ -24,6 +24,11 @@ public static class TweenExtensions
         return new NumberTween(_target, _endNumber, _duration, _maxSteps);
     }
     
+    public static FloatTween TweenFloat(this CanvasGroup _target, float _endNumber, float _duration)
+    {
+        return new FloatTween(new CanvasGroupFloatAdaptor(_target), _endNumber, _duration);
+    }
+    
 
     // You can add more extension methods here for other tween types.
 }
