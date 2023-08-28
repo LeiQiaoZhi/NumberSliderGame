@@ -9,6 +9,7 @@ public class WorldUIManager : MonoBehaviour
     public GridWorldPosSetter scorePanel;
     public GridWorldPosSetter healthPanel;
     public GridWorldPosSetter gameTitle;
+    public GridWorldPosSetter bonusPanel;
     [Space(10)]
     public VisibilityMask visibilityMask;
     public VisibilityMask visibilityMaskOuter;
@@ -51,6 +52,12 @@ public class WorldUIManager : MonoBehaviour
         {
             gameTitle.gameObject.SetActive(_uiConfig.gameTitle);
             gameTitle.SetPosition(_gridSystem);
+        }
+        
+        if (bonusPanel != null)
+        {
+            bonusPanel.gameObject.SetActive(_uiConfig.bonusPanel);
+            bonusPanel.SetPosition(_gridSystem);
         }
     }
 

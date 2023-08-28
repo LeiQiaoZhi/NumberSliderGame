@@ -9,13 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47c0153435e54e249d018c2814cdfeae, type: 3}
-  m_Name: UI Config Normal
+  m_Script: {fileID: 11500000, guid: 141e9fa92d0a4329bcc342e27e92bf8c, type: 3}
+  m_Name: Bonus Test
   m_EditorClassIdentifier: 
-  pause: 1
-  editor: 0
-  score: 1
-  health: 1
-  gameTitle: 0
-  bonusPanel: 1
-  visibilityMaskFollowCamera: 1
+  description: Test Bonus

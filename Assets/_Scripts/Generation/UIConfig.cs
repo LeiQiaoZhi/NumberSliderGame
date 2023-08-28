@@ -8,6 +8,7 @@ public class UIConfig : ScriptableObject
     public bool score;
     public bool health;
     public bool gameTitle;
+    public bool bonusPanel;
     [Space(10)]
     public bool visibilityMaskFollowCamera = true;
 }

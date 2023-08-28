@@ -41,6 +41,8 @@ public class World : ScriptableObject
     public PlayerStartPositionType playerStartPositionType;
     [Space(10)]
     public float scoreMultiplier = 1.0f;
+    [Space(10)]
+    public List<LevelBonus> levelBonuses;
 
     private int portalGenerationMissCounter_ = 0;
 

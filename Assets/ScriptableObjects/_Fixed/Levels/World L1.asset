@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: World L1
   m_EditorClassIdentifier: 
   infinite: 0
+  cameraFollow: 0
+  enterResetScore: 0
   startingGenerationStrategy: {fileID: 11400000, guid: d60a207408774174985f2e7f16744267, type: 2}
   generationStrategies: []
   portalGenerationGuarantee: 5
@@ -23,7 +25,12 @@ MonoBehaviour:
   patchDimension: {x: 3, y: 3}
   screenAreaDimension: {x: 3, y: 5}
   automaticVisibleAreaDimension: 1
-  visibleAreaDimension: {x: 0, y: 0}
-  visibleAreaDimensionOuter: {x: 0, y: 0}
+  visibleAreaDimension: {x: 3, y: 3}
+  visibleAreaDimensionOuter: {x: 3, y: 3}
   UIConfig: {fileID: 11400000, guid: 88f37cbf9bd6a8141984b27912ea9885, type: 2}
   playerStartPositionType: 1
+  scoreMultiplier: 1
+  levelBonuses:
+  - {fileID: 11400000, guid: 7319d106356d0a4468f1f1a1f870fda3, type: 2}
+  - {fileID: 11400000, guid: 7319d106356d0a4468f1f1a1f870fda3, type: 2}
+  - {fileID: 11400000, guid: 7319d106356d0a4468f1f1a1f870fda3, type: 2}

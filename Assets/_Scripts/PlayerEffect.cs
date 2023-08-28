@@ -19,7 +19,6 @@ public class PlayerEffect : MonoBehaviour
         transform.localScale = new Vector3(gridSystem_.GetCellDimension().x, gridSystem_.GetCellDimension().y, 1);
     }
 
-
     private void OnEnable()
     {
         PlayerMovement.OnPlayerMove += OnPlayerMove;
