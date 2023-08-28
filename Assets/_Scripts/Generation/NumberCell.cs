@@ -120,7 +120,12 @@ public class NumberCell : MonoBehaviour
         SetColor(new Color(0, 0, 0, 0));
         SetTextColor(new Color(0, 0, 0, 0));
     }
-
+    public void ResetInActive()
+    {
+        visitedNum_ = 0;
+        SetColor(colorPreset_.activeColor);
+        SetTextColor(colorPreset_.activeTextColor);
+    }
     public void SetInActive()
     {
         visitedNum_ = 1;
@@ -130,5 +135,10 @@ public class NumberCell : MonoBehaviour
     public void SetText(string _text)
     {
         text_.text = _text;
+    }
+
+    public Color GetColor()
+    {
+        return cell_.spriteRenderer.color;
     }
 }

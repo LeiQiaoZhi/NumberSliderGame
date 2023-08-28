@@ -7,6 +7,10 @@ using UnityEngine;
 public class PlayerEffect : MonoBehaviour
 {
     public TextMeshProUGUI numberText;
+    [Header("Break Effect")] public ParticleSystem breakEffect;
+    public float directionVelocityMultiplier;
+    public float pieceSizeMultiplier = 1;
+
     private InfiniteGridSystem gridSystem_;
 
     void Start()
@@ -30,14 +34,22 @@ public class PlayerEffect : MonoBehaviour
     {
         if (numberText != null)
             numberText.TweenNumber(_mergeResult.result, 0.14f, 5).Play();
-        if (_mergeResult.type == PlayerMovement.MergeType.Divide)
+        if (_mergeResult.type is PlayerMovement.MergeType.Divide or PlayerMovement.MergeType.Minus)
         {
-            // effect
-        }
-
-        if (_mergeResult.type == PlayerMovement.MergeType.Minus)
-        {
-            // effect
+            if (breakEffect == null) return;
+            ParticleSystem effect = Instantiate(breakEffect);
+            ParticleSystem.MainModule main = effect.main;
+            main.startColor = _mergeResult.targetTransform.GetComponent<NumberCell>().GetColor();
+            effect.transform.position = _mergeResult.targetTransform.position;
+            effect.transform.localScale = _mergeResult.targetTransform.localScale.x * Vector3.one * pieceSizeMultiplier;
+            effect.transform.rotation = Quaternion.identity;
+            // TODO: change effect's direction based on the direction of the move
+            ParticleSystem.VelocityOverLifetimeModule velocity = effect.velocityOverLifetime;
+            velocity.x = _mergeResult.moveDirection.x * directionVelocityMultiplier;
+            velocity.y = _mergeResult.moveDirection.y * directionVelocityMultiplier;
+            velocity.z = 0;
+            // TODO: change effect's spawn number based on the original number of the move
+            Destroy(effect.gameObject, 1.0f);
         }
     }
 }

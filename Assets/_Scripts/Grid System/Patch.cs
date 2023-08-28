@@ -38,7 +38,7 @@ public class Patch : MonoBehaviour
                 GameObject cellObject = Instantiate(infGridSystem_.cellPrefab, transform.position + (Vector3)pos,
                     Quaternion.identity);
                 cellObject.transform.SetParent(transform);
-                cellObject.transform.localScale = cellDimension_;
+                cellObject.transform.localScale = new Vector3(cellDimension_.x, cellDimension_.y, 1);
                 var cell = cellObject.GetComponent<Cell>();
                 cell.Init(x, y);
                 cells_.Add(cell);

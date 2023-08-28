@@ -26,7 +26,7 @@ public class NumberGridGenerator : MonoBehaviour
     }
 
     /// test whether new patch needs to be generated
-    public void OnPlayerMove(Vector2Int _playerPosition)
+    public void DetectNeedForNewPatches(Vector2Int _playerPosition)
     {
         if (!world_.infinite) // finite grid
             return;

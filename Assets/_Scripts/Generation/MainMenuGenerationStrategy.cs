@@ -19,17 +19,11 @@ public class MainMenuGenerationStrategy : PatchGenerationStrategy
     public override void Generate()
     {
         Vector2Int center = patchDimension / 2;
-        GetCell(center.x, center.y).SetVisited();
-        var cornerCells = new List<NumberCell>
+        foreach (NumberCell cell in numberCells)
         {
-            GetCell(center.x - 1, center.y - 1),
-            GetCell(center.x - 1, center.y + 1),
-            GetCell(center.x + 1, center.y - 1),
-            GetCell(center.x + 1, center.y + 1)
-        };
-        foreach (var cell in cornerCells)
-        {
-            cell.SetInActive();
+            cell.SetTextColor(new Color(0,0,0,0));
+            // cell.SetColor(new Color(1,1,1,1));
+            cell.isStatic = true;
         }
 
         foreach (MenuItem item in menuItems)

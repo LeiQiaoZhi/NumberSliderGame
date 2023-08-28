@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Editor Cell Config
   m_EditorClassIdentifier: 
   text: 
-  color: {r: 0.9716981, g: 0.91935986, b: 0.6285917, a: 1}
+  textColor: {r: 0, g: 0, b: 0, a: 0}
+  color: {r: 0.6901961, g: 0.81568635, b: 0.90196085, a: 1}
   overlayPrefab: {fileID: 2097798434367127278, guid: aef9160070ae58b4ca6c148fdfc17f21, type: 3}
   visitEvent: {fileID: 11400000, guid: a6f5ceddd512b8347bcc9c53fce60b0f, type: 2}
   progression: {fileID: 11400000, guid: 873c9bc0505bcf742aca226e4829c5b6, type: 2}

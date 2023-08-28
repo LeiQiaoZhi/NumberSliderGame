@@ -28,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
         public int original;
         public int other;
         public Transform targetTransform;
+        public Vector2Int moveDirection;
     }
 
     public delegate void PlayerInvalidMove(Vector2Int _direction);
@@ -61,7 +62,6 @@ public class PlayerMovement : MonoBehaviour
         // set player cell
         position_ = _startPosition;
         numberGridGenerator_.GetCell(position_).SetNumber(1);
-        numberGridGenerator_.GetCell(position_).SetPlayerCell();
         OnPlayerMove?.Invoke(new MergeResult
         {
             type = MergeType.Start,
@@ -71,7 +71,7 @@ public class PlayerMovement : MonoBehaviour
             targetTransform = numberGridGenerator_.GetCell(position_).transform
         });
         // generate surrounding patches
-        numberGridGenerator_.OnPlayerMove(position_);
+        numberGridGenerator_.DetectNeedForNewPatches(position_);
     }
 
     public void Move(Vector2Int _direction)
@@ -121,14 +121,14 @@ public class PlayerMovement : MonoBehaviour
     private bool Merge(NumberCell _currentCell, NumberCell _targetCell, Vector2Int _targetPosition)
     {
         MergeResult mergeResult = GetMergeResult(_currentCell, _targetCell);
+        mergeResult.moveDirection = _targetPosition - position_;
         if (mergeResult.type == MergeType.Fail) return false;
         // valid merge, player moves to target cell
         _currentCell.SetVisited();
         position_ = _targetPosition;
         _targetCell.SetNumber(mergeResult.result);
-        _targetCell.SetPlayerCell();
         // test whether new patch needs to be generated
-        numberGridGenerator_.OnPlayerMove(position_);
+        numberGridGenerator_.DetectNeedForNewPatches(position_);
         mergeResult.targetTransform = _targetCell.transform;
         OnPlayerMove?.Invoke(mergeResult);
         // test whether the cell is a portal
