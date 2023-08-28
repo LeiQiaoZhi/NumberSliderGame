@@ -9,6 +9,7 @@ public class LevelBonusManager : MonoBehaviour
 {
     public VerticalLayoutGroup bonusHolder;
     public GameObject bonusPrefab;
+    public GameObject bonusPanel;
 
     private List<LevelBonus> levelBonuses_;
     private InfiniteGridSystem gridSystem_;
@@ -25,6 +26,7 @@ public class LevelBonusManager : MonoBehaviour
 
     private void SetLevelBonusUI(World _world, InfiniteGridSystem _gridsystem)
     {
+        bonusPanel.SetActive(false);
         // clear previous bonuses
         foreach (Transform child in bonusHolder.transform)
             Destroy(child.gameObject);

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class WorldUIManager : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class WorldUIManager : MonoBehaviour
     public GridWorldPosSetter scorePanel;
     public GridWorldPosSetter healthPanel;
     public GridWorldPosSetter gameTitle;
-    public GridWorldPosSetter bonusPanel;
+ public GridWorldPosSetter bonusButton;
     [Space(10)]
     public VisibilityMask visibilityMask;
     public VisibilityMask visibilityMaskOuter;
@@ -54,10 +55,10 @@ public class WorldUIManager : MonoBehaviour
             gameTitle.SetPosition(_gridSystem);
         }
         
-        if (bonusPanel != null)
+        if (bonusButton != null)
         {
-            bonusPanel.gameObject.SetActive(_uiConfig.bonusPanel);
-            bonusPanel.SetPosition(_gridSystem);
+            bonusButton.gameObject.SetActive(_uiConfig.bonusButton);
+            bonusButton.SetPosition(_gridSystem);
         }
     }
 

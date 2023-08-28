@@ -50,6 +50,16 @@ public class InfiniteGridSystem : MonoBehaviour
         cellDimensionChangedEvent.Raise();
         OnCellDimensionChanged?.Invoke();
     }
+    
+    public Patch GetPatch(Vector2Int _patchPosition)
+    {
+        if (!patches_.ContainsKey(_patchPosition))
+        {
+            XLogger.LogWarning(Category.GridSystem, $"patch {_patchPosition} not found");
+            return null;
+        }
+        return patches_[_patchPosition];
+    }
 
     public Cell GetCell(Vector2Int _patchPosition, int _x, int _y)
     {
@@ -122,5 +132,10 @@ public class InfiniteGridSystem : MonoBehaviour
     public Vector2Int GetVisibleAreaDimension()
     {
         return visibleAreaDimension_;
+    }
+
+    public Patch GetPatch(int _x, int _y)
+    {
+        return GetPatch(new Vector2Int(_x, _y));
     }
 }

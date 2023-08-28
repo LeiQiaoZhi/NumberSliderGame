@@ -32,5 +32,5 @@ MonoBehaviour:
   scoreMultiplier: 1
   levelBonuses:
   - {fileID: 11400000, guid: 7319d106356d0a4468f1f1a1f870fda3, type: 2}
-  - {fileID: 11400000, guid: 7319d106356d0a4468f1f1a1f870fda3, type: 2}
+  - {fileID: 11400000, guid: 0367069dd55b8d846b0ef6b49511f406, type: 2}
   - {fileID: 11400000, guid: 7319d106356d0a4468f1f1a1f870fda3, type: 2}
