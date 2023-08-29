@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Exit Level Selection Cell Config
   m_EditorClassIdentifier: 
   text: 
-  textColor: {r: 0.1981132, g: 0.1981132, b: 0.1981132, a: 1}
+  textColor: {r: 0.1981132, g: 0.1981132, b: 0.1981132, a: 0}
   color: {r: 0.7169812, g: 0.7169812, b: 0.7169812, a: 1}
   overlayPrefab: {fileID: 2097798434367127278, guid: 922acd67bbf524a4580ed5adab309cc0, type: 3}
   visitEvent: {fileID: 11400000, guid: a6f5ceddd512b8347bcc9c53fce60b0f, type: 2}

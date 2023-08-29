@@ -15,3 +15,5 @@ MonoBehaviour:
   pool: 
   portalNumber: 5
   levelStr: "3   2   5   \n2   4   12  \n1   3   9   \n"
+  playerStartHealth: 1
+  portalCellConfig: {fileID: 11400000, guid: 156f919c9e1cee2488689faba3e2649f, type: 2}

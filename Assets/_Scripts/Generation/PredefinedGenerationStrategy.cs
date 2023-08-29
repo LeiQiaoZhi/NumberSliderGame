@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -8,13 +9,13 @@ public class PredefinedGenerationStrategy : PatchGenerationStrategy
 {
     public int portalNumber;
     [TextArea(10, 10)] public string levelStr;
-    [Space(10)]
-    public int playerStartHealth = 1;
+    [Space(10)] public int playerStartHealth = 1;
+    [Space(10)] public MenuCellConfig portalCellConfig;
 
     public override void Generate()
     {
         FindObjectOfType<PlayerHealth>().SetMaxHealth(playerStartHealth);
-        
+
         var level = ParseLevelStr(levelStr);
 
         for (int x = 0; x < patchDimension.x; x++)
@@ -25,7 +26,10 @@ public class PredefinedGenerationStrategy : PatchGenerationStrategy
                 NumberCell cell = GetCell(x, y);
                 cell.SetNumber(number);
                 if (number == portalNumber)
-                    cell.SetPortal(portalNumber, colorPreset);
+                {
+                    var menuCell = cell.AddComponent<MenuCell>();
+                    menuCell.SetUp(portalCellConfig, cell, number);
+                }
             }
         }
     }

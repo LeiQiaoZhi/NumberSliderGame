@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0e0b0d9fff64dc28eb55c112717c22b, type: 3}
+  m_Name: Fixed Level Portal Cell Config
+  m_EditorClassIdentifier: 
+  text: 
+  textColor: {r: 0.084905684, g: 0.084905684, b: 0.084905684, a: 1}
+  color: {r: 0.9622642, g: 0.3782484, b: 0.45791832, a: 1}
+  overlayPrefab: {fileID: 0}
+  visitEvent: {fileID: 0}
+  progression: {fileID: 0}

@@ -17,3 +17,4 @@ MonoBehaviour:
   levelStr: "5   2   3   9   \n3   12  5   4   \n4   7   4   2   \n6   2   6   15 
     \n1   4   5   3   \n"
   playerStartHealth: 1
+  portalCellConfig: {fileID: 11400000, guid: 156f919c9e1cee2488689faba3e2649f, type: 2}
