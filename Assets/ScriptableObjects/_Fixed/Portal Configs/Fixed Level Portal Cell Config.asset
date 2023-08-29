@@ -16,5 +16,5 @@ MonoBehaviour:
   textColor: {r: 0.084905684, g: 0.084905684, b: 0.084905684, a: 1}
   color: {r: 0.9622642, g: 0.3782484, b: 0.45791832, a: 1}
   overlayPrefab: {fileID: 0}
-  visitEvent: {fileID: 0}
+  visitEvent: {fileID: 11400000, guid: b3ad1cb18fd9a6c42b1b8cb7a5970bbf, type: 2}
   progression: {fileID: 0}

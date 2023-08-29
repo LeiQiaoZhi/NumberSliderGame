@@ -104,9 +104,9 @@ public class GameManager : MonoBehaviour
         SceneLoader.Instance.ReloadScene();
     }
 
-    public void ToMainMenu()
+    public void ToProgression(Progression _progression)
     {
-        progression_ = startingProgression;
+        progression_ = _progression;
         gameStates.state = GameStates.GameState.Over;
         OnGameRestart?.Invoke();
         SceneLoader.Instance.ReloadScene();

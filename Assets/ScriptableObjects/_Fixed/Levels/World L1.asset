@@ -27,10 +27,9 @@ MonoBehaviour:
   automaticVisibleAreaDimension: 1
   visibleAreaDimension: {x: 3, y: 3}
   visibleAreaDimensionOuter: {x: 3, y: 3}
-  UIConfig: {fileID: 11400000, guid: 88f37cbf9bd6a8141984b27912ea9885, type: 2}
+  UIConfig: {fileID: 11400000, guid: 0fadc86ab5aafc1468ba58d378bcacb4, type: 2}
   playerStartPositionType: 1
   scoreMultiplier: 1
   levelBonuses:
-  - {fileID: 11400000, guid: 7319d106356d0a4468f1f1a1f870fda3, type: 2}
+  - {fileID: 11400000, guid: abb4756f37316d84eab92332a8bfdc15, type: 2}
   - {fileID: 11400000, guid: 0367069dd55b8d846b0ef6b49511f406, type: 2}
-  - {fileID: 11400000, guid: 7319d106356d0a4468f1f1a1f870fda3, type: 2}

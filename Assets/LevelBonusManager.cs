@@ -8,8 +8,11 @@ using UnityEngine.UI;
 public class LevelBonusManager : MonoBehaviour
 {
     public VerticalLayoutGroup bonusHolder;
+    public VerticalLayoutGroup levelFinishBonusHolder;
     public GameObject bonusPrefab;
     public GameObject bonusPanel;
+    public Color completedColor;
+    public Color notCompletedColor;
 
     private List<LevelBonus> levelBonuses_;
     private InfiniteGridSystem gridSystem_;
@@ -34,7 +37,7 @@ public class LevelBonusManager : MonoBehaviour
         // set new bonuses
         foreach (var bonus in _world.levelBonuses)
         {
-            var bonusObject = Instantiate(bonusPrefab, bonusHolder.transform);
+            GameObject bonusObject = Instantiate(bonusPrefab, bonusHolder.transform);
             var bonusText = bonusObject.GetComponentInChildren<TextMeshProUGUI>();
             bonusText.text = bonus.description;
         }
@@ -42,13 +45,36 @@ public class LevelBonusManager : MonoBehaviour
         levelBonuses_ = _world.levelBonuses;
         gridSystem_ = _gridsystem;
     }
+    
+    public void OpenBonusPanel()
+    {
+        bonusPanel.SetActive(true);
+        GameManager.Instance.PauseGame();
+    }
+    
+    public void CloseBonusPanel()
+    {
+        bonusPanel.SetActive(false);
+        GameManager.Instance.ResumeGame();
+    }
 
-    // called when enter portal
+    // called when a level is completed
     public void CheckBonusConditions()
     {
-        foreach (var bonus in levelBonuses_)
+        // clear previous bonuses
+        foreach (Transform child in levelFinishBonusHolder.transform)
+            Destroy(child.gameObject);
+        
+        foreach (LevelBonus bonus in levelBonuses_)
         {
-            bonus.CheckCondition(gridSystem_);
+            var meet = bonus.CheckCondition(gridSystem_);
+            GameObject bonusObject = Instantiate(bonusPrefab, levelFinishBonusHolder.transform);
+            var bonusText = bonusObject.GetComponentInChildren<TextMeshProUGUI>();
+            bonusText.text = bonus.description;
+            bonusText.color = (meet) ? completedColor : notCompletedColor;
+            bonusObject.GetComponentInChildren<Image>().color = (meet) ? completedColor : notCompletedColor;
         }
+        
+        GameManager.Instance.gameStates.state = GameStates.GameState.Over;
     }
 }

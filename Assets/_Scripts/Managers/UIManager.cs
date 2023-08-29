@@ -49,6 +49,8 @@ public class UIManager : MonoBehaviour
 
     public void Pause()
     {
+        if (pauseScreen.activeSelf)
+            return;
         pauseScreen.SetActive(true);
         pauseButton.SetActive(false);
         GameManager.Instance.PauseGame();
@@ -56,7 +58,7 @@ public class UIManager : MonoBehaviour
 
     public void Resume()
     {
-        if (gameStates.state == GameStates.GameState.Over)
+        if (gameStates.state == GameStates.GameState.Over || !pauseScreen.activeSelf)
             return;
         pauseScreen.SetActive(false);
         pauseButton.SetActive(true);
