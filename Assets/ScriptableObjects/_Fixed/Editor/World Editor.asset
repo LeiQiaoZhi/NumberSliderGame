@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: World Editor
   m_EditorClassIdentifier: 
   infinite: 0
+  cameraFollow: 0
+  enterResetScore: 1
   startingGenerationStrategy: {fileID: 11400000, guid: 8c18c6ed3e576874caab5ea3744269f4, type: 2}
   generationStrategies: []
   portalGenerationGuarantee: 5
@@ -21,9 +23,11 @@ MonoBehaviour:
   minPortalDistanceFromEachOther: 2
   colorPreset: {fileID: 11400000, guid: 76dbd49e2ba0d6a44991a8bf1109686a, type: 2}
   patchDimension: {x: 5, y: 7}
-  screenAreaDimension: {x: 5, y: 9}
+  screenAreaDimension: {x: 5, y: 11}
   automaticVisibleAreaDimension: 1
-  visibleAreaDimension: {x: 0, y: 0}
-  visibleAreaDimensionOuter: {x: 0, y: 0}
+  visibleAreaDimension: {x: 5, y: 7}
+  visibleAreaDimensionOuter: {x: 5, y: 7}
   UIConfig: {fileID: 11400000, guid: 64777cdcd5b766d45bac7751d8d7e7f2, type: 2}
   playerStartPositionType: 1
+  scoreMultiplier: 1
+  levelBonuses: []

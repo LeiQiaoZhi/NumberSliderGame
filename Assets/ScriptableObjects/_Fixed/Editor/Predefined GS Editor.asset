@@ -13,18 +13,8 @@ MonoBehaviour:
   m_Name: Predefined GS Editor
   m_EditorClassIdentifier: 
   pool: 
-  levelStr: '| 1 | 2 | 3 | 4 | 5 |
-
-    | 1 | 2 | 3 | 4 | 5 |
-
-    | 1 | 2 | 3 |
-    4 | 5 |
-
-    | 1 | 2 | 3 | 4 | 5 |
-
-    | 1 | 2 | 3 | 4 | 5 |
-
-    | 1 | 2 |
-    3 | 4 | 5 |
-
-    | 7 | 2 | 3 | 7 | 7 |'
+  portalNumber: 5
+  levelStr: "1  2  3  4  5  \n1  2  3  4  5  \n1  2  3  4  5  \n1  2  3  4  5  \n1 
+    2  3  4  5  \n1  2  3  4  5  \n7  2  3  7  7  \n"
+  playerStartHealth: 1
+  portalCellConfig: {fileID: 11400000, guid: 216268a0436df86428c0d5c249ab5b13, type: 2}
