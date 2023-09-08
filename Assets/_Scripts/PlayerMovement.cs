@@ -51,7 +51,8 @@ public class PlayerMovement : MonoBehaviour
     // because it uses grid coordinates, not patch coordinates
     private Vector2Int position_;
 
-    public void OnGenerationStart(NumberGridGenerator _numberGridGenerator, GameStates _gameStates, Vector2Int _startPosition)
+    public void OnGenerationStart(NumberGridGenerator _numberGridGenerator, GameStates _gameStates,
+        Vector2Int _startPosition)
     {
         playerHealth_ = GetComponent<PlayerHealth>();
         numberGridGenerator_ = _numberGridGenerator;
@@ -122,7 +123,14 @@ public class PlayerMovement : MonoBehaviour
     {
         MergeResult mergeResult = GetMergeResult(_currentCell, _targetCell);
         mergeResult.moveDirection = _targetPosition - position_;
-        if (mergeResult.type == MergeType.Fail) return false;
+        
+        // invalid merge that reduces health
+        if (mergeResult.type == MergeType.Fail)
+        {
+            OnPlayerMove?.Invoke(mergeResult);
+            return false;
+        }
+
         // valid merge, player moves to target cell
         _currentCell.SetVisited();
         position_ = _targetPosition;
@@ -170,7 +178,10 @@ public class PlayerMovement : MonoBehaviour
             mergeResult.type = MergeType.Divide;
         }
         else
+        {
+            mergeResult.result = currentNumber;
             mergeResult.type = MergeType.Fail;
+        }
 
         return mergeResult;
     }

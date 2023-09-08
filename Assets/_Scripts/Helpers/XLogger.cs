@@ -26,7 +26,8 @@ namespace UnityEngine
         Tween,
         Score,
         Menu,
-        LevelBonus
+        LevelBonus,
+        Effect
     }
     
     public static class XLogger

@@ -7,9 +7,16 @@ using UnityEngine;
 public class PlayerEffect : MonoBehaviour
 {
     public TextMeshProUGUI numberText;
+    public SpriteRenderer mainSprite;
+    public SpriteRenderer borderSprite;
     [Header("Break Effect")] public ParticleSystem breakEffect;
     public float directionVelocityMultiplier;
     public float pieceSizeMultiplier = 1;
+    [Header("Health Reduce Effect")]
+    public float blackenTime = 0.4f;
+    public float restoreTime = 0.2f;
+    [SerializeField] private Color blackenColor;
+    
 
     private InfiniteGridSystem gridSystem_;
 
@@ -42,7 +49,7 @@ public class PlayerEffect : MonoBehaviour
             effect.transform.position = _mergeResult.targetTransform.position;
             effect.transform.localScale = _mergeResult.targetTransform.localScale.x * Vector3.one * pieceSizeMultiplier;
             effect.transform.rotation = Quaternion.identity;
-            // TODO: change effect's direction based on the direction of the move
+            // change effect's direction based on the direction of the move
             ParticleSystem.VelocityOverLifetimeModule velocity = effect.velocityOverLifetime;
             velocity.x = _mergeResult.moveDirection.x * directionVelocityMultiplier;
             velocity.y = _mergeResult.moveDirection.y * directionVelocityMultiplier;
@@ -50,5 +57,27 @@ public class PlayerEffect : MonoBehaviour
             // TODO: change effect's spawn number based on the original number of the move
             Destroy(effect.gameObject, 1.0f);
         }
+
+        if (_mergeResult.type == PlayerMovement.MergeType.Fail)
+        {
+            if (mainSprite == null) return;
+            StartCoroutine(FailEffect());
+        }
+    }
+
+    private IEnumerator FailEffect()
+    {
+        GameManager.Instance.PauseGame();
+        Color mainSpriteColor = mainSprite.color;
+        Color borderSpriteColor = borderSprite.color;
+        mainSprite.TweenColor(blackenColor,blackenTime).Play();
+        borderSprite.TweenColor(blackenColor ,blackenTime).Play();
+        yield return new WaitForSeconds(blackenTime);
+        mainSprite.TweenColor(mainSpriteColor,restoreTime).Play();
+        borderSprite.TweenColor(borderSpriteColor,restoreTime).Play();
+        yield return new WaitForSeconds(restoreTime);
+        mainSprite.color = mainSpriteColor;
+        borderSprite.color = borderSpriteColor;
+        GameManager.Instance.ResumeGame();
     }
 }

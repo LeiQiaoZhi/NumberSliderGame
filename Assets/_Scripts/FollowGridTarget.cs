@@ -23,6 +23,7 @@ public class FollowGridTarget : MonoBehaviour
 
     private void OnPlayerMove(PlayerMovement.MergeResult _mergeResult)
     {
+        if (_mergeResult.targetTransform == null) return;
         target_ = _mergeResult.targetTransform.position;
     }
 
@@ -36,5 +37,7 @@ public class FollowGridTarget : MonoBehaviour
             camPos = new Vector3(lerpPos.x, lerpPos.y, camPos.z);
             self.transform.position = camPos;
         }
+        else
+            self.transform.position = new Vector3(target_.x, target_.y, self.transform.position.z);
     }
 }

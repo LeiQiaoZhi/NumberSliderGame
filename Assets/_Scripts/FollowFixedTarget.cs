@@ -38,5 +38,7 @@ public class FollowFixedTarget : MonoBehaviour
             camPos = new Vector3(lerpPos.x, lerpPos.y, camPos.z);
             self.transform.position = camPos;
         }
+        else
+            self.transform.position = new Vector3(target_.position.x, target_.position.y, self.transform.position.z);
     }
 }

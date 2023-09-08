@@ -15,7 +15,7 @@ MonoBehaviour:
   pause: 1
   editor: 0
   score: 1
-  health: 1
+  health: 0
   gameTitle: 0
-  bonusPanel: 1
+  bonusButton: 1
   visibilityMaskFollowCamera: 1
