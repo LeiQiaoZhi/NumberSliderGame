@@ -16339,6 +16339,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1789372219}
     m_Modifications:
+    - target: {fileID: 8630138793137755338, guid: 7ffa4636135fc9e4abbf8bde17edc831, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8630138793166244667, guid: 7ffa4636135fc9e4abbf8bde17edc831, type: 3}
       propertyPath: m_Name
       value: DebugConsole

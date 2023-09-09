@@ -30,4 +30,6 @@ MonoBehaviour:
   UIConfig: {fileID: 11400000, guid: 0fadc86ab5aafc1468ba58d378bcacb4, type: 2}
   playerStartPositionType: 1
   scoreMultiplier: 1
-  levelBonuses: []
+  levelBonuses:
+  - {fileID: 11400000, guid: abb4756f37316d84eab92332a8bfdc15, type: 2}
+  - {fileID: 11400000, guid: 0367069dd55b8d846b0ef6b49511f406, type: 2}

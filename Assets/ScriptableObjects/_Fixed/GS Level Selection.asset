@@ -16,6 +16,7 @@ MonoBehaviour:
   menuItems:
   - config: {fileID: 11400000, guid: 35745c6ecf14ef343885eceeac0174f8, type: 2}
     relativePosition: {x: 1, y: 0}
+  levelItems:
   - config: {fileID: 11400000, guid: a29c55df83362924c86634e65591003f, type: 2}
     relativePosition: {x: 1, y: 1}
   - config: {fileID: 11400000, guid: fd13671757aa36740a1771528a7bd91d, type: 2}

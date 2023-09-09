@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Predefined GS L2
   m_EditorClassIdentifier: 
   pool: 
+  levelNumber: 2
   portalNumber: 7
   levelStr: "3   2   3   7   \n3   12  5   4   \n4   3   4   4   \n1   2   6   5  
     \n"

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: L3
   textColor: {r: 0.1981132, g: 0.1981132, b: 0.1981132, a: 1}
-  color: {r: 0.62290084, g: 0.58431375, b: 0.972549, a: 1}
+  color: {r: 0.76933897, g: 0.744482, b: 0.990566, a: 1}
   overlayPrefab: {fileID: 0}
   visitEvent: {fileID: 11400000, guid: a6f5ceddd512b8347bcc9c53fce60b0f, type: 2}
   progression: {fileID: 11400000, guid: beeb8026936e6b049ba91d0333ee9f89, type: 2}

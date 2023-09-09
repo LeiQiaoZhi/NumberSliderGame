@@ -25,7 +25,9 @@ MonoBehaviour:
   patchDimension: {x: 2, y: 4}
   screenAreaDimension: {x: 4, y: 5}
   automaticVisibleAreaDimension: 1
-  visibleAreaDimension: {x: 2, y: 3}
-  visibleAreaDimensionOuter: {x: 2, y: 3}
+  visibleAreaDimension: {x: 4, y: 4}
+  visibleAreaDimensionOuter: {x: 4, y: 4}
   UIConfig: {fileID: 11400000, guid: 24d2a8a3282017d4ba292edc25006efc, type: 2}
   playerStartPositionType: 1
+  scoreMultiplier: 1
+  levelBonuses: []

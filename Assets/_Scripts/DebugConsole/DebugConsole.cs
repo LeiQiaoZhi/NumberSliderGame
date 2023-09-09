@@ -21,7 +21,9 @@ public class DebugConsole : MonoBehaviour
         {
             DebugCommandList.testCommand,
             DebugCommandList.quitCommand,
-            DebugCommandList.helpCommand
+            DebugCommandList.helpCommand,
+            DebugCommandList.unlockAllLevelsCommand,
+            DebugCommandList.resetAllLevelsCommand
         };
     }
 

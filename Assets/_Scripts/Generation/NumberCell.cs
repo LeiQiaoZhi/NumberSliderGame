@@ -128,8 +128,7 @@ public class NumberCell : MonoBehaviour
     }
     public void SetInActive()
     {
-        visitedNum_ = 1;
-        SetVisited();
+        visitedNum_ = 2;
     }
 
     public void SetText(string _text)

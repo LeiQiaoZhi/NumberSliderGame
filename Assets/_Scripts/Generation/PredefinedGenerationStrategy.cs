@@ -2,12 +2,14 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.Serialization;
 
 [CreateAssetMenu(fileName = "Predefined Generation Strategy", menuName = "Generation/PredefinedGenerationStrategy",
     order = 0)]
 public class PredefinedGenerationStrategy : PatchGenerationStrategy
 {
-    public int portalNumber;
+    [Tooltip("1 index")] public int levelNumber;
+    [Space(10)] public int portalNumber;
     [TextArea(10, 10)] public string levelStr;
     [Space(10)] public int playerStartHealth = 1;
     [Space(10)] public MenuCellConfig portalCellConfig;
@@ -27,8 +29,9 @@ public class PredefinedGenerationStrategy : PatchGenerationStrategy
                 cell.SetNumber(number);
                 if (number == portalNumber)
                 {
-                    var menuCell = cell.AddComponent<MenuCell>();
-                    menuCell.SetUp(portalCellConfig, cell, number);
+                    var portalCell = cell.AddComponent<LevelPortalCell>();
+                    portalCell.SetUp(portalCellConfig, cell, number);
+                    portalCell.SetLevel(levelNumber);
                 }
             }
         }
@@ -36,7 +39,7 @@ public class PredefinedGenerationStrategy : PatchGenerationStrategy
 
     public int[,] ParseLevelStr(string _levelStr)
     {
-        var level = new int[patchDimension.x, patchDimension.y];
+        var levelInts = new int[patchDimension.x, patchDimension.y];
 
         // turn non-numeric characters into spaces
         for (var i = 0; i < _levelStr.Length; i++)
@@ -69,10 +72,10 @@ public class PredefinedGenerationStrategy : PatchGenerationStrategy
                 // strip out spaces
                 var numberStr = numbers[col].Replace(" ", "");
                 // in text, top left is 0,0, but in game, bottom left is 0,0
-                level[col, patchDimension.y - 1 - row] = int.Parse(numberStr);
+                levelInts[col, patchDimension.y - 1 - row] = int.Parse(numberStr);
             }
         }
 
-        return level;
+        return levelInts;
     }
 }

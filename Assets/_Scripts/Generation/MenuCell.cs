@@ -3,25 +3,36 @@ using UnityEngine;
 
 public class MenuCell : MonoBehaviour
 {
-    private MenuCellConfig config_;
-    private NumberCell numberCell_;
+    protected MenuCellConfig config;
+    protected NumberCell numberCell;
+    protected bool active; // if inactive, player cannot move to this cell
 
-    public void SetUp(MenuCellConfig _config, NumberCell _numberCell, int _number = 0)
+    public MenuCell SetUp(MenuCellConfig _config, NumberCell _numberCell, int _number = 0)
     {
-        config_ = _config;
-        numberCell_ = _numberCell;
+        config = _config;
+        numberCell = _numberCell;
 
-        numberCell_.SetNumber(_number);
-        numberCell_.SetTextColor(_config.textColor);
+        numberCell.SetNumber(_number);
+        numberCell.SetTextColor(_config.textColor);
         if (_config.text != "")
-            numberCell_.SetText(_config.text);
+            numberCell.SetText(_config.text);
 
-        numberCell_.SetColor(config_.color);
-        if (config_.overlayPrefab != null)
+        numberCell.SetColor(config.color);
+        if (config.overlayPrefab != null)
         {
-            GameObject overlay = Instantiate(config_.overlayPrefab, transform);
+            GameObject overlay = Instantiate(config.overlayPrefab, transform);
             overlay.transform.localScale = Vector3.one;
         }
+
+        return this;
+    }
+
+    public MenuCell SetActive(bool _active)
+    {
+        active = _active;
+        if (!active)
+            numberCell.SetInActive();
+        return this;
     }
 
     private void OnEnable()
@@ -34,14 +45,14 @@ public class MenuCell : MonoBehaviour
         PlayerMovement.OnPlayerMove -= OnPlayerMove;
     }
 
-    private void OnPlayerMove(PlayerMovement.MergeResult _result)
+    protected virtual void OnPlayerMove(PlayerMovement.MergeResult _result)
     {
-        if (_result.targetTransform == numberCell_.transform)
+        if (_result.targetTransform == numberCell.transform)
         {
-            XLogger.Log(Category.Menu, $"Player moved to {config_}");
-            if (config_.visitEvent != null) config_.visitEvent.Raise();
-            if (config_.progression != null)
-                GameManager.Instance.LoadLevel(config_.progression, 0.1f);
+            XLogger.Log(Category.Menu, $"Player moved to {config}");
+            if (config.visitEvent != null) config.visitEvent.Raise();
+            if (config.progression != null)
+                GameManager.Instance.LoadLevel(config.progression, 0.1f);
         }
     }
 }
